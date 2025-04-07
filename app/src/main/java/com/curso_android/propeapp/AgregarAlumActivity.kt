@@ -42,6 +42,7 @@ class AgregarAlumActivity : AppCompatActivity() {
         opcionesEstatus = listOf("Pagado", "No pagado", "Prorroga")//poner en apputils.stringkeys??????
         opcionesCredencial = listOf("Pendiente", "Entregada")//poner en apputils.stringkeys??????
 
+        //Creo que esto se puede optimizar
         val adapter1 = ArrayAdapter(this, android.R.layout.simple_spinner_item, opcionesEstatus)
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.spEstatus.adapter = adapter1
