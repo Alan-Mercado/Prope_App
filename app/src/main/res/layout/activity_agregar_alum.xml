@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AgregarAlumActivity">
+
+    <!--TOOLBAR-->
+    <include
+        android:id="@+id/toolbarExterna"
+        layout="@layout/toolbar" />
+
+    <!--CONTENIDO-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="40dp">
+
+        <!--Titulo-->
+        <TextView
+            android:id="@+id/tvTitulo"
+            style="@style/Titulo_1_Estilo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="48dp"
+            android:gravity="start"
+            android:text="@string/titulo_activity_agregar_alum"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!--Nombre-->
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/divider1"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="12dp"
+            app:dividerColor="@color/gris_color"
+            app:layout_constraintTop_toBottomOf="@id/tvTitulo" />
+
+        <TextView
+            android:id="@+id/tvCampoNombre"
+            style="@style/Titulo_2_Estilo"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp"
+            android:gravity="left"
+            android:text="@string/nombre_activity_agregar_alum"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider1" />
+
+        <!--TextView
+            android:id="@+id/tvNombre"
+            style="@style/Texto_3_Estilo"
+            android:layout_width="200dp"
+            android:layout_height="48dp"
+            android:gravity="start|center_vertical"
+            android:maxLines="2"
+            android:paddingHorizontal="8dp"
+            app:layout_constraintStart_toEndOf="@id/tvCampoNombre"
+            app:layout_constraintTop_toBottomOf="@id/divider1"
+            tools:text="ana maria velazquez castro" /-->
+        <EditText
+            android:id="@+id/etNombre"
+            style="@style/Texto_3_Estilo"
+            android:layout_width="200dp"
+            android:layout_height="48dp"
+            android:gravity="start|center_vertical"
+            android:maxLines="2"
+            android:paddingHorizontal="8dp"
+            app:layout_constraintStart_toEndOf="@id/tvCampoNombre"
+            app:layout_constraintTop_toBottomOf="@id/divider1"
+            tools:text="ana maria velazquez castro" />
+
+
+        <!--Registro-->
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/divider2"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            app:dividerColor="@color/gris_color"
+            app:layout_constraintTop_toBottomOf="@id/tvCampoNombre" />
+
+        <TextView
+            android:id="@+id/tvCampoRegistro"
+            style="@style/Titulo_2_Estilo"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="12dp"
+            android:gravity="left"
+            android:text="@string/registro_activity_agregar_alum"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider2" />
+
+        <EditText
+            android:id="@+id/etRegistro"
+            style="@style/Texto_1_Estilo"
+            android:layout_width="200dp"
+            android:layout_height="48dp"
+            android:gravity="start|center_vertical"
+            android:maxLines="2"
+            android:paddingHorizontal="8dp"
+            app:layout_constraintStart_toEndOf="@id/tvCampoRegistro"
+            app:layout_constraintTop_toBottomOf="@id/divider2"
+            tools:text="12345678" />
+
+        <!--Estatus-->
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/divider3"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            app:dividerColor="@color/gris_color"
+            app:layout_constraintTop_toBottomOf="@id/tvCampoRegistro" />
+
+        <TextView
+            android:id="@+id/tvCampoEstatus"
+            style="@style/Titulo_2_Estilo"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="12dp"
+            android:gravity="left"
+            android:text="@string/estatus_activity_agregar_alum"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider3" />
+
+        <!--EditText
+            android:id="@+id/etEstatus"
+            style="@style/Texto_1_Estilo"
+            android:layout_width="200dp"
+            android:layout_height="48dp"
+            android:gravity="start|center_vertical"
+            android:maxLines="2"
+            android:paddingHorizontal="8dp"
+            app:layout_constraintStart_toEndOf="@id/tvCampoEstatus"
+            app:layout_constraintTop_toBottomOf="@id/divider3"
+            tools:text="Pago completado" /-->
+        <Spinner
+            android:id="@+id/spEstatus"
+            android:layout_width="200dp"
+            android:layout_height="48dp"
+            app:layout_constraintStart_toEndOf="@id/tvCampoEstatus"
+            app:layout_constraintTop_toBottomOf="@id/divider3" />
+
+        <!--Grupo-->
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/divider4"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            app:dividerColor="@color/gris_color"
+            app:layout_constraintTop_toBottomOf="@id/tvCampoEstatus" />
+
+        <TextView
+            android:id="@+id/tvCampoGrupo"
+            style="@style/Titulo_2_Estilo"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="12dp"
+            android:gravity="left"
+            android:text="@string/grupo_activity_agregar_alum"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider4" />
+
+        <EditText
+            android:id="@+id/etGrupo"
+            style="@style/Texto_1_Estilo"
+            android:layout_width="200dp"
+            android:layout_height="48dp"
+            android:gravity="start|center_vertical"
+            android:maxLines="2"
+            android:paddingHorizontal="8dp"
+            app:layout_constraintStart_toEndOf="@id/tvCampoGrupo"
+            app:layout_constraintTop_toBottomOf="@id/divider4"
+            tools:text="A" />
+
+        <!--Tutor 1-->
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/divider5"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            app:dividerColor="@color/gris_color"
+            app:layout_constraintTop_toBottomOf="@id/tvCampoGrupo" />
+
+        <TextView
+            android:id="@+id/tvCampoTutor1"
+            style="@style/Titulo_2_Estilo"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="12dp"
+            android:gravity="left"
+            android:text="@string/tutor1_activity_agregar_alum"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider5" />
+
+        <EditText
+            android:id="@+id/etTutor1"
+            style="@style/Texto_1_Estilo"
+            android:layout_width="200dp"
+            android:layout_height="48dp"
+            android:gravity="start|center_vertical"
+            android:maxLines="2"
+            android:paddingHorizontal="8dp"
+            app:layout_constraintStart_toEndOf="@id/tvCampoTutor1"
+            app:layout_constraintTop_toBottomOf="@id/divider5"
+            tools:text="maria castro" />
+
+        <!--Telefono 1-->
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/divider6"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            app:dividerColor="@color/gris_color"
+            app:layout_constraintTop_toBottomOf="@id/tvCampoTutor1" />
+
+        <TextView
+            android:id="@+id/tvCampoTelefono1"
+            style="@style/Titulo_2_Estilo"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="12dp"
+            android:gravity="left"
+            android:text="@string/telefono_activity_agregar_alum"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider6" />
+
+        <EditText
+            android:id="@+id/etTelefono1"
+            style="@style/Texto_1_Estilo"
+            android:layout_width="200dp"
+            android:layout_height="48dp"
+            android:gravity="start|center_vertical"
+            android:maxLines="2"
+            android:paddingHorizontal="8dp"
+            app:layout_constraintStart_toEndOf="@id/tvCampoTelefono1"
+            app:layout_constraintTop_toBottomOf="@id/divider6"
+            tools:text="3344556677" />
+
+        <!--Tutor 2-->
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/divider7"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            app:dividerColor="@color/gris_color"
+            app:layout_constraintTop_toBottomOf="@id/tvCampoTelefono1" />
+
+        <TextView
+            android:id="@+id/tvCampoTutor2"
+            style="@style/Titulo_2_Estilo"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="12dp"
+            android:gravity="left"
+            android:text="@string/tutor2_activity_agregar_alum"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider7" />
+
+        <EditText
+            android:id="@+id/etTutor2"
+            style="@style/Texto_1_Estilo"
+            android:layout_width="200dp"
+            android:layout_height="48dp"
+            android:gravity="start|center_vertical"
+            android:maxLines="2"
+            android:paddingHorizontal="8dp"
+            app:layout_constraintStart_toEndOf="@id/tvCampoTutor2"
+            app:layout_constraintTop_toBottomOf="@id/divider7"
+            tools:text="jose velazquez" />
+
+        <!--Telefono 2-->
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/divider8"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            app:dividerColor="@color/gris_color"
+            app:layout_constraintTop_toBottomOf="@id/tvCampoTutor2" />
+
+        <TextView
+            android:id="@+id/tvCampoTelefono2"
+            style="@style/Titulo_2_Estilo"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="12dp"
+            android:gravity="left"
+            android:text="@string/telefono_activity_agregar_alum"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider8" />
+
+        <EditText
+            android:id="@+id/etTelefono2"
+            style="@style/Texto_1_Estilo"
+            android:layout_width="200dp"
+            android:layout_height="48dp"
+            android:gravity="start|center_vertical"
+            android:maxLines="2"
+            android:paddingHorizontal="8dp"
+            app:layout_constraintStart_toEndOf="@id/tvCampoTelefono2"
+            app:layout_constraintTop_toBottomOf="@id/divider8"
+            tools:text="3311223344" />
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/divider9"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            app:dividerColor="@color/gris_color"
+            app:layout_constraintTop_toBottomOf="@id/tvCampoTelefono2" />
+
+        <TextView
+            android:id="@+id/tvCampoCredencial"
+            style="@style/Texto_3_Estilo"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="2dp"
+            android:gravity="left"
+            android:text="@string/credencial_activity_info_alum"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider9" />
+
+        <!--EditText
+            android:id="@+id/etCredencial"
+            style="@style/Texto_1_Estilo"
+            android:layout_width="200dp"
+            android:layout_height="48dp"
+            android:gravity="start|center_vertical"
+            android:maxLines="2"
+            android:paddingHorizontal="8dp"
+            app:layout_constraintStart_toEndOf="@id/tvCampoTelefono2"
+            app:layout_constraintTop_toBottomOf="@id/divider9"
+            tools:text="Pendiente" /-->
+        <Spinner
+            android:id="@+id/spCredencial"
+            android:layout_width="200dp"
+            android:layout_height="48dp"
+            app:layout_constraintStart_toEndOf="@id/tvCampoTelefono2"
+            app:layout_constraintTop_toBottomOf="@id/divider9" />
+
+        <!--Agregar-->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnAgregarAlum"
+            style="@style/Texto_1_Estilo"
+            android:layout_width="240dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginVertical="0dp"
+            android:backgroundTint="@color/tinto_color"
+            android:text="@string/btnagregar_activity_agregar_alum"
+            android:textColor="@color/white"
+            app:cornerRadius="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>
+
+

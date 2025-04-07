@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".BienvenidaActivity">
+
+    <!--TOOLBAR INICIAL-->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolBar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/tinto_color">
+
+        <TextView
+            style="@style/Titulo_2_Estilo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textColor="@color/white" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <!--CONTENIDO-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="40dp">
+
+        <!--TITULOS-->
+        <!--Bienvenido-->
+        <TextView
+            style="@style/Titulo_1_Estilo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/titulo_activity_bienvenida"
+            tools:text="Bienvenido" />
+
+        <!--Prope app-->
+        <TextView
+            style="@style/Titulo_2_Estilo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/subtitulo_activity_bienvenida"
+            tools:text="Prope App" />
+
+        <!--Imagen-->
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
+            android:layout_marginVertical="32dp"
+            android:src="@drawable/ic_birrete" />
+
+        <!--Descripcion-->
+        <TextView
+            style="@style/Texto_1_Estilo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:text="@string/descripcion_activity_bienvenida"
+            tools:text="@string/descripcion_activity_bienvenida" />
+
+        <!--BOTONES-->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center_horizontal">
+
+            <!--Ingresar-->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnIngresar"
+                style="@style/Texto_1_Estilo"
+                android:layout_width="240dp"
+                android:layout_height="50dp"
+                android:layout_marginBottom="16dp"
+                android:backgroundTint="@color/tinto_color"
+                android:text="@string/btningresar_activity_bienvenida"
+                android:textColor="@color/white"
+                app:cornerRadius="8dp"
+                tools:text="Ingresar" />
+
+            <!--Escanear QR-->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnEscanearQR"
+                style="@style/Texto_1_Estilo"
+                android:layout_width="240dp"
+                android:layout_height="50dp"
+                android:backgroundTint="@color/dorado_color"
+                android:text="@string/btnescanearqr_activity_bienvenida"
+                android:textColor="@color/white"
+                app:cornerRadius="8dp"
+                tools:text="Escanear QR" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>

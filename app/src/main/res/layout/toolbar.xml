@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/tinto_color"
+    android:id="@+id/toolBar">
+
+        <ImageView
+            android:id="@+id/ivRegresar"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:background="@color/tinto_color"
+            android:src="@drawable/ic_arrow_goback" />
+
+        <TextView
+            style="@style/Titulo_2_Estilo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="12dp"
+            android:text="@string/atras_toolbar"
+            android:textColor="@color/white" />
+
+</androidx.appcompat.widget.Toolbar>

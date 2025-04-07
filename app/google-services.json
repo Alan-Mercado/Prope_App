@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "898912042677",
+    "project_id": "prope-app-prueba-1",
+    "storage_bucket": "prope-app-prueba-1.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:898912042677:android:d9199cd54bd3d2d29508fc",
+        "android_client_info": {
+          "package_name": "com.curso_android.propeapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCKQHHlvvZovqaPLN-FSfcA-LSqgFtKKWs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

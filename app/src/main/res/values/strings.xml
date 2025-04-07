@@ -1,0 +1,83 @@
+<resources>
+    <string name="app_name">Prope App</string>
+    <string name="atras_toolbar">Atrás</string>
+
+<!--activity_bienvenida-->
+    <string name="titulo_activity_bienvenida">Bienvenid@</string>
+    <string name="subtitulo_activity_bienvenida">Prope App</string>
+    <string name="descripcion_activity_bienvenida">En esta aplicación podrás acceder a tu información como estudiante del curso propedéutico en CETI Tonalá</string>
+    <string name="btningresar_activity_bienvenida">Ingresar</string>
+    <string name="btnescanearqr_activity_bienvenida">Escanear QR</string>
+
+<!--activity_login-->
+    <string name="textologo_activity_login">CETI Tonalá</string>
+    <string name="titulo_activity_login">Inicia Sesión</string>
+    <string name="instruccion_activity_login">Ingresa tus datos por favor</string>
+    <string name="registro_activity_login">Registro</string>
+    <string name="registrohint_activity_login">Escribe aquí tu registro</string>
+    <string name="contrasenia_activity_login">Contraseña</string>
+    <string name="contraseniahint_activity_login">Escribe aquí tu contraseña</string>
+    <string name="olvidastecontrasenia_activity_login">¿Olvidaste tu contraseña?</string>
+    <string name="btningresar_activity_login">Ingresar</string>
+
+<!--activity_usuario-->
+    <string name="titulo_activity_usuario">Tu Información</string>
+    <string name="descripcion_activity_usuario">Aquí puedes revisar tu información como alumno del curso propedéutico de CETI Tonalá y mostrar tu código QR para que sea escaneado</string>
+    <string name="informacion_activity_usuario">Información</string>
+    <string name="qr_activity_usuario">QR</string>
+
+<!--activity_admin-->
+    <string name="titulo_activity_admin">Tu Información</string>
+    <string name="descripcion_activity_admin">Aquí puedes buscar un alumno por su nombre, revisar la lista de grupos, agregar a un alumno nuevo o editar la información de un alumno</string>
+    <string name="buscaralumno_activity_admin">Buscar Alumno</string>
+    <string name="grupos_activity_admin">Grupos</string>
+    <string name="agregaralumno_activity_admin">Agregar Alumno</string>
+    <string name="editaralumno_activity_admin">Editar Alumno</string>
+    <string name="agregarusuario_activity_admin">Agregar Usuario</string>
+    <string name="editarusuario_activity_admin">Editar Usuario</string>
+
+<!--activity_mostrarqralum-->
+    <string name="instruccion_activity_mostrarqralum">Muestra este código QR para que otras personas puedan acceder a tu información</string>
+
+<!--activity_escanear_qractivity-->
+    <string name="instruccion_activity_escanear_qractivity">Escanea un código QR para visualizar la información del alumno</string>
+
+<!--activity_info_alum-->
+    <string name="titulo_activity_info_alum">Tu información</string>
+    <string name="nombre_activity_info_alum">Nombre:</string>
+    <string name="registro_activity_info_alum">Registro:</string>
+    <string name="estatus_activity_info_alum">Estatus:</string>
+    <string name="grupo_activity_info_alum">Grupo:</string>
+    <string name="tutor1_activity_info_alum">Tutor 1:</string>
+    <string name="tutor2_activity_info_alum">Tutor 2:</string>
+    <string name="telefono_activity_info_alum">Teléfono:</string>
+    <string name="credencial_activity_info_alum">Credencial entregada:</string>
+
+<!--activity_buscar_alum-->
+    <string name="titulo_activity_buscar_alum">Ingresa el nombre del alumno</string>
+    <string name="nombre_activity_buscar_alum">Nombre o Registro</string>
+    <string name="btnbuscar_activity_buscar_alum">Buscar</string>
+    <string name="btnescanearqr_activity_buscar_alum">Escanear QR</string>
+
+    <!--activity_seleccionar_grupo-->
+    <string name="titulo_activity_seleccionar_grupo">Selecciona un grupo</string>
+
+    <!--activity_agregar_alum-->
+    <string name="titulo_activity_agregar_alum">Ingresa los datos del alumno</string>
+    <string name="nombre_activity_agregar_alum">Nombre:</string>
+    <string name="registro_activity_agregar_alum">Registro:</string>
+    <string name="estatus_activity_agregar_alum">Estatus:</string>
+    <string name="grupo_activity_agregar_alum">Grupo:</string>
+    <string name="tutor1_activity_agregar_alum">Tutor 1:</string>
+    <string name="tutor2_activity_agregar_alum">Tutor 2:</string>
+    <string name="telefono_activity_agregar_alum">Teléfono:</string>
+    <string name="btnagregar_activity_agregar_alum">Agregar</string>
+
+    <!--activity_editar_alum-->
+    <string name="titulo_activity_editar_alum">Edita la información del alumno</string>
+    <string name="btnactualizar_activity_editar_alum">Actualizar</string>
+
+    <!--activity_-->
+    <string name="_activity_"></string>
+
+</resources>
