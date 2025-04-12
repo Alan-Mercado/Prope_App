@@ -1,247 +1,253 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AdminActivity">
+    android:fillViewport="true">
 
-    <!--TOOLBAR-->
-    <include
-        android:id="@+id/toolbarExterna"
-        layout="@layout/toolbar" />
-
-    <!--CONTENIDO-->
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <FrameLayout
+        android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="40dp"
         tools:context=".AdminActivity">
 
-        <!--Titulo-->
-        <TextView
-            android:id="@+id/tvTitulo"
-            style="@style/Titulo_1_Estilo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Tu informacion" />
+        <!--TOOLBAR-->
+        <include
+            android:id="@+id/toolbarExterna"
+            layout="@layout/toolbar" />
 
-        <!--descripcion-->
-        <TextView
-            android:id="@+id/tvDescripcion"
-            style="@style/Texto_2_Estilo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/descripcion_activity_admin"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvTitulo"
-            tools:text="@string/descripcion_activity_admin" />
+        <!--CONTENIDO-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="40dp"
+            tools:context=".AdminActivity">
 
-        <!--cardview buscar alumno-->
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cvBuscarAlumno"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_marginVertical="8dp"
-            android:layout_marginEnd="32dp"
-            app:cardCornerRadius="20dp"
-            app:cardElevation="8dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvDescripcion">
+            <!--Titulo-->
+            <TextView
+                android:id="@+id/tvTitulo"
+                style="@style/Titulo_1_Estilo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Tu informacion" />
 
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical">
+            <!--descripcion-->
+            <TextView
+                android:id="@+id/tvDescripcion"
+                style="@style/Texto_2_Estilo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/descripcion_activity_admin"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvTitulo"
+                tools:text="@string/descripcion_activity_admin" />
 
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:src="@drawable/ic_lupa" />
+            <!--cardview buscar alumno-->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvBuscarAlumno"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginVertical="8dp"
+                android:layout_marginEnd="32dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvDescripcion">
 
-                <TextView
-                    style="@style/Texto_3_Estilo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/buscaralumno_activity_admin" />
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
-            </androidx.appcompat.widget.LinearLayoutCompat>
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:src="@drawable/ic_lupa" />
 
-        </androidx.cardview.widget.CardView>
+                    <TextView
+                        style="@style/Texto_3_Estilo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/buscaralumno_activity_admin" />
 
-        <!--cardview grupos-->
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cvGrupos"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_marginVertical="8dp"
-            app:cardCornerRadius="20dp"
-            app:cardElevation="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvDescripcion">
+                </androidx.appcompat.widget.LinearLayoutCompat>
 
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical">
+            </androidx.cardview.widget.CardView>
 
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:src="@drawable/ic_personas" />
+            <!--cardview grupos-->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvGrupos"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginVertical="8dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvDescripcion">
 
-                <TextView
-                    style="@style/Texto_3_Estilo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/grupos_activity_admin" />
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
-            </androidx.appcompat.widget.LinearLayoutCompat>
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:src="@drawable/ic_personas" />
 
-        </androidx.cardview.widget.CardView>
+                    <TextView
+                        style="@style/Texto_3_Estilo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/grupos_activity_admin" />
 
-        <!--cardview agregar alumno-->
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cvAgregarAlumno"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_marginVertical="24dp"
-            app:cardCornerRadius="20dp"
-            app:cardElevation="8dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cvBuscarAlumno"
+                </androidx.appcompat.widget.LinearLayoutCompat>
 
-            >
+            </androidx.cardview.widget.CardView>
 
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical">
+            <!--cardview agregar alumno-->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvAgregarAlumno"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginVertical="24dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cvBuscarAlumno"
 
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:src="@drawable/ic_anadir_alum" />
+                >
 
-                <TextView
-                    style="@style/Texto_3_Estilo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/agregaralumno_activity_admin" />
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
-            </androidx.appcompat.widget.LinearLayoutCompat>
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:src="@drawable/ic_anadir_alum" />
 
-        </androidx.cardview.widget.CardView>
+                    <TextView
+                        style="@style/Texto_3_Estilo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/agregaralumno_activity_admin" />
 
-        <!--cardview editar alumno-->
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cvEditarAlumno"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_marginVertical="24dp"
-            app:cardCornerRadius="20dp"
-            app:cardElevation="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cvGrupos"
+                </androidx.appcompat.widget.LinearLayoutCompat>
 
-            >
+            </androidx.cardview.widget.CardView>
 
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical">
+            <!--cardview editar alumno-->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvEditarAlumno"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginVertical="24dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cvGrupos"
 
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:src="@drawable/ic_persona_tuerca" />
+                >
 
-                <TextView
-                    style="@style/Texto_3_Estilo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/editaralumno_activity_admin" />
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
-            </androidx.appcompat.widget.LinearLayoutCompat>
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:src="@drawable/ic_persona_tuerca" />
 
-        </androidx.cardview.widget.CardView>
+                    <TextView
+                        style="@style/Texto_3_Estilo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/editaralumno_activity_admin" />
 
-        <!--cardview agregar usuario-->
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cvAgregarUsuario"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_marginVertical="24dp"
-            android:visibility="invisible"
-            app:cardCornerRadius="20dp"
-            app:cardElevation="8dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cvAgregarAlumno">
+                </androidx.appcompat.widget.LinearLayoutCompat>
 
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical">
+            </androidx.cardview.widget.CardView>
 
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:src="@drawable/ic_anadir_user" />
+            <!--cardview agregar usuario-->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvAgregarUsuario"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginVertical="24dp"
+                android:visibility="invisible"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cvAgregarAlumno">
 
-                <TextView
-                    style="@style/Texto_3_Estilo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/agregarusuario_activity_admin" />
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
-            </androidx.appcompat.widget.LinearLayoutCompat>
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:src="@drawable/ic_anadir_user" />
 
-        </androidx.cardview.widget.CardView>
+                    <TextView
+                        style="@style/Texto_3_Estilo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/agregarusuario_activity_admin" />
 
-        <!--cardview editar usuario-->
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cvEditarUsuario"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_marginVertical="24dp"
-            android:visibility="invisible"
-            app:cardCornerRadius="20dp"
-            app:cardElevation="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cvEditarAlumno">
+                </androidx.appcompat.widget.LinearLayoutCompat>
 
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical">
+            </androidx.cardview.widget.CardView>
 
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:src="@drawable/ic_tuercas" />
+            <!--cardview editar usuario-->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvEditarUsuario"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginVertical="24dp"
+                android:visibility="invisible"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cvEditarAlumno">
 
-                <TextView
-                    style="@style/Texto_3_Estilo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/editarusuario_activity_admin" />
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
-            </androidx.appcompat.widget.LinearLayoutCompat>
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:src="@drawable/ic_tuercas" />
 
-        </androidx.cardview.widget.CardView>
+                    <TextView
+                        style="@style/Texto_3_Estilo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/editarusuario_activity_admin" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.appcompat.widget.LinearLayoutCompat>
 
-</FrameLayout>
+            </androidx.cardview.widget.CardView>
 
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
+    </FrameLayout>
+
+</ScrollView>

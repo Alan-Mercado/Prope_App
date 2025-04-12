@@ -1,148 +1,155 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    android:fillViewport="true">
 
-    <!--TOOLBAR-->
-    <include
-        android:id="@+id/toolbarExterna"
-        layout="@layout/toolbar" />
-
-    <!--androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolBar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/tinto_color">
-
-        <ImageView
-            android:id="@+id/ivRegresar"
-            android:layout_width="50dp"
-            android:layout_height="match_parent"
-            android:background="@color/tinto_color"
-            android:src="@drawable/ic_arrow_goback" />
-
-        <TextView
-            style="@style/Titulo_2_Estilo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingHorizontal="12dp"
-            android:text="@string/atras_toolbar"
-            android:textColor="@color/white" />
-
-    </-androidx.appcompat.widget.Toolbar-->
-
-    <!--CONTENIDO-->
-    <androidx.appcompat.widget.LinearLayoutCompat
+    <FrameLayout
+        android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="40dp">
+        tools:context=".LoginActivity">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="32dp"
-            android:gravity="left"
-            android:orientation="horizontal">
+        <!--TOOLBAR-->
+        <include
+            android:id="@+id/toolbarExterna"
+            layout="@layout/toolbar" />
+
+        <!--androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolBar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/tinto_color">
 
             <ImageView
+                android:id="@+id/ivRegresar"
                 android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/ceti_logo_sin_letras" />
+                android:layout_height="match_parent"
+                android:background="@color/tinto_color"
+                android:src="@drawable/ic_arrow_goback" />
 
             <TextView
-                style="@style/Texto_3_Estilo"
+                style="@style/Titulo_2_Estilo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:text="@string/textologo_activity_login" />
+                android:paddingHorizontal="12dp"
+                android:text="@string/atras_toolbar"
+                android:textColor="@color/white" />
 
-        </LinearLayout>
+        </-androidx.appcompat.widget.Toolbar-->
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="32dp"
-            android:orientation="vertical">
-
-            <TextView
-                style="@style/Titulo_1_Estilo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/titulo_activity_login" />
-
-            <TextView
-                style="@style/Texto_2_Estilo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/instruccion_activity_login" />
-
-        </LinearLayout>
-
-        <!--CAMPOS LOGIN-->
-        <LinearLayout
+        <!--CONTENIDO-->
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="32dp"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="40dp">
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="32dp"
+                android:gravity="left"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/ceti_logo_sin_letras" />
+
+                <TextView
+                    style="@style/Texto_3_Estilo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/textologo_activity_login" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="32dp"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/Titulo_1_Estilo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/titulo_activity_login" />
+
+                <TextView
+                    style="@style/Texto_2_Estilo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/instruccion_activity_login" />
+
+            </LinearLayout>
+
+            <!--CAMPOS LOGIN-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="32dp"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/Texto_2_Estilo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/registro_activity_login" />
+
+                <EditText
+                    android:id="@+id/etRegistro"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+
+                <TextView
+                    style="@style/Texto_2_Estilo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/contrasenia_activity_login" />
+
+                <EditText
+                    android:id="@+id/etContrasenia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+
+            </LinearLayout>
+
+            <!--RECUPERAR PASSW-->
             <TextView
                 style="@style/Texto_2_Estilo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/registro_activity_login" />
+                android:layout_gravity="right"
+                android:layout_marginBottom="32dp"
+                android:text="@string/olvidastecontrasenia_activity_login" />
 
-            <EditText
-                android:id="@+id/etRegistro"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:maxLines="1"
-                android:singleLine="true" />
+            <!--BOTON LOGIN-->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnIngresar"
+                style="@style/Texto_1_Estilo"
+                android:layout_width="240dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="16dp"
+                android:backgroundTint="@color/tinto_color"
+                android:text="@string/btningresar_activity_bienvenida"
+                android:textColor="@color/white"
+                app:cornerRadius="8dp"
+                tools:text="Ingresar" />
 
-            <TextView
-                style="@style/Texto_2_Estilo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/contrasenia_activity_login" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
-            <EditText
-                android:id="@+id/etContrasenia"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPassword"
-                android:maxLines="1"
-                android:singleLine="true" />
+    </FrameLayout>
 
-        </LinearLayout>
-
-        <!--RECUPERAR PASSW-->
-        <TextView
-            style="@style/Texto_2_Estilo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:layout_marginBottom="32dp"
-            android:text="@string/olvidastecontrasenia_activity_login" />
-
-        <!--BOTON LOGIN-->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnIngresar"
-            style="@style/Texto_1_Estilo"
-            android:layout_width="240dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="32dp"
-            android:layout_marginBottom="16dp"
-            android:backgroundTint="@color/tinto_color"
-            android:text="@string/btningresar_activity_bienvenida"
-            android:textColor="@color/white"
-            app:cornerRadius="8dp"
-            tools:text="Ingresar" />
-
-    </androidx.appcompat.widget.LinearLayoutCompat>
-
-</FrameLayout>
+</ScrollView>
