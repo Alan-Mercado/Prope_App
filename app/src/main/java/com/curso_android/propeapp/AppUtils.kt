@@ -15,6 +15,31 @@ object AppUtils {
         return bytes.joinToString("") { "%02x".format(it) }
     }
 
+    //Funcion para obtener los grupos
+    fun obtenerGruposUnicos(callback: (Set<String>) -> Unit) {
+        val gruposUnicos = mutableSetOf<String>()
+
+        database.child(DatabaseKeys.USUARIOS_DB_CONST)
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    for (usuarioSnapshot in snapshot.children) {
+                        val grupo = usuarioSnapshot.child(DatabaseKeys.GRUPO_DB_CONST).getValue(String::class.java)
+                        grupo?.let {
+                            if (it.isNotBlank()) {
+                                gruposUnicos.add(it)
+                            }
+                        }
+                    }
+                    callback(gruposUnicos)
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    callback(emptySet()) // En caso de error, se devuelve un set vacío
+                }
+            })
+    }
+
+
     // Constantes de nombres de claves en la base de datos
     object DatabaseKeys {
         const val USUARIOS_DB_CONST = "Usuarios"

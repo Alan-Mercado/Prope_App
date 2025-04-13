@@ -43,58 +43,64 @@
 
                 <!--cardview A-->
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/cvGrupoA"
+                    android:id="@+id/cvGrupo1"
                     android:layout_width="0dp"
                     android:layout_height="80dp"
                     android:layout_marginHorizontal="16dp"
                     android:layout_weight="1"
+                    android:visibility="gone"
                     app:cardCornerRadius="20dp"
-                    app:cardElevation="8dp">
+                    app:cardElevation="8dp"
+                    tools:visibility="visible">
 
                     <TextView
                         style="@style/Titulo_1_Estilo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="A" />
+                        android:text="1" />
 
                 </androidx.cardview.widget.CardView>
 
                 <!--cardview B-->
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/cvGrupoB"
+                    android:id="@+id/cvGrupo2"
                     android:layout_width="0dp"
                     android:layout_height="80dp"
                     android:layout_marginHorizontal="16dp"
                     android:layout_weight="1"
+                    android:visibility="gone"
                     app:cardCornerRadius="20dp"
-                    app:cardElevation="8dp">
+                    app:cardElevation="8dp"
+                    tools:visibility="visible">
 
                     <TextView
                         style="@style/Titulo_1_Estilo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="B" />
+                        android:text="2" />
 
                 </androidx.cardview.widget.CardView>
 
                 <!--cardview C-->
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/cvGrupoC"
+                    android:id="@+id/cvGrupo3"
                     android:layout_width="0dp"
                     android:layout_height="80dp"
                     android:layout_marginHorizontal="16dp"
                     android:layout_weight="1"
+                    android:visibility="gone"
                     app:cardCornerRadius="20dp"
-                    app:cardElevation="8dp">
+                    app:cardElevation="8dp"
+                    tools:visibility="visible">
 
                     <TextView
                         style="@style/Titulo_1_Estilo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="C" />
+                        android:text="3" />
 
                 </androidx.cardview.widget.CardView>
 
@@ -109,58 +115,64 @@
 
                 <!--cardview D-->
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/cvGrupoD"
+                    android:id="@+id/cvGrupo4"
                     android:layout_width="0dp"
                     android:layout_height="80dp"
                     android:layout_marginHorizontal="16dp"
                     android:layout_weight="1"
+                    android:visibility="gone"
                     app:cardCornerRadius="20dp"
-                    app:cardElevation="8dp">
+                    app:cardElevation="8dp"
+                    tools:visibility="visible">
 
                     <TextView
                         style="@style/Titulo_1_Estilo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="D" />
+                        android:text="4" />
 
                 </androidx.cardview.widget.CardView>
 
                 <!--cardview E-->
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/cvGrupoE"
+                    android:id="@+id/cvGrupo5"
                     android:layout_width="0dp"
                     android:layout_height="80dp"
                     android:layout_marginHorizontal="16dp"
                     android:layout_weight="1"
+                    android:visibility="gone"
                     app:cardCornerRadius="20dp"
-                    app:cardElevation="8dp">
+                    app:cardElevation="8dp"
+                    tools:visibility="visible">
 
                     <TextView
                         style="@style/Titulo_1_Estilo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="E" />
+                        android:text="5" />
 
                 </androidx.cardview.widget.CardView>
 
                 <!--cardview F-->
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/cvGrupoF"
+                    android:id="@+id/cvGrupo6"
                     android:layout_width="0dp"
                     android:layout_height="80dp"
                     android:layout_marginHorizontal="16dp"
                     android:layout_weight="1"
+                    android:visibility="gone"
                     app:cardCornerRadius="20dp"
-                    app:cardElevation="8dp">
+                    app:cardElevation="8dp"
+                    tools:visibility="visible">
 
                     <TextView
                         style="@style/Titulo_1_Estilo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="F" />
+                        android:text="6" />
 
                 </androidx.cardview.widget.CardView>
 
@@ -175,60 +187,136 @@
 
                 <!--cardview G-->
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/cvGrupoG"
+                    android:id="@+id/cvGrupo7"
                     android:layout_width="0dp"
                     android:layout_height="80dp"
                     android:layout_marginHorizontal="16dp"
                     android:layout_weight="1"
+                    android:visibility="gone"
                     app:cardCornerRadius="20dp"
-                    app:cardElevation="8dp">
+                    app:cardElevation="8dp"
+                    tools:visibility="visible">
 
                     <TextView
                         style="@style/Titulo_1_Estilo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="G" />
+                        android:text="7" />
 
                 </androidx.cardview.widget.CardView>
 
                 <!--cardview H-->
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/cvGrupoH"
+                    android:id="@+id/cvGrupo8"
                     android:layout_width="0dp"
                     android:layout_height="80dp"
                     android:layout_marginHorizontal="16dp"
                     android:layout_weight="1"
-                    android:visibility="invisible"
+                    android:visibility="gone"
                     app:cardCornerRadius="20dp"
-                    app:cardElevation="8dp">
+                    app:cardElevation="8dp"
+                    tools:visibility="visible">
 
                     <TextView
                         style="@style/Titulo_1_Estilo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="H" />
+                        android:text="8" />
 
                 </androidx.cardview.widget.CardView>
 
                 <!--cardview I-->
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/cvGrupoI"
+                    android:id="@+id/cvGrupo9"
                     android:layout_width="0dp"
                     android:layout_height="80dp"
                     android:layout_marginHorizontal="16dp"
                     android:layout_weight="1"
-                    android:visibility="invisible"
+                    android:visibility="gone"
                     app:cardCornerRadius="20dp"
-                    app:cardElevation="8dp">
+                    app:cardElevation="8dp"
+                    tools:visibility="visible">
 
                     <TextView
                         style="@style/Titulo_1_Estilo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="I" />
+                        android:text="9" />
+
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+            <!--CUARTA FILA-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <!--cardview G-->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cvGrupo10"
+                    android:layout_width="0dp"
+                    android:layout_height="80dp"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_weight="1"
+                    android:visibility="gone"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="8dp"
+                    tools:visibility="visible">
+
+                    <TextView
+                        style="@style/Titulo_1_Estilo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="10" />
+
+                </androidx.cardview.widget.CardView>
+
+                <!--cardview H-->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cvGrupo11"
+                    android:layout_width="0dp"
+                    android:layout_height="80dp"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_weight="1"
+                    android:visibility="gone"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="8dp"
+                    tools:visibility="visible">
+
+                    <TextView
+                        style="@style/Titulo_1_Estilo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="11" />
+
+                </androidx.cardview.widget.CardView>
+
+                <!--cardview I-->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cvGrupo12"
+                    android:layout_width="0dp"
+                    android:layout_height="80dp"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_weight="1"
+                    android:visibility="gone"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="8dp"
+                    tools:visibility="visible">
+
+                    <TextView
+                        style="@style/Titulo_1_Estilo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="12" />
 
                 </androidx.cardview.widget.CardView>
 
