@@ -42,7 +42,7 @@ class AgregarAlumActivity : AppCompatActivity() {
 
         opcionesEstatus = listOf("Pagado", "No pagado", "Prorroga")//poner en apputils.stringkeys??????
         opcionesCredencial = listOf("Pendiente", "Entregada")//poner en apputils.stringkeys??????
-        opcionesGrupo = listOf("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12")//poner en apputils.stringkeys??????
+        opcionesGrupo = listOf("G1", "G2", "G3", "G4", "G5", "G6", "G7", "G8", "G9", "G10", "G11", "G12")//poner en apputils.stringkeys??????
 
         //Creo que esto se puede optimizar
         val adapter1 = ArrayAdapter(this, android.R.layout.simple_spinner_item, opcionesEstatus)

@@ -47,7 +47,7 @@ class EditarAlumActivity : AppCompatActivity() {
 
         opcionesEstatus = listOf("Pagado", "No pagado", "Prorroga")
         opcionesCredencial = listOf("Pendiente", "Entregada")
-        opcionesGrupo = listOf("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12")//poner en apputils.stringkeys??????
+        opcionesGrupo = listOf("G1", "G2", "G3", "G4", "G5", "G6", "G7", "G8", "G9", "G10", "G11", "G12")
 
         val adapter1 = ArrayAdapter(this, android.R.layout.simple_spinner_item, opcionesEstatus)
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)

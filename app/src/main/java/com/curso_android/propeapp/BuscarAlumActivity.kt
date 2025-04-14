@@ -90,14 +90,15 @@ class BuscarAlumActivity : AppCompatActivity() {
         val results = mutableListOf<Alumno>()
 
         // Buscar en Firebase
-        database.child("Usuarios").addListenerForSingleValueEvent(object : ValueEventListener {
+        database.child(AppUtils.DatabaseKeys.USUARIOS_DB_CONST).addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
                     for (userSnapshot in snapshot.children) {
                         val usuario = userSnapshot.getValue(Alumno::class.java)
+                        //val esAdmin = userSnapshot.getValue(Alumno::class.java)
 
                         // Si el número de registro o el nombre coinciden con la búsqueda
-                        if (usuario != null) {
+                        if (usuario != null && usuario.admin == false) {
                             if (usuario.nombre.toLowerCase(Locale.getDefault()).contains(queryLower) ||
                                 userSnapshot.key?.contains(queryLower) == true) {
                                 results.add(usuario)

@@ -59,18 +59,18 @@ class SeleccionarGrupoActivity : AppCompatActivity() {
 
                 for (grupoId in gruposVisibles) {
                     when (grupoId) {
-                        "1" -> binding.cvGrupo1.visibility = View.VISIBLE
-                        "2" -> binding.cvGrupo2.visibility = View.VISIBLE
-                        "3" -> binding.cvGrupo3.visibility = View.VISIBLE
-                        "4" -> binding.cvGrupo4.visibility = View.VISIBLE
-                        "5" -> binding.cvGrupo5.visibility = View.VISIBLE
-                        "6" -> binding.cvGrupo6.visibility = View.VISIBLE
-                        "7" -> binding.cvGrupo7.visibility = View.VISIBLE
-                        "8" -> binding.cvGrupo8.visibility = View.VISIBLE
-                        "9" -> binding.cvGrupo9.visibility = View.VISIBLE
-                        "10" -> binding.cvGrupo10.visibility = View.VISIBLE
-                        "11" -> binding.cvGrupo11.visibility = View.VISIBLE
-                        "12" -> binding.cvGrupo12.visibility = View.VISIBLE
+                        "G1" -> binding.cvGrupo1.visibility = View.VISIBLE
+                        "G2" -> binding.cvGrupo2.visibility = View.VISIBLE
+                        "G3" -> binding.cvGrupo3.visibility = View.VISIBLE
+                        "G4" -> binding.cvGrupo4.visibility = View.VISIBLE
+                        "G5" -> binding.cvGrupo5.visibility = View.VISIBLE
+                        "G6" -> binding.cvGrupo6.visibility = View.VISIBLE
+                        "G7" -> binding.cvGrupo7.visibility = View.VISIBLE
+                        "G8" -> binding.cvGrupo8.visibility = View.VISIBLE
+                        "G9" -> binding.cvGrupo9.visibility = View.VISIBLE
+                        "G10" -> binding.cvGrupo10.visibility = View.VISIBLE
+                        "G11" -> binding.cvGrupo11.visibility = View.VISIBLE
+                        "G12" -> binding.cvGrupo12.visibility = View.VISIBLE
                     }
                 }
             }
