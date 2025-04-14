@@ -20,6 +20,7 @@ class AgregarAlumActivity : AppCompatActivity() {
 
     private lateinit var opcionesEstatus: List<String>
     private lateinit var opcionesCredencial: List<String>
+    private lateinit var opcionesGrupo: List<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +42,7 @@ class AgregarAlumActivity : AppCompatActivity() {
 
         opcionesEstatus = listOf("Pagado", "No pagado", "Prorroga")//poner en apputils.stringkeys??????
         opcionesCredencial = listOf("Pendiente", "Entregada")//poner en apputils.stringkeys??????
+        opcionesGrupo = listOf("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12")//poner en apputils.stringkeys??????
 
         //Creo que esto se puede optimizar
         val adapter1 = ArrayAdapter(this, android.R.layout.simple_spinner_item, opcionesEstatus)
@@ -49,6 +51,9 @@ class AgregarAlumActivity : AppCompatActivity() {
         val adapter2 = ArrayAdapter(this, android.R.layout.simple_spinner_item, opcionesCredencial)
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.spCredencial.adapter = adapter2
+        val adapter3 = ArrayAdapter(this, android.R.layout.simple_spinner_item, opcionesGrupo)
+        adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.spGrupo.adapter = adapter3
 
         initUI()
     }
@@ -66,7 +71,8 @@ class AgregarAlumActivity : AppCompatActivity() {
         val registro = binding.etRegistro.text.toString().trim()
         //val estatus = binding.etEstatus.text.toString().trim()
         val estatus = binding.spEstatus.selectedItem.toString()
-        val grupo = binding.etGrupo.text.toString().trim()
+        //val grupo = binding.etGrupo.text.toString().trim()
+        val grupo = binding.spGrupo.selectedItem.toString()
         val tutor_1 = binding.etTutor1.text.toString().trim()
         val tel_1 = binding.etTelefono1.text.toString().trim()
         val tutor_2 = binding.etTutor2.text.toString().trim().ifEmpty { "No disponible" }
@@ -122,7 +128,8 @@ class AgregarAlumActivity : AppCompatActivity() {
         binding.etRegistro.text.clear()
         //binding.etEstatus.text.clear()
         binding.spEstatus.setSelection(0)
-        binding.etGrupo.text.clear()
+        //binding.etGrupo.text.clear()
+        binding.spGrupo.setSelection(0)
         binding.etTutor1.text.clear()
         binding.etTelefono1.text.clear()
         binding.etTutor2.text.clear()

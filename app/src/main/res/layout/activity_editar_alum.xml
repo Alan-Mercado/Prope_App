@@ -154,7 +154,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/divider4" />
 
-            <EditText
+            <!--EditText
                 android:id="@+id/etGrupo"
                 style="@style/Texto_1_Estilo"
                 android:layout_width="200dp"
@@ -164,7 +164,14 @@
                 android:paddingHorizontal="8dp"
                 app:layout_constraintStart_toEndOf="@id/tvCampoGrupo"
                 app:layout_constraintTop_toBottomOf="@id/divider4"
-                tools:text="A" />
+                tools:text="A" /-->
+            <Spinner
+                android:id="@+id/spGrupo"
+                android:layout_width="200dp"
+                android:layout_height="48dp"
+                app:layout_constraintStart_toEndOf="@id/tvCampoEstatus"
+                app:layout_constraintTop_toBottomOf="@id/divider4" />
+
 
             <!--Tutor 1-->
             <com.google.android.material.divider.MaterialDivider

@@ -23,6 +23,7 @@ class EditarAlumActivity : AppCompatActivity() {
 
     private lateinit var opcionesEstatus: List<String>
     private lateinit var opcionesCredencial: List<String>
+    private lateinit var opcionesGrupo: List<String>
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,6 +47,7 @@ class EditarAlumActivity : AppCompatActivity() {
 
         opcionesEstatus = listOf("Pagado", "No pagado", "Prorroga")
         opcionesCredencial = listOf("Pendiente", "Entregada")
+        opcionesGrupo = listOf("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12")//poner en apputils.stringkeys??????
 
         val adapter1 = ArrayAdapter(this, android.R.layout.simple_spinner_item, opcionesEstatus)
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -53,6 +55,9 @@ class EditarAlumActivity : AppCompatActivity() {
         val adapter2 = ArrayAdapter(this, android.R.layout.simple_spinner_item, opcionesCredencial)
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.spCredencial.adapter = adapter2
+        val adapter3 = ArrayAdapter(this, android.R.layout.simple_spinner_item, opcionesGrupo)
+        adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.spGrupo.adapter = adapter3
 
         initUI()
     }
@@ -95,15 +100,19 @@ class EditarAlumActivity : AppCompatActivity() {
                 if (pos1 >= 0) {
                     binding.spEstatus.setSelection(pos1)
                 }
-                binding.etGrupo.setText(grupo)
+                //binding.etGrupo.setText(grupo)
+                val pos2 = opcionesGrupo.indexOf(grupo)
+                if (pos2 >= 0) {
+                    binding.spGrupo.setSelection(pos2)
+                }
                 binding.etTutor1.setText(tutor_1)
                 binding.etTelefono1.setText(tel_1)
                 binding.etTutor2.setText(tutor_2)
                 binding.etTelefono2.setText(tel_2)
                 //binding.etCredencial.setText(cred_entr)
-                val pos2 = opcionesCredencial.indexOf(cred_entr)
-                if (pos2 >= 0) {
-                    binding.spCredencial.setSelection(pos2)
+                val pos3 = opcionesCredencial.indexOf(cred_entr)
+                if (pos3 >= 0) {
+                    binding.spCredencial.setSelection(pos3)
                 }
             } else {
                 Toast.makeText(this, "Usuario no encontrado", Toast.LENGTH_SHORT).show()
@@ -118,7 +127,8 @@ class EditarAlumActivity : AppCompatActivity() {
         val registro = binding.etRegistro.text.toString().trim()
         //val estatus = binding.etEstatus.text.toString().trim()
         val estatus = binding.spEstatus.selectedItem.toString()
-        val grupo = binding.etGrupo.text.toString().trim()
+        //val grupo = binding.etGrupo.text.toString().trim()
+        val grupo = binding.spGrupo.selectedItem.toString()
         val tutor_1 = binding.etTutor1.text.toString().trim()
         val tel_1 = binding.etTelefono1.text.toString().trim()
         val tutor_2 = binding.etTutor2.text.toString().trim().ifEmpty { "No disponible" }
