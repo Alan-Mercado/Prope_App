@@ -2,14 +2,14 @@
     <string name="app_name">Prope App</string>
     <string name="atras_toolbar">Atrás</string>
 
-<!--activity_bienvenida-->
+    <!--activity_bienvenida-->
     <string name="titulo_activity_bienvenida">Bienvenid@</string>
     <string name="subtitulo_activity_bienvenida">Prope App</string>
     <string name="descripcion_activity_bienvenida">En esta aplicación podrás acceder a tu información como estudiante del curso propedéutico en CETI Tonalá</string>
     <string name="btningresar_activity_bienvenida">Ingresar</string>
     <string name="btnescanearqr_activity_bienvenida">Escanear QR</string>
 
-<!--activity_login-->
+    <!--activity_login-->
     <string name="textologo_activity_login">CETI Tonalá</string>
     <string name="titulo_activity_login">Inicia Sesión</string>
     <string name="instruccion_activity_login">Ingresa tus datos por favor</string>
@@ -20,29 +20,29 @@
     <string name="olvidastecontrasenia_activity_login">¿Olvidaste tu contraseña?</string>
     <string name="btningresar_activity_login">Ingresar</string>
 
-<!--activity_usuario-->
+    <!--activity_usuario-->
     <string name="titulo_activity_usuario">Tu Información</string>
-    <string name="descripcion_activity_usuario">Aquí puedes revisar tu información como alumno del curso propedéutico de CETI Tonalá y mostrar tu código QR para que sea escaneado</string>
+    <string name="descripcion_activity_usuario">Aquí puedes revisar tu información como estudiante del curso propedéutico de CETI Tonalá y mostrar tu código QR para que sea escaneado</string>
     <string name="informacion_activity_usuario">Información</string>
     <string name="qr_activity_usuario">QR</string>
 
-<!--activity_admin-->
+    <!--activity_admin-->
     <string name="titulo_activity_admin">Tu Información</string>
-    <string name="descripcion_activity_admin">Aquí puedes buscar un alumno por su nombre, revisar la lista de grupos, agregar a un alumno nuevo o editar la información de un alumno</string>
-    <string name="buscaralumno_activity_admin">Buscar Alumno</string>
+    <string name="descripcion_activity_admin">Aquí puedes buscar un estudiante por su nombre, revisar la lista de grupos, agregar a un estudiante nuevo o editar la información de un estudiante</string>
+    <string name="buscarestudiante_activity_admin">Buscar Estudiante</string>
     <string name="grupos_activity_admin">Grupos</string>
-    <string name="agregaralumno_activity_admin">Agregar Alumno</string>
-    <string name="editaralumno_activity_admin">Editar Alumno</string>
-    <string name="agregarusuario_activity_admin">Agregar Usuario</string>
-    <string name="editarusuario_activity_admin">Editar Usuario</string>
+    <string name="agregarestudiante_activity_admin">Agregar Estudiante</string>
+    <string name="editarestudiante_activity_admin">Editar Estudiante</string>
+    <string name="agregarpersonal_activity_admin">Agregar Personal</string>
+    <string name="editarpersonal_activity_admin">Editar Personal</string>
 
-<!--activity_mostrarqralum-->
+    <!--activity_mostrarqralum-->
     <string name="instruccion_activity_mostrarqralum">Muestra este código QR para que otras personas puedan acceder a tu información</string>
 
-<!--activity_escanear_qractivity-->
-    <string name="instruccion_activity_escanear_qractivity">Escanea un código QR para visualizar la información del alumno</string>
+    <!--activity_escanear_qractivity-->
+    <string name="instruccion_activity_escanear_qractivity">Escanea un código QR para visualizar la información del estudiante</string>
 
-<!--activity_info_alum-->
+    <!--activity_info_alum-->
     <string name="titulo_activity_info_alum">Tu información</string>
     <string name="nombre_activity_info_alum">Nombre:</string>
     <string name="registro_activity_info_alum">Registro:</string>
@@ -53,8 +53,8 @@
     <string name="telefono_activity_info_alum">Teléfono:</string>
     <string name="credencial_activity_info_alum">Credencial entregada:</string>
 
-<!--activity_buscar_alum-->
-    <string name="titulo_activity_buscar_alum">Ingresa el nombre del alumno</string>
+    <!--activity_buscar_alum-->
+    <string name="titulo_activity_buscar_alum">Ingresa el nombre del estudiante</string>
     <string name="nombre_activity_buscar_alum">Nombre o Registro</string>
     <string name="btnbuscar_activity_buscar_alum">Buscar</string>
     <string name="btnescanearqr_activity_buscar_alum">Escanear QR</string>
@@ -63,7 +63,7 @@
     <string name="titulo_activity_seleccionar_grupo">Selecciona un grupo</string>
 
     <!--activity_agregar_alum-->
-    <string name="titulo_activity_agregar_alum">Ingresa los datos del alumno</string>
+    <string name="titulo_activity_agregar_alum">Ingresa los datos del estudiante</string>
     <string name="nombre_activity_agregar_alum">Nombre:</string>
     <string name="registro_activity_agregar_alum">Registro:</string>
     <string name="estatus_activity_agregar_alum">Estatus:</string>
@@ -74,7 +74,7 @@
     <string name="btnagregar_activity_agregar_alum">Agregar</string>
 
     <!--activity_editar_alum-->
-    <string name="titulo_activity_editar_alum">Edita la información del alumno</string>
+    <string name="titulo_activity_editar_alum">Edita la información del estudiante</string>
     <string name="btnactualizar_activity_editar_alum">Actualizar</string>
 
     <!--activity_-->

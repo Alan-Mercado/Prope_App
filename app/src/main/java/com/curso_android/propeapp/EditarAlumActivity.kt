@@ -43,7 +43,7 @@ class EditarAlumActivity : AppCompatActivity() {
             insets
         }
 
-        user = intent.getStringExtra(AppUtils.StringKeys.USUARIO_CONST) ?: AppUtils.StringKeys.ERROR_CONST
+        user = intent.getStringExtra(AppUtils.StringKeys.ESTUDIANTE_CONST) ?: AppUtils.StringKeys.ERROR_CONST
 
         opcionesEstatus = listOf("Pagado", "No pagado", "Prorroga")
         opcionesCredencial = listOf("Pendiente", "Entregada")

@@ -1,7 +1,6 @@
 package com.curso_android.propeapp
 
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -35,7 +34,7 @@ class InfoAlumActivity : AppCompatActivity() {
             insets
         }
 
-        user = intent.getStringExtra(AppUtils.StringKeys.USUARIO_CONST) ?: AppUtils.StringKeys.ERROR_CONST
+        user = intent.getStringExtra(AppUtils.StringKeys.ESTUDIANTE_CONST) ?: AppUtils.StringKeys.ERROR_CONST
 
         initUI()
     }

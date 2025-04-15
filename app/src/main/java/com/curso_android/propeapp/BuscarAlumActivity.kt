@@ -132,11 +132,11 @@ class BuscarAlumActivity : AppCompatActivity() {
     private fun navegarInfoEditAlum(registro:String, donde_ir:String) {
         if (donde_ir == AppUtils.StringKeys.EDITAR_CONST){
             val intent = Intent(this, EditarAlumActivity::class.java)
-            intent.putExtra(AppUtils.StringKeys.USUARIO_CONST, registro)
+            intent.putExtra(AppUtils.StringKeys.ESTUDIANTE_CONST, registro)
             startActivity(intent)
         } else if (donde_ir == AppUtils.StringKeys.BUSCAR_CONST) {
             val intent = Intent(this, InfoAlumActivity::class.java)
-            intent.putExtra(AppUtils.StringKeys.USUARIO_CONST, registro)
+            intent.putExtra(AppUtils.StringKeys.ESTUDIANTE_CONST, registro)
             startActivity(intent)
         }
     }

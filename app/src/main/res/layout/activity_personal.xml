@@ -11,7 +11,7 @@
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".AdminActivity">
+        tools:context=".PersonalActivity">
 
         <!--TOOLBAR-->
         <include
@@ -74,7 +74,7 @@
                         style="@style/Texto_3_Estilo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/buscarestudiante_activity_admin" />
+                        android:text="@string/buscaralumno_activity_admin" />
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -155,7 +155,9 @@
                 app:cardCornerRadius="20dp"
                 app:cardElevation="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cvGrupos">
+                app:layout_constraintTop_toBottomOf="@+id/cvGrupos"
+
+                >
 
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
@@ -178,14 +180,13 @@
 
             </androidx.cardview.widget.CardView>
 
-            <!--cardview agregar personal-->
+            <!--cardview agregar usuario-->
             <androidx.cardview.widget.CardView
                 android:id="@+id/cvAgregarUsuario"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_marginVertical="24dp"
-                android:visibility="gone"
-                tools:visibility="visible"
+                android:visibility="invisible"
                 app:cardCornerRadius="20dp"
                 app:cardElevation="8dp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -212,14 +213,13 @@
 
             </androidx.cardview.widget.CardView>
 
-            <!--cardview editar personal-->
+            <!--cardview editar usuario-->
             <androidx.cardview.widget.CardView
                 android:id="@+id/cvEditarUsuario"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_marginVertical="24dp"
-                android:visibility="gone"
-                tools:visibility="visible"
+                android:visibility="invisible"
                 app:cardCornerRadius="20dp"
                 app:cardElevation="8dp"
                 app:layout_constraintEnd_toEndOf="parent"

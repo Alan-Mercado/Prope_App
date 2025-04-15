@@ -2,7 +2,6 @@ package com.curso_android.propeapp
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -10,10 +9,6 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.curso_android.propeapp.databinding.ActivityLoginBinding
 import com.google.firebase.database.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import java.security.MessageDigest
 
 class LoginActivity : AppCompatActivity() {
     /*********************PROXIMAS ACTIVIDADES A REALIZAR********************
@@ -79,24 +74,34 @@ class LoginActivity : AppCompatActivity() {
         database.child(AppUtils.DatabaseKeys.USUARIOS_DB_CONST).child(user)
             .get().addOnSuccessListener { snapshot ->
                 if (snapshot.exists()) {
-                    val userAdmin = snapshot.child(AppUtils.DatabaseKeys.ADMIN_DB_CONST).value as? Boolean//guardamos el valor de "admin"
+                    val nivelAcceso = snapshot.child(AppUtils.DatabaseKeys.ADMIN_DB_CONST).value as? String//guardamos el valor de "admin"
                     val userPassword = snapshot.child(AppUtils.DatabaseKeys.PASSWORD_DB_CONST).value.toString()//guardamos la contraseña de la BD
 
                     //verificar si la contraseña es correcta
                     if (userPassword == hashedPassword) {
                         //si es admin
-                        if (userAdmin == true) {
-                            Toast.makeText(this, "Inicio de sesión exitoso como administrador", Toast.LENGTH_SHORT).show()
+                        if (nivelAcceso == "admin") {
+                            Toast.makeText(
+                                this,
+                                "Inicio de sesión exitoso como administrador",
+                                Toast.LENGTH_SHORT
+                            ).show()
                             val intent = Intent(this, AdminActivity::class.java)
-
-                            //*************ENVIAR USUARIO SI ES ADMIN????****************
-
+                            intent.putExtra(AppUtils.StringKeys.NIVEL_ACCESO_CONST, AppUtils.StringKeys.ADMIN_CONST)
                             startActivity(intent)
+
+                        //si es personal (guardia/chic@ servicio)
+                        } else if (nivelAcceso == "personal") {
+                            Toast.makeText(this, "Inicio de sesión exitoso como personal", Toast.LENGTH_SHORT).show()
+                            val intent = Intent(this, AdminActivity::class.java)
+                            intent.putExtra(AppUtils.StringKeys.NIVEL_ACCESO_CONST, AppUtils.StringKeys.PERSONAL_CONST)
+                            startActivity(intent)
+
                         //si es usuario
-                        } else {
+                        } else if (nivelAcceso == "estudiante") {
                             Toast.makeText(this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show()
-                            val intent = Intent(this, UsuarioActivity::class.java)
-                            intent.putExtra(AppUtils.StringKeys.USUARIO_CONST, user)
+                            val intent = Intent(this, EstudianteActivity::class.java)
+                            intent.putExtra(AppUtils.StringKeys.ESTUDIANTE_CONST, user)
                             //Log.d("usuario-1", user)
                             startActivity(intent)
                         }
