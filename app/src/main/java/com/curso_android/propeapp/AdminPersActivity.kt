@@ -4,12 +4,12 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.cardview.widget.CardView
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.isVisible
 import com.curso_android.propeapp.databinding.ActivityAdminBinding
 
-class AdminActivity : AppCompatActivity() {
+class AdminPersActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAdminBinding
 
@@ -36,11 +36,16 @@ class AdminActivity : AppCompatActivity() {
     }
 
     private fun initUI() {
+        binding.cvAgregarAdminPers.isVisible = false
+        binding.cvEditarAdminPers.isVisible = false
+
+        mostrarBotonesAdmin()
+
         //botones
         binding.cvBuscarAlumno.setOnClickListener { navegarBuscarAlumno() }
         binding.cvGrupos.setOnClickListener { navegarGrupos() }
-        binding.cvAgregarAlumno.setOnClickListener { navegarAgregarAlumno() }
-        binding.cvEditarAlumno.setOnClickListener { navegarEditarAlumno() }
+        binding.cvAgregarEstudiante.setOnClickListener { navegarAgregarEstudiante() }
+        binding.cvEditarEstudiante.setOnClickListener { navegarEditarEstudiante() }
 
         //regresar
         binding.toolbarExterna.ivRegresar.setOnClickListener { regresar() }
@@ -57,12 +62,12 @@ class AdminActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    private fun navegarAgregarAlumno() {
+    private fun navegarAgregarEstudiante() {
         val intent = Intent(this, AgregarAlumActivity::class.java)
         startActivity(intent)
     }
 
-    private fun navegarEditarAlumno() {
+    private fun navegarEditarEstudiante() {
         val intent = Intent(this, BuscarAlumActivity::class.java)
         intent.putExtra(AppUtils.StringKeys.BOTON_CONST, AppUtils.StringKeys.EDITAR_CONST)
         startActivity(intent)
@@ -72,6 +77,10 @@ class AdminActivity : AppCompatActivity() {
         //SI EL USUARIO ES ADMIN, QUE PUEDA VER LOS BOTONES EXTRA, SINO QUE ESTEN INVISIBLES
 
         //CAMBIAR NOMBRE DE "AdminActivity.kt" a "AdminPers.kt"???
+        if (nivel_acceso == AppUtils.StringKeys.ADMIN_CONST){
+            binding.cvAgregarAdminPers.isVisible = true
+            binding.cvEditarAdminPers.isVisible = true
+        }
     }
 
     /*private fun navegarAgregarPersonal() {

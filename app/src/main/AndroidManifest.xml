@@ -14,9 +14,6 @@
         android:theme="@style/Theme.PropeApp"
         tools:targetApi="31" >
         <activity
-            android:name=".PersonalActivity"
-            android:exported="false" />
-        <activity
             android:name=".EstudianteActivity"
             android:exported="false" />
         <activity
@@ -47,7 +44,7 @@
             android:name=".AgregarAlumActivity"
             android:exported="false" />
         <activity
-            android:name=".AdminActivity"
+            android:name=".AdminPersActivity"
             android:exported="false" />
         <activity
             android:name=".BienvenidaActivity"

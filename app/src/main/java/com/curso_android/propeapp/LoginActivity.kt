@@ -12,10 +12,9 @@ import com.google.firebase.database.*
 
 class LoginActivity : AppCompatActivity() {
     /*********************PROXIMAS ACTIVIDADES A REALIZAR********************
-     * VER LO DE LOGIN
-     *  -NIVEL DE ACCESO SUPER-ADMIN??? -> usuario, personal, admin
-     *
-     * (PROBAR) DEFINIR CONSTANTE PARA NOMBRE USUARIO Y ASI SE COMPARTA EN TODOS LOS ACTIVITYS
+     * HACER FUNCIONES DE AGREGAR Y EDITAR PERSONAL
+     * CAMBIAR LO DE LOS "TUTORES" DE LOS ESTUDIANTES A "CONTACTO DE EMERGENCIA"
+     * COSAS APUNTADAS EN EL DOC DE GOOGLE
      *
      *
      *
@@ -74,31 +73,31 @@ class LoginActivity : AppCompatActivity() {
         database.child(AppUtils.DatabaseKeys.USUARIOS_DB_CONST).child(user)
             .get().addOnSuccessListener { snapshot ->
                 if (snapshot.exists()) {
-                    val nivelAcceso = snapshot.child(AppUtils.DatabaseKeys.ADMIN_DB_CONST).value as? String//guardamos el valor de "admin"
+                    val nivelAcceso = snapshot.child(AppUtils.DatabaseKeys.ACCESO_DB_CONST).value as? String//guardamos el valor de "admin"
                     val userPassword = snapshot.child(AppUtils.DatabaseKeys.PASSWORD_DB_CONST).value.toString()//guardamos la contraseña de la BD
 
                     //verificar si la contraseña es correcta
                     if (userPassword == hashedPassword) {
                         //si es admin
-                        if (nivelAcceso == "admin") {
+                        if (nivelAcceso == AppUtils.StringKeys.ADMIN_CONST) {
                             Toast.makeText(
                                 this,
                                 "Inicio de sesión exitoso como administrador",
                                 Toast.LENGTH_SHORT
                             ).show()
-                            val intent = Intent(this, AdminActivity::class.java)
+                            val intent = Intent(this, AdminPersActivity::class.java)
                             intent.putExtra(AppUtils.StringKeys.NIVEL_ACCESO_CONST, AppUtils.StringKeys.ADMIN_CONST)
                             startActivity(intent)
 
                         //si es personal (guardia/chic@ servicio)
-                        } else if (nivelAcceso == "personal") {
+                        } else if (nivelAcceso == AppUtils.StringKeys.PERSONAL_CONST) {
                             Toast.makeText(this, "Inicio de sesión exitoso como personal", Toast.LENGTH_SHORT).show()
-                            val intent = Intent(this, AdminActivity::class.java)
+                            val intent = Intent(this, AdminPersActivity::class.java)
                             intent.putExtra(AppUtils.StringKeys.NIVEL_ACCESO_CONST, AppUtils.StringKeys.PERSONAL_CONST)
                             startActivity(intent)
 
                         //si es usuario
-                        } else if (nivelAcceso == "estudiante") {
+                        } else if (nivelAcceso == AppUtils.StringKeys.ESTUDIANTE_CONST) {
                             Toast.makeText(this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show()
                             val intent = Intent(this, EstudianteActivity::class.java)
                             intent.putExtra(AppUtils.StringKeys.ESTUDIANTE_CONST, user)
