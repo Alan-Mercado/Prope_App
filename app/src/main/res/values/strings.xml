@@ -48,6 +48,7 @@
     <string name="registro_activity_info_alum">Registro:</string>
     <string name="estatus_activity_info_alum">Estatus:</string>
     <string name="grupo_activity_info_alum">Grupo:</string>
+    <string name="contacto_activity_info_alum">Contacto:</string>
     <string name="tutor1_activity_info_alum">Tutor 1:</string>
     <string name="tutor2_activity_info_alum">Tutor 2:</string>
     <string name="telefono_activity_info_alum">Teléfono:</string>
@@ -56,7 +57,7 @@
     <!--activity_buscar_alum-->
     <string name="titulo_activity_buscar_alum">Ingresa el nombre del estudiante</string>
     <string name="nombre_activity_buscar_alum">Nombre o Registro</string>
-    <string name="btnbuscar_activity_buscar_alum">Buscar</string>
+    <string name="btnmostrartodos_activity_buscar_alum">Mostrar Todos</string>
     <string name="btnescanearqr_activity_buscar_alum">Escanear QR</string>
 
     <!--activity_seleccionar_grupo-->

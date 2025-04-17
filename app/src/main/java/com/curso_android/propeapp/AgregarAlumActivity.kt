@@ -86,7 +86,7 @@ class AgregarAlumActivity : AppCompatActivity() {
             return
         }
 
-        val alumno = Alumno(registro, admin = false, nombre, password = AppUtils.hashSHA256(AppUtils.StringKeys.PASS_PREDETERMINADA_CONST), estatus, grupo, tutor_1, tel_1, tutor_2, tel_2, cred_entr)
+        val alumno = Alumno(registro, admin = false, nombre, password = AppUtils.hashSHA256(AppUtils.StringKeys.PASS_PREDETERMINADA_CONST), estatus, grupo, tutor_1, tel_1, /*tutor_2, tel_2,*/ cred_entr)
         //val alumno = Alumno(admin = false, nombre, password = AppUtils.hashSHA256(AppUtils.StringKeys.PASS_PREDETERMINADA_CONST), estatus, grupo, tutor_1, tel_1, tutor_2, tel_2)
 
         /*if (registro != null) {

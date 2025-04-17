@@ -66,8 +66,8 @@ class InfoAlumActivity : AppCompatActivity() {
                 val grupo = snapshot.child(AppUtils.DatabaseKeys.GRUPO_DB_CONST).getValue(String::class.java) ?: "N/A"
                 val tutor_1 = snapshot.child(AppUtils.DatabaseKeys.TUTOR_1_DB_CONST).getValue(String::class.java) ?: "No disponible"
                 val tel_1 = snapshot.child(AppUtils.DatabaseKeys.TEL_1_DB_CONST).getValue(String::class.java) ?: "No disponible"
-                val tutor_2 = snapshot.child(AppUtils.DatabaseKeys.TUTOR_2_DB_CONST).getValue(String::class.java) ?: "No disponible"
-                val tel_2 = snapshot.child(AppUtils.DatabaseKeys.TEL_2_DB_CONST).getValue(String::class.java) ?: "No disponible"
+                //val tutor_2 = snapshot.child(AppUtils.DatabaseKeys.TUTOR_2_DB_CONST).getValue(String::class.java) ?: "No disponible"
+                //val tel_2 = snapshot.child(AppUtils.DatabaseKeys.TEL_2_DB_CONST).getValue(String::class.java) ?: "No disponible"
                 val cred_entr = snapshot.child(AppUtils.DatabaseKeys.CREDENCIAL_ENTREGADA).getValue(String::class.java) ?: "Pendiente"
 
                 //Asignamos valores recuparados a los textviews
@@ -77,8 +77,8 @@ class InfoAlumActivity : AppCompatActivity() {
                 binding.tvGrupo.text = grupo
                 binding.tvTutor1.text = tutor_1
                 binding.tvTelefono1.text = tel_1
-                binding.tvTutor2.text = tutor_2
-                binding.tvTelefono2.text = tel_2
+                //binding.tvTutor2.text = tutor_2
+                //binding.tvTelefono2.text = tel_2
                 binding.tvCredencial.text = cred_entr
             } else {
                 Toast.makeText(this, "Usuario no encontrado", Toast.LENGTH_SHORT).show()

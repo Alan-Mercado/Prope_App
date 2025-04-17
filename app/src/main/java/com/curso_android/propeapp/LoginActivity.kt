@@ -12,9 +12,12 @@ import com.google.firebase.database.*
 
 class LoginActivity : AppCompatActivity() {
     /*********************PROXIMAS ACTIVIDADES A REALIZAR********************
-     * HACER FUNCIONES DE AGREGAR Y EDITAR PERSONAL
-     * CAMBIAR LO DE LOS "TUTORES" DE LOS ESTUDIANTES A "CONTACTO DE EMERGENCIA"
+     * HACER ACTIVITYS DE AGREGAR Y EDITAR PERSONAL
      * COSAS APUNTADAS EN EL DOC DE GOOGLE
+     *
+     * en buscar estudiante que no muestre admins ni personal
+     * -en agregar estudiante quitar el campo de tutor 2
+     * -cambiar tutor_1 por contacto en app y bd
      *
      *
      *

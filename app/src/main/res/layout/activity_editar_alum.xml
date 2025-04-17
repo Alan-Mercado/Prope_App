@@ -188,7 +188,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="12dp"
                 android:gravity="left"
-                android:text="@string/tutor1_activity_agregar_alum"
+                android:text="@string/contacto_activity_info_alum"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/divider5" />
 
@@ -236,7 +236,7 @@
                 tools:text="3344556677" />
 
             <!--Tutor 2-->
-            <com.google.android.material.divider.MaterialDivider
+            <!--com.google.android.material.divider.MaterialDivider
                 android:id="@+id/divider7"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
@@ -266,7 +266,7 @@
                 app:layout_constraintTop_toBottomOf="@id/divider7"
                 tools:text="jose velazquez" />
 
-            <!--Telefono 2-->
+            <Telefono 2>
             <com.google.android.material.divider.MaterialDivider
                 android:id="@+id/divider8"
                 android:layout_width="match_parent"
@@ -295,14 +295,14 @@
                 android:paddingHorizontal="8dp"
                 app:layout_constraintStart_toEndOf="@id/tvCampoTelefono2"
                 app:layout_constraintTop_toBottomOf="@id/divider8"
-                tools:text="3311223344" />
+                tools:text="3311223344" /-->
 
             <com.google.android.material.divider.MaterialDivider
                 android:id="@+id/divider9"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 app:dividerColor="@color/gris_color"
-                app:layout_constraintTop_toBottomOf="@id/tvCampoTelefono2" />
+                app:layout_constraintTop_toBottomOf="@id/tvCampoTelefono1" />
 
             <TextView
                 android:id="@+id/tvCampoCredencial"
@@ -331,7 +331,7 @@
                 android:id="@+id/spCredencial"
                 android:layout_width="200dp"
                 android:layout_height="48dp"
-                app:layout_constraintStart_toEndOf="@id/tvCampoTelefono2"
+                app:layout_constraintStart_toEndOf="@id/tvCampoTelefono1"
                 app:layout_constraintTop_toBottomOf="@id/divider9" />
 
             <!--Ingresar-->

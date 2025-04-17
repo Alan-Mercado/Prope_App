@@ -68,30 +68,38 @@
 
             <!--BOTONES-->
             <!--Ingresar-->
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnBuscar"
-                style="@style/Texto_1_Estilo"
-                android:layout_width="240dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
-                android:layout_marginVertical="16dp"
-                android:backgroundTint="@color/tinto_color"
-                android:text="@string/btnbuscar_activity_buscar_alum"
-                android:textColor="@color/white"
-                app:cornerRadius="8dp" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:orientation="vertical">
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnEscanearQR"
-                style="@style/Texto_1_Estilo"
-                android:layout_width="240dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
-                android:layout_marginVertical="16dp"
-                android:backgroundTint="@color/dorado_color"
-                android:text="@string/btnescanearqr_activity_buscar_alum"
-                android:textColor="@color/white"
-                app:cornerRadius="8dp"
-                tools:text="Escanear QR" />
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnBuscar"
+                    style="@style/Texto_1_Estilo"
+                    android:layout_width="240dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:layout_marginVertical="16dp"
+                    android:backgroundTint="@color/tinto_color"
+                    android:text="@string/btnmostrartodos_activity_buscar_alum"
+                    android:textColor="@color/white"
+                    app:cornerRadius="8dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnEscanearQR"
+                    style="@style/Texto_1_Estilo"
+                    android:layout_width="240dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:layout_marginVertical="16dp"
+                    android:backgroundTint="@color/dorado_color"
+                    android:text="@string/btnescanearqr_activity_buscar_alum"
+                    android:textColor="@color/white"
+                    app:cornerRadius="8dp"
+                    tools:text="Escanear QR" />
+
+            </LinearLayout>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
