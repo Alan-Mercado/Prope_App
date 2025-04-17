@@ -22,7 +22,7 @@ class BuscarAlumActivity : AppCompatActivity() {
 
 
     private lateinit var alumnoAdapter: AlumnoAdapter
-    private var alumnoList = mutableListOf<Alumno>()
+    private var alumnoList = mutableListOf<Estudiante>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -87,14 +87,14 @@ class BuscarAlumActivity : AppCompatActivity() {
 
     private fun buscarAlumnos(query: String) {
         val queryLower = query.toLowerCase(Locale.getDefault()) // Para hacer la búsqueda insensible a mayúsculas/minúsculas
-        val results = mutableListOf<Alumno>()
+        val results = mutableListOf<Estudiante>()
 
         // Buscar en Firebase
         database.child(AppUtils.DatabaseKeys.USUARIOS_DB_CONST).addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
                     for (userSnapshot in snapshot.children) {
-                        val usuario = userSnapshot.getValue(Alumno::class.java)
+                        val usuario = userSnapshot.getValue(Estudiante::class.java)
                         //val esAdmin = userSnapshot.getValue(Alumno::class.java)
 
                         // Si el número de registro o el nombre coinciden con la búsqueda
@@ -117,7 +117,7 @@ class BuscarAlumActivity : AppCompatActivity() {
         })
     }
 
-    private fun updateRecyclerView(results: List<Alumno>) {
+    private fun updateRecyclerView(results: List<Estudiante>) {
         //val adapter = AlumnoAdapter(results)
         val adapter = AlumnoAdapter(results){navegarInfoEditAlum(it, destino)}
         binding.rvResultados.layoutManager = LinearLayoutManager(this)

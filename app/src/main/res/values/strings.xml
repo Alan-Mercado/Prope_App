@@ -78,6 +78,18 @@
     <string name="titulo_activity_editar_alum">Edita la información del estudiante</string>
     <string name="btnactualizar_activity_editar_alum">Actualizar</string>
 
+    <!--activity_agregar_admin_pers-->
+    <string name="titulo_activity_agregar_admin_pers">Ingresa los datos del personal o administrador</string>
+    <string name="nombre_activity_agregar_admin_pers">Nombre:</string>
+    <string name="registro_activity_agregar_admin_pers">Registro:</string>
+    <string name="telefono_activity_agregar_admin_pers">Teléfono:</string>
+    <string name="acceso_activity_agregar_admin_pers">Acceso:</string>
+    <string name="btnagregar_activity_agregar_admin_pers">Agregar</string>
+
+    <!--activity_editar_admin_pers-->
+    <string name="titulo_activity_editar_admin_pers">Edita la información del estudiante</string>
+    <string name="btnactualizar_activity_editar_admin_pers">Actualizar</string>
+
     <!--activity_-->
     <string name="_activity_"></string>
 

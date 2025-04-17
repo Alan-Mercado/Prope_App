@@ -84,7 +84,7 @@ class AgregarAlumActivity : AppCompatActivity() {
             return
         }
 
-        val alumno = Alumno(registro, acceso = AppUtils.StringKeys.ESTUDIANTE_CONST, nombre, password = AppUtils.hashSHA256(AppUtils.StringKeys.PASS_PREDETERMINADA_CONST), estatus, grupo, contacto, tel_1, /*tutor_2, tel_2,*/ cred_entr)
+        val estudiante = Estudiante(registro, acceso = AppUtils.StringKeys.ESTUDIANTE_CONST, nombre, password = AppUtils.hashSHA256(AppUtils.StringKeys.PASS_PREDETERMINADA_CONST), estatus, grupo, contacto, tel_1, /*tutor_2, tel_2,*/ cred_entr)
         //val alumno = Alumno(admin = false, nombre, password = AppUtils.hashSHA256(AppUtils.StringKeys.PASS_PREDETERMINADA_CONST), estatus, grupo, tutor_1, tel_1, tutor_2, tel_2)
 
         /*if (registro != null) {
@@ -104,13 +104,13 @@ class AgregarAlumActivity : AppCompatActivity() {
                     Toast.makeText(this@AgregarAlumActivity, "Ya existe este registro", Toast.LENGTH_SHORT).show()
                 } else {
                     // Si el registro no existe agregar el nuevo alumno
-                    database.child(AppUtils.DatabaseKeys.USUARIOS_DB_CONST).child(registro).setValue(alumno)
+                    database.child(AppUtils.DatabaseKeys.USUARIOS_DB_CONST).child(registro).setValue(estudiante)
                         .addOnSuccessListener {
-                            Toast.makeText(this@AgregarAlumActivity, "Alumno agregado correctamente", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this@AgregarAlumActivity, "Estudiante agregado correctamente", Toast.LENGTH_SHORT).show()
                             limpiarCampos()
                         }
                         .addOnFailureListener {
-                            Toast.makeText(this@AgregarAlumActivity, "Error al agregar el alumno", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this@AgregarAlumActivity, "Error al agregar al estudiante", Toast.LENGTH_SHORT).show()
                         }
                 }
             }

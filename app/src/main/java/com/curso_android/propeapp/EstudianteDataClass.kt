@@ -1,6 +1,6 @@
 package com.curso_android.propeapp
 
-data class Alumno(
+data class Estudiante(
     val registro: String = "",
     val acceso: String = AppUtils.StringKeys.ESTUDIANTE_CONST,
     val nombre: String = "",
@@ -12,6 +12,4 @@ data class Alumno(
     //val tutor_2: String ?= "No disponible",
     //val tel_2: String ?= "No disponible",
     val cred_entr: String ?= "Pendiente"
-) /*{
-    constructor() : this(false, "", AppUtils.StringKeys.PASS_PREDETERMINADA_CONST, "", "", "", "", "", "")
-}*/
+)

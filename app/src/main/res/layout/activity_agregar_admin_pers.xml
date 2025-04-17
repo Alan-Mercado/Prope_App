@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <FrameLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".AgregarAdminPersActivity">
+
+        <!--TOOLBAR-->
+        <include
+            android:id="@+id/toolbarExterna"
+            layout="@layout/toolbar" />
+
+        <!--CONTENIDO-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="40dp">
+
+            <!--Titulo-->
+            <TextView
+                android:id="@+id/tvTitulo"
+                style="@style/Titulo_1_Estilo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="48dp"
+                android:gravity="start"
+                android:text="@string/titulo_activity_agregar_admin_pers"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!--Nombre-->
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/divider1"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="12dp"
+                app:dividerColor="@color/gris_color"
+                app:layout_constraintTop_toBottomOf="@id/tvTitulo" />
+
+            <TextView
+                android:id="@+id/tvCampoNombre"
+                style="@style/Titulo_2_Estilo"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="10dp"
+                android:gravity="left"
+                android:text="@string/nombre_activity_agregar_alum"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/divider1" />
+
+            <EditText
+                android:id="@+id/etNombre"
+                style="@style/Texto_3_Estilo"
+                android:layout_width="200dp"
+                android:layout_height="48dp"
+                android:gravity="start|center_vertical"
+                android:maxLines="2"
+                android:paddingHorizontal="8dp"
+                app:layout_constraintStart_toEndOf="@id/tvCampoNombre"
+                app:layout_constraintTop_toBottomOf="@id/divider1"
+                tools:text="ana maria velazquez castro" />
+
+
+            <!--Registro-->
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/divider2"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                app:dividerColor="@color/gris_color"
+                app:layout_constraintTop_toBottomOf="@id/tvCampoNombre" />
+
+            <TextView
+                android:id="@+id/tvCampoRegistro"
+                style="@style/Titulo_2_Estilo"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="12dp"
+                android:gravity="left"
+                android:text="@string/registro_activity_agregar_alum"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/divider2" />
+
+            <EditText
+                android:id="@+id/etRegistro"
+                style="@style/Texto_1_Estilo"
+                android:layout_width="200dp"
+                android:layout_height="48dp"
+                android:gravity="start|center_vertical"
+                android:maxLines="2"
+                android:paddingHorizontal="8dp"
+                app:layout_constraintStart_toEndOf="@id/tvCampoRegistro"
+                app:layout_constraintTop_toBottomOf="@id/divider2"
+                tools:text="12345678" />
+
+            <!--Acceso-->
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/divider3"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                app:dividerColor="@color/gris_color"
+                app:layout_constraintTop_toBottomOf="@id/tvCampoRegistro" />
+
+            <TextView
+                android:id="@+id/tvCampoAcceso"
+                style="@style/Titulo_2_Estilo"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="12dp"
+                android:gravity="left"
+                android:text="@string/acceso_activity_agregar_admin_pers"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/divider3" />
+
+            <Spinner
+                android:id="@+id/spAcceso"
+                android:layout_width="200dp"
+                android:layout_height="48dp"
+                app:layout_constraintStart_toEndOf="@id/tvCampoAcceso"
+                app:layout_constraintTop_toBottomOf="@id/divider3" />
+
+            <!--Telefono-->
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/divider4"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                app:dividerColor="@color/gris_color"
+                app:layout_constraintTop_toBottomOf="@id/tvCampoAcceso" />
+
+            <TextView
+                android:id="@+id/tvCampoTelefono"
+                style="@style/Titulo_2_Estilo"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="12dp"
+                android:gravity="left"
+                android:text="@string/telefono_activity_agregar_alum"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/divider4" />
+
+            <EditText
+                android:id="@+id/etTelefono"
+                style="@style/Texto_1_Estilo"
+                android:layout_width="200dp"
+                android:layout_height="48dp"
+                android:gravity="start|center_vertical"
+                android:maxLines="2"
+                android:paddingHorizontal="8dp"
+                app:layout_constraintStart_toEndOf="@id/tvCampoTelefono"
+                app:layout_constraintTop_toBottomOf="@id/divider4"
+                tools:text="12345678" />
+
+            <!--Agregar-->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnAgregarAdminPers"
+                style="@style/Texto_1_Estilo"
+                android:layout_width="240dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginVertical="0dp"
+                android:backgroundTint="@color/tinto_color"
+                android:text="@string/btnagregar_activity_agregar_alum"
+                android:textColor="@color/white"
+                app:cornerRadius="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </FrameLayout>
+
+
+</ScrollView>

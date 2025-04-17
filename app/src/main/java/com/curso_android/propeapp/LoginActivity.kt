@@ -68,7 +68,7 @@ class LoginActivity : AppCompatActivity() {
         //regresar
         binding.toolbarExterna.ivRegresar.setOnClickListener { regresar() }
 
-        //Log.d("conttemp", AppUtils.hashSHA256("a"))//FUNCION PARA GENERAR CONTRASEÑAS Y COPIARLAS DEL LOGCAT
+//Log.d("conttemp", AppUtils.hashSHA256("a"))//FUNCION PARA GENERAR CONTRASEÑAS Y COPIARLAS DEL LOGCAT
     }
 
     //Funcion para comprobar usuario y redirigir a su respectiva vista

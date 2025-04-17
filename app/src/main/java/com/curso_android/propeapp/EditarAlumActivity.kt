@@ -148,13 +148,13 @@ class EditarAlumActivity : AppCompatActivity() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
                     // Si el registro ya existe
-                    val alumno = Alumno(registro, acceso = snapshot.child(AppUtils.DatabaseKeys.ACCESO_DB_CONST).value.toString(), nombre, password = snapshot.child(AppUtils.DatabaseKeys.PASSWORD_DB_CONST).value.toString(), estatus, grupo, tutor_1, tel_1, /*tutor_2, tel_2,*/ cred_entr)
+                    val alumno = Estudiante(registro, acceso = snapshot.child(AppUtils.DatabaseKeys.ACCESO_DB_CONST).value.toString(), nombre, password = snapshot.child(AppUtils.DatabaseKeys.PASSWORD_DB_CONST).value.toString(), estatus, grupo, tutor_1, tel_1, /*tutor_2, tel_2,*/ cred_entr)
                     database.child(AppUtils.DatabaseKeys.USUARIOS_DB_CONST).child(registro).setValue(alumno)
                         .addOnSuccessListener {
-                            Toast.makeText(this@EditarAlumActivity, "Alumno actualizado correctamente", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this@EditarAlumActivity, "Estudiante actualizado correctamente", Toast.LENGTH_SHORT).show()
                         }
                         .addOnFailureListener {
-                            Toast.makeText(this@EditarAlumActivity, "Error al actualizar el alumno", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this@EditarAlumActivity, "Error al actualizar al estudiante", Toast.LENGTH_SHORT).show()
                         }
                 } else {
                     // Si el registro no existe

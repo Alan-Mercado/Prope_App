@@ -46,6 +46,7 @@ class AdminPersActivity : AppCompatActivity() {
         binding.cvGrupos.setOnClickListener { navegarGrupos() }
         binding.cvAgregarEstudiante.setOnClickListener { navegarAgregarEstudiante() }
         binding.cvEditarEstudiante.setOnClickListener { navegarEditarEstudiante() }
+        binding.cvAgregarAdminPers.setOnClickListener { navegarAgregarPersonal() }
 
         //regresar
         binding.toolbarExterna.ivRegresar.setOnClickListener { regresar() }
@@ -83,12 +84,12 @@ class AdminPersActivity : AppCompatActivity() {
         }
     }
 
-    /*private fun navegarAgregarPersonal() {
-        val intent = Intent(this, AgregarPersActivity::class.java)
+    private fun navegarAgregarPersonal() {
+        val intent = Intent(this, AgregarAdminPersActivity::class.java)
         startActivity(intent)
     }
 
-    private fun navegarEditarPersonal() {
+    /*private fun navegarEditarPersonal() {
         val intent = Intent(this, BuscarPersActivity::class.java)
         intent.putExtra(AppUtils.StringKeys.BOTON_CONST, AppUtils.StringKeys.EDITAR_CONST)//PONER EXTRA DE REGISTRO DEL ADMIN/PERSONAL
         startActivity(intent)
