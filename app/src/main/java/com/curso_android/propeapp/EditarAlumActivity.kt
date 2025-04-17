@@ -86,7 +86,7 @@ class EditarAlumActivity : AppCompatActivity() {
                 //val registro = user
                 val estatus = snapshot.child(AppUtils.DatabaseKeys.ESTATUS_DB_CONST).getValue(String::class.java) ?: "No registrado"
                 val grupo = snapshot.child(AppUtils.DatabaseKeys.GRUPO_DB_CONST).getValue(String::class.java) ?: "N/A"
-                val tutor_1 = snapshot.child(AppUtils.DatabaseKeys.TUTOR_1_DB_CONST).getValue(String::class.java) ?: "No disponible"
+                val contacto = snapshot.child(AppUtils.DatabaseKeys.CONTACTO_DB_CONST).getValue(String::class.java) ?: "No disponible"
                 val tel_1 = snapshot.child(AppUtils.DatabaseKeys.TEL_1_DB_CONST).getValue(String::class.java) ?: "No disponible"
                 //val tutor_2 = snapshot.child(AppUtils.DatabaseKeys.TUTOR_2_DB_CONST).getValue(String::class.java) ?: "No disponible"
                 //val tel_2 = snapshot.child(AppUtils.DatabaseKeys.TEL_2_DB_CONST).getValue(String::class.java) ?: "No disponible"
@@ -105,7 +105,7 @@ class EditarAlumActivity : AppCompatActivity() {
                 if (pos2 >= 0) {
                     binding.spGrupo.setSelection(pos2)
                 }
-                binding.etTutor1.setText(tutor_1)
+                binding.etContacto.setText(contacto)
                 binding.etTelefono1.setText(tel_1)
                 //binding.etTutor2.setText(tutor_2)
                 //binding.etTelefono2.setText(tel_2)
@@ -129,7 +129,7 @@ class EditarAlumActivity : AppCompatActivity() {
         val estatus = binding.spEstatus.selectedItem.toString()
         //val grupo = binding.etGrupo.text.toString().trim()
         val grupo = binding.spGrupo.selectedItem.toString()
-        val tutor_1 = binding.etTutor1.text.toString().trim()
+        val tutor_1 = binding.etContacto.text.toString().trim()
         val tel_1 = binding.etTelefono1.text.toString().trim()
         //val tutor_2 = binding.etTutor2.text.toString().trim().ifEmpty { "No disponible" }
         //val tel_2 = binding.etTelefono2.text.toString().trim().ifEmpty { "No disponible" }
@@ -148,7 +148,7 @@ class EditarAlumActivity : AppCompatActivity() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
                     // Si el registro ya existe
-                    val alumno = Alumno(registro, admin = false, nombre, password = snapshot.child(AppUtils.DatabaseKeys.PASSWORD_DB_CONST).value.toString(), estatus, grupo, tutor_1, tel_1, /*tutor_2, tel_2,*/ cred_entr)
+                    val alumno = Alumno(registro, acceso = snapshot.child(AppUtils.DatabaseKeys.ACCESO_DB_CONST).value.toString(), nombre, password = snapshot.child(AppUtils.DatabaseKeys.PASSWORD_DB_CONST).value.toString(), estatus, grupo, tutor_1, tel_1, /*tutor_2, tel_2,*/ cred_entr)
                     database.child(AppUtils.DatabaseKeys.USUARIOS_DB_CONST).child(registro).setValue(alumno)
                         .addOnSuccessListener {
                             Toast.makeText(this@EditarAlumActivity, "Alumno actualizado correctamente", Toast.LENGTH_SHORT).show()

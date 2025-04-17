@@ -98,7 +98,7 @@ class BuscarAlumActivity : AppCompatActivity() {
                         //val esAdmin = userSnapshot.getValue(Alumno::class.java)
 
                         // Si el número de registro o el nombre coinciden con la búsqueda
-                        if (usuario != null && usuario.admin == false) {
+                        if (usuario != null && usuario.acceso == AppUtils.StringKeys.ESTUDIANTE_CONST) {
                             if (usuario.nombre.toLowerCase(Locale.getDefault()).contains(queryLower) ||
                                 userSnapshot.key?.contains(queryLower) == true) {
                                 results.add(usuario)

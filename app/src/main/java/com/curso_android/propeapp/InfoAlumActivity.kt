@@ -64,7 +64,7 @@ class InfoAlumActivity : AppCompatActivity() {
                     //val registro = user
                 val estatus = snapshot.child(AppUtils.DatabaseKeys.ESTATUS_DB_CONST).getValue(String::class.java) ?: "No registrado"
                 val grupo = snapshot.child(AppUtils.DatabaseKeys.GRUPO_DB_CONST).getValue(String::class.java) ?: "N/A"
-                val tutor_1 = snapshot.child(AppUtils.DatabaseKeys.TUTOR_1_DB_CONST).getValue(String::class.java) ?: "No disponible"
+                val contacto = snapshot.child(AppUtils.DatabaseKeys.CONTACTO_DB_CONST).getValue(String::class.java) ?: "No disponible"
                 val tel_1 = snapshot.child(AppUtils.DatabaseKeys.TEL_1_DB_CONST).getValue(String::class.java) ?: "No disponible"
                 //val tutor_2 = snapshot.child(AppUtils.DatabaseKeys.TUTOR_2_DB_CONST).getValue(String::class.java) ?: "No disponible"
                 //val tel_2 = snapshot.child(AppUtils.DatabaseKeys.TEL_2_DB_CONST).getValue(String::class.java) ?: "No disponible"
@@ -75,7 +75,7 @@ class InfoAlumActivity : AppCompatActivity() {
                 binding.tvRegistro.text = user
                 binding.tvEstatus.text = estatus
                 binding.tvGrupo.text = grupo
-                binding.tvTutor1.text = tutor_1
+                binding.tvContacto.text = contacto
                 binding.tvTelefono1.text = tel_1
                 //binding.tvTutor2.text = tutor_2
                 //binding.tvTelefono2.text = tel_2

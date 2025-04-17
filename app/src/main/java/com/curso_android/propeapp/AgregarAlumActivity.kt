@@ -1,6 +1,5 @@
 package com.curso_android.propeapp
 
-import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Toast
@@ -10,7 +9,6 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.curso_android.propeapp.databinding.ActivityAgregarAlumBinding
 import com.google.firebase.database.*
-import java.security.MessageDigest
 
 class AgregarAlumActivity : AppCompatActivity() {
 
@@ -73,20 +71,20 @@ class AgregarAlumActivity : AppCompatActivity() {
         val estatus = binding.spEstatus.selectedItem.toString()
         //val grupo = binding.etGrupo.text.toString().trim()
         val grupo = binding.spGrupo.selectedItem.toString()
-        val tutor_1 = binding.etTutor1.text.toString().trim()
+        val contacto = binding.etContacto.text.toString().trim()
         val tel_1 = binding.etTelefono1.text.toString().trim()
-        val tutor_2 = binding.etTutor2.text.toString().trim().ifEmpty { "No disponible" }
-        val tel_2 = binding.etTelefono2.text.toString().trim().ifEmpty { "No disponible" }
+        //val tutor_2 = binding.etTutor2.text.toString().trim().ifEmpty { "No disponible" }
+        //val tel_2 = binding.etTelefono2.text.toString().trim().ifEmpty { "No disponible" }
         //val cred_entr = binding.etCredencial.text.toString().trim().ifEmpty { "Pendiente" }
         val cred_entr = binding.spCredencial.selectedItem.toString()
 
         if (nombre.isEmpty() || registro.isEmpty() || estatus.isEmpty() || grupo.isEmpty()
-            || tutor_1.isEmpty() || tel_1.isEmpty() || cred_entr.isEmpty()) {
+            || contacto.isEmpty() || tel_1.isEmpty() || cred_entr.isEmpty()) {
             Toast.makeText(this, "Por favor, ingrese todos los campos", Toast.LENGTH_SHORT).show()
             return
         }
 
-        val alumno = Alumno(registro, admin = false, nombre, password = AppUtils.hashSHA256(AppUtils.StringKeys.PASS_PREDETERMINADA_CONST), estatus, grupo, tutor_1, tel_1, /*tutor_2, tel_2,*/ cred_entr)
+        val alumno = Alumno(registro, acceso = AppUtils.StringKeys.ESTUDIANTE_CONST, nombre, password = AppUtils.hashSHA256(AppUtils.StringKeys.PASS_PREDETERMINADA_CONST), estatus, grupo, contacto, tel_1, /*tutor_2, tel_2,*/ cred_entr)
         //val alumno = Alumno(admin = false, nombre, password = AppUtils.hashSHA256(AppUtils.StringKeys.PASS_PREDETERMINADA_CONST), estatus, grupo, tutor_1, tel_1, tutor_2, tel_2)
 
         /*if (registro != null) {
@@ -130,10 +128,10 @@ class AgregarAlumActivity : AppCompatActivity() {
         binding.spEstatus.setSelection(0)
         //binding.etGrupo.text.clear()
         binding.spGrupo.setSelection(0)
-        binding.etTutor1.text.clear()
+        binding.etContacto.text.clear()
         binding.etTelefono1.text.clear()
-        binding.etTutor2.text.clear()
-        binding.etTelefono2.text.clear()
+        //binding.etTutor2.text.clear()
+        //binding.etTelefono2.text.clear()
         //binding.etCredencial.text.clear()
         binding.spCredencial.setSelection(0)
     }

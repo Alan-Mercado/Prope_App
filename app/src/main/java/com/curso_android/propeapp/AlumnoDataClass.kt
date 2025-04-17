@@ -2,12 +2,12 @@ package com.curso_android.propeapp
 
 data class Alumno(
     val registro: String = "",
-    val admin: Boolean = false,
+    val acceso: String = AppUtils.StringKeys.ESTUDIANTE_CONST,
     val nombre: String = "",
     val password: String = AppUtils.StringKeys.PASS_PREDETERMINADA_CONST,
     val estatus: String = "",
     val grupo: String = "",
-    val tutor_1: String = "",
+    val contacto: String = "",
     val tel_1: String = "",
     //val tutor_2: String ?= "No disponible",
     //val tel_2: String ?= "No disponible",

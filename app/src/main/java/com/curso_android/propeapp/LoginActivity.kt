@@ -2,6 +2,7 @@ package com.curso_android.propeapp
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -15,9 +16,9 @@ class LoginActivity : AppCompatActivity() {
      * HACER ACTIVITYS DE AGREGAR Y EDITAR PERSONAL
      * COSAS APUNTADAS EN EL DOC DE GOOGLE
      *
-     * en buscar estudiante que no muestre admins ni personal
-     * -en agregar estudiante quitar el campo de tutor 2
-     * -cambiar tutor_1 por contacto en app y bd
+     *
+     *
+     *
      *
      *
      *
@@ -66,6 +67,8 @@ class LoginActivity : AppCompatActivity() {
 
         //regresar
         binding.toolbarExterna.ivRegresar.setOnClickListener { regresar() }
+
+        //Log.d("conttemp", AppUtils.hashSHA256("a"))//FUNCION PARA GENERAR CONTRASEÑAS Y COPIARLAS DEL LOGCAT
     }
 
     //Funcion para comprobar usuario y redirigir a su respectiva vista

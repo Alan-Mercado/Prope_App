@@ -24,7 +24,7 @@ object AppUtils {
         const val PASSWORD_DB_CONST = "password"
         const val ESTATUS_DB_CONST = "estatus"
         const val GRUPO_DB_CONST = "grupo"
-        const val TUTOR_1_DB_CONST = "tutor_1"
+        const val CONTACTO_DB_CONST = "contacto"
         const val TEL_1_DB_CONST = "tel_1"
         //const val TUTOR_2_DB_CONST = "tutor_2"
         //const val TEL_2_DB_CONST = "tel_2"

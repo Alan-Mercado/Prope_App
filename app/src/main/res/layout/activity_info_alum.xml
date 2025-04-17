@@ -169,7 +169,7 @@
                 app:layout_constraintTop_toBottomOf="@id/tvCampoGrupo" />
 
             <TextView
-                android:id="@+id/tvCampoTutor1"
+                android:id="@+id/tvCampoContacto"
                 style="@style/Titulo_2_Estilo"
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
@@ -180,14 +180,14 @@
                 app:layout_constraintTop_toBottomOf="@id/divider5" />
 
             <TextView
-                android:id="@+id/tvTutor1"
+                android:id="@+id/tvContacto"
                 style="@style/Texto_1_Estilo"
                 android:layout_width="200dp"
                 android:layout_height="48dp"
                 android:gravity="start|center_vertical"
                 android:maxLines="2"
                 android:paddingHorizontal="8dp"
-                app:layout_constraintStart_toEndOf="@id/tvCampoTutor1"
+                app:layout_constraintStart_toEndOf="@id/tvCampoContacto"
                 app:layout_constraintTop_toBottomOf="@id/divider5"
                 tools:text="maria castro" />
 
@@ -197,7 +197,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 app:dividerColor="@color/gris_color"
-                app:layout_constraintTop_toBottomOf="@id/tvCampoTutor1" />
+                app:layout_constraintTop_toBottomOf="@id/tvCampoContacto" />
 
             <TextView
                 android:id="@+id/tvCampoTelefono1"
