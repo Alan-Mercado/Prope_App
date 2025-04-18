@@ -30,7 +30,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="48dp"
                 android:gravity="start"
-                android:text="@string/titulo_activity_agregar_alum"
+                android:text="@string/titulo_activity_editar_alum"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 

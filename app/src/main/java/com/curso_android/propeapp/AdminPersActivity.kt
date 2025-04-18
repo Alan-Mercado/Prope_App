@@ -44,9 +44,12 @@ class AdminPersActivity : AppCompatActivity() {
         //botones
         binding.cvBuscarAlumno.setOnClickListener { navegarBuscarAlumno() }
         binding.cvGrupos.setOnClickListener { navegarGrupos() }
+
         binding.cvAgregarEstudiante.setOnClickListener { navegarAgregarEstudiante() }
         binding.cvEditarEstudiante.setOnClickListener { navegarEditarEstudiante() }
+
         binding.cvAgregarAdminPers.setOnClickListener { navegarAgregarPersonal() }
+        binding.cvEditarAdminPers.setOnClickListener { navegarEditarPersonal() }
 
         //regresar
         binding.toolbarExterna.ivRegresar.setOnClickListener { regresar() }
@@ -70,7 +73,7 @@ class AdminPersActivity : AppCompatActivity() {
 
     private fun navegarEditarEstudiante() {
         val intent = Intent(this, BuscarAlumActivity::class.java)
-        intent.putExtra(AppUtils.StringKeys.BOTON_CONST, AppUtils.StringKeys.EDITAR_CONST)
+        intent.putExtra(AppUtils.StringKeys.BOTON_CONST, AppUtils.StringKeys.EDITAR_ESTUDIANTE_CONST)
         startActivity(intent)
     }
 
@@ -89,11 +92,11 @@ class AdminPersActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    /*private fun navegarEditarPersonal() {
-        val intent = Intent(this, BuscarPersActivity::class.java)
-        intent.putExtra(AppUtils.StringKeys.BOTON_CONST, AppUtils.StringKeys.EDITAR_CONST)//PONER EXTRA DE REGISTRO DEL ADMIN/PERSONAL
+    private fun navegarEditarPersonal() {
+        val intent = Intent(this, BuscarAdminPersActivity::class.java)
+        intent.putExtra(AppUtils.StringKeys.BOTON_CONST, AppUtils.StringKeys.EDITAR_PERSONAL_CONST)//PONER EXTRA DE REGISTRO DEL ADMIN/PERSONAL
         startActivity(intent)
-    }*/
+    }
 
     private fun regresar(){
         finish()

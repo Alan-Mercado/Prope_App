@@ -2,33 +2,33 @@ package com.curso_android.propeapp
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.curso_android.propeapp.databinding.ActivityBuscarAlumBinding
+import com.curso_android.propeapp.databinding.ActivityBuscarAdminPersBinding
 import com.google.firebase.database.*
 import java.util.Locale
 
-class BuscarAlumActivity : AppCompatActivity() {
+class BuscarAdminPersActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityBuscarAlumBinding
+    private lateinit var binding: ActivityBuscarAdminPersBinding
 
     private lateinit var database: DatabaseReference
 
     private lateinit var destino: String
 
-
-    private lateinit var alumnoAdapter: AlumnoAdapter
-    private var alumnoList = mutableListOf<Estudiante>()
+    private lateinit var personalAdapter: AdminPersAdapter
+    private var personalList = mutableListOf<AdminPers>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-        binding = ActivityBuscarAlumBinding.inflate(layoutInflater)
+        binding = ActivityBuscarAdminPersBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         window.statusBarColor = resources.getColor(R.color.dorado_color, theme)
@@ -47,27 +47,23 @@ class BuscarAlumActivity : AppCompatActivity() {
     }
 
     private fun initUI() {
-        //botones
-        //binding.btnBuscar.setOnClickListener { navegarInfoAlum() }
-
         // Configuración del RecyclerView
-        alumnoAdapter = AlumnoAdapter(alumnoList){navegarInfoEditAlum(it, destino)}
-        //alumnoAdapter = AlumnoAdapter{navegarInfoAlum(it)}
+        personalAdapter = AdminPersAdapter(personalList){navegarEditAdminPers(it, destino)}//*******************VER SI ES NECESARIO LO DE "DESTINO"****************
         binding.rvResultados.layoutManager = LinearLayoutManager(this)
-        binding.rvResultados.adapter = alumnoAdapter
+        binding.rvResultados.adapter = personalAdapter
 
         // Configurar el SearchView
         binding.svBuscador.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 query?.let {
-                    buscarAlumnos(it)
+                    buscarPersonal(it)
                 }
                 return true
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 newText?.let {
-                    buscarAlumnos(it)
+                    buscarPersonal(it)
                 }
                 return true
             }
@@ -75,32 +71,34 @@ class BuscarAlumActivity : AppCompatActivity() {
 
         binding.btnBuscar.setOnClickListener {
             val query = binding.svBuscador.query.toString()
-            buscarAlumnos(query)
+            buscarPersonal(query)
         }
-
-        //escanear QR
-        binding.btnEscanearQR.setOnClickListener { navegarEscanearQR() }
 
         //regresar
         binding.toolbarExterna.ivRegresar.setOnClickListener { regresar() }
     }
 
-    private fun buscarAlumnos(query: String) {
+    private fun buscarPersonal(query: String) {
         val queryLower = query.toLowerCase(Locale.getDefault()) // Para hacer la búsqueda insensible a mayúsculas/minúsculas
-        val results = mutableListOf<Estudiante>()
+        val results = mutableListOf<AdminPers>()
 
         // Buscar en Firebase
         database.child(AppUtils.DatabaseKeys.USUARIOS_DB_CONST).addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
+                    Log.d("probamos", "si existe la snapshot")
                     for (userSnapshot in snapshot.children) {
-                        val usuario = userSnapshot.getValue(Estudiante::class.java)
+                        Log.d("probamos", "si entra al for-in")
+                        val usuario = userSnapshot.getValue(AdminPers::class.java)
                         //val esAdmin = userSnapshot.getValue(Alumno::class.java)
 
                         // Si el número de registro o el nombre coinciden con la búsqueda
-                        if (usuario != null && usuario.acceso == AppUtils.StringKeys.ESTUDIANTE_CONST) {
+                        if (usuario != null && usuario.acceso != AppUtils.StringKeys.ESTUDIANTE_CONST) {
+                        //if (usuario != null && (usuario.acceso == AppUtils.StringKeys.PERSONAL_CONST || usuario.acceso == AppUtils.StringKeys.ADMIN_CONST)) {
+                            Log.d("probamos", "si existe el usuario")
                             if (usuario.nombre.toLowerCase(Locale.getDefault()).contains(queryLower) ||
-                                userSnapshot.key?.contains(queryLower) == true) {
+                                userSnapshot.key?.contains(queryLower) == true/* && (usuario.acceso == AppUtils.StringKeys.PERSONAL_CONST || usuario.acceso == AppUtils.StringKeys.ADMIN_CONST)*/) {
+                                Log.d("probamos", "si añade el usuario")
                                 results.add(usuario)
                             }
                         }
@@ -117,37 +115,20 @@ class BuscarAlumActivity : AppCompatActivity() {
         })
     }
 
-    private fun updateRecyclerView(results: List<Estudiante>) {
+    private fun updateRecyclerView(results: List<AdminPers>) {
         //val adapter = AlumnoAdapter(results)
-        val adapter = AlumnoAdapter(results){navegarInfoEditAlum(it, destino)}
+        val adapter = AdminPersAdapter(results){navegarEditAdminPers(it, destino)}
         binding.rvResultados.layoutManager = LinearLayoutManager(this)
         binding.rvResultados.adapter = adapter
     }
 
-    private fun navegarEscanearQR() {
-        val intent = Intent(this, EscanearQRActivity::class.java)
-        startActivity(intent)
-    }
-
-    private fun navegarInfoEditAlum(registro:String, donde_ir:String) {
-        //navegar a Buscar Estudiante
-        if (donde_ir == AppUtils.StringKeys.BUSCAR_CONST) {
-            val intent = Intent(this, InfoAlumActivity::class.java)
-            intent.putExtra(AppUtils.StringKeys.ESTUDIANTE_CONST, registro)
-            startActivity(intent)
-
-        //navegar a Editar Estudiante
-        } else if (donde_ir == AppUtils.StringKeys.EDITAR_ESTUDIANTE_CONST){
-            val intent = Intent(this, EditarAlumActivity::class.java)
-            intent.putExtra(AppUtils.StringKeys.ESTUDIANTE_CONST, registro)
-            startActivity(intent)
-
-        //navegar a Editar Personal
-        }/* else if (donde_ir == AppUtils.StringKeys.EDITAR_PERSONAL_CONST) {
+    private fun navegarEditAdminPers(registro:String, donde_ir:String) {
+        //navegar a Buscar Personal
+        if (donde_ir == AppUtils.StringKeys.EDITAR_PERSONAL_CONST) {
             val intent = Intent(this, EditarAdminPersActivity::class.java)
-            intent.putExtra(AppUtils.StringKeys.ESTUDIANTE_CONST, registro)
+            intent.putExtra(AppUtils.StringKeys.PERSONAL_CONST, registro)
             startActivity(intent)
-        }*/
+        }
     }
 
     private fun regresar() {

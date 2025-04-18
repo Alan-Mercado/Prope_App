@@ -13,7 +13,7 @@ import com.google.firebase.database.*
 
 class LoginActivity : AppCompatActivity() {
     /*********************PROXIMAS ACTIVIDADES A REALIZAR********************
-     * HACER ACTIVITYS DE AGREGAR Y EDITAR PERSONAL
+     * HACER ACTIVITY DE  EDITAR PERSONAL
      * COSAS APUNTADAS EN EL DOC DE GOOGLE
      *
      *

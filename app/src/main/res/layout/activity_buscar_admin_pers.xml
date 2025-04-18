@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <FrameLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".BuscarAdminPersActivity">
+
+        <!--TOOLBAR-->
+        <include
+            android:id="@+id/toolbarExterna"
+            layout="@layout/toolbar" />
+
+        <!--CONTENIDO-->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="40dp">
+
+            <!--Titulo-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="64dp"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/Titulo_1_Estilo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:text="@string/titulo_activity_buscar_admin_pers" />
+
+            </LinearLayout>
+
+            <!--Busqueda-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="64dp"
+                android:orientation="vertical">
+
+                <!--Etiqueta-->
+                <TextView
+                    style="@style/Texto_2_Estilo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nombre_activity_buscar_admin_pers" />
+
+                <!--Searchview-->
+                <androidx.appcompat.widget.SearchView
+                    android:id="@+id/svBuscador"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:iconifiedByDefault="false" />
+
+                <!--Recyclerview-->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvResultados"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:visibility="visible" />
+
+            </LinearLayout>
+
+            <!--BOTONES-->
+            <!--Mostrar todos-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnBuscar"
+                    style="@style/Texto_1_Estilo"
+                    android:layout_width="240dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:layout_marginVertical="16dp"
+                    android:backgroundTint="@color/tinto_color"
+                    android:text="@string/btnmostrartodos_activity_buscar_admin_pers"
+                    android:textColor="@color/white"
+                    app:cornerRadius="8dp" />
+
+            </LinearLayout>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </FrameLayout>
+
+</ScrollView>
+
+

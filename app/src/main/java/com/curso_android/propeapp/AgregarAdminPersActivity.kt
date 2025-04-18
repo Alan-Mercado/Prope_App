@@ -38,7 +38,6 @@ class AgregarAdminPersActivity : AppCompatActivity() {
 
         opcionesAcceso = listOf(AppUtils.StringKeys.ADMIN_CONST, AppUtils.StringKeys.PERSONAL_CONST)
 
-        //Creo que esto se puede optimizar
         val adapter1 = ArrayAdapter(this, android.R.layout.simple_spinner_item, opcionesAcceso)
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.spAcceso.adapter = adapter1
