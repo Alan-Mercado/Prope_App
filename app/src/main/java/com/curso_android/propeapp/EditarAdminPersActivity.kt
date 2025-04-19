@@ -1,5 +1,6 @@
 package com.curso_android.propeapp
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Toast
@@ -79,6 +80,21 @@ class EditarAdminPersActivity : AppCompatActivity() {
                     binding.spAcceso.setSelection(pos1)
                 }
                 binding.etTelefono.setText(telefono)
+
+                //BOTON PARA ELIMINAR EL REGISTRO ACTUAL
+                binding.btnEliminarAdminPers.setOnClickListener {
+                    AlertDialog.Builder(it.context)
+                        .setTitle("¿Estás seguro?")
+                        .setMessage("¿Deseas eliminar este usuario PERMANENTEMENTE?")
+                        .setPositiveButton("Continuar") { dialog, _ ->
+                            eliminarPersonal(user)
+                            dialog.dismiss()
+                        }
+                        .setNegativeButton("Regresar") { dialog, _ ->
+                            dialog.dismiss()
+                        }
+                        .show()
+                }
             } else {
                 Toast.makeText(this, "Personal no encontrado", Toast.LENGTH_SHORT).show()
             }
@@ -102,19 +118,48 @@ class EditarAdminPersActivity : AppCompatActivity() {
         database.child(AppUtils.DatabaseKeys.USUARIOS_DB_CONST).child(user).addListenerForSingleValueEvent(object :
             ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                if (snapshot.exists()) {
-                    // Si el registro ya existe
-                    val personal = AdminPers(registro, acceso = snapshot.child(AppUtils.DatabaseKeys.ACCESO_DB_CONST).value.toString(), nombre, password = snapshot.child(AppUtils.DatabaseKeys.PASSWORD_DB_CONST).value.toString(), telefono)
-                    database.child(AppUtils.DatabaseKeys.USUARIOS_DB_CONST).child(registro).setValue(personal)
-                        .addOnSuccessListener {
-                            Toast.makeText(this@EditarAdminPersActivity, "Personal actualizado correctamente", Toast.LENGTH_SHORT).show()
+                //si se cambio el campo "registro"
+                if (registro != user) {
+                    database.child(AppUtils.DatabaseKeys.USUARIOS_DB_CONST).child(registro)
+                        .get().addOnSuccessListener { newSnapshot ->
+                            //si el registro ya esta siendo utilizado
+                            if (snapshot.exists()) {
+                                Toast.makeText(this@EditarAdminPersActivity, "Ya existe un usuario con ese registro. Elimínalo si deseas continuar", Toast.LENGTH_SHORT).show()
+                            //si el registro esta libre
+                            } else {
+                                if (snapshot.exists()) {
+                                    val personal = AdminPers(registro, acceso/* = snapshot.child(AppUtils.DatabaseKeys.ACCESO_DB_CONST).value.toString()*/, nombre, password = snapshot.child(AppUtils.DatabaseKeys.PASSWORD_DB_CONST).value.toString(), telefono)
+                                    database.child(AppUtils.DatabaseKeys.USUARIOS_DB_CONST).child(registro).setValue(personal)
+                                        .addOnSuccessListener {
+                                            val registro_viejo = snapshot.child(AppUtils.DatabaseKeys.REGISTRO_DB_CONST).getValue(String::class.java) ?: AppUtils.StringKeys.ERROR_CONST
+                                            eliminarPersonal(registro_viejo)//se elimina al viejo usuario (con el registro viejo) de la base de datos
+
+                                            Toast.makeText(this@EditarAdminPersActivity, "Personal actualizado correctamente", Toast.LENGTH_SHORT).show()
+                                        }
+                                        .addOnFailureListener {
+                                            Toast.makeText(this@EditarAdminPersActivity, "Error al actualizar al personal", Toast.LENGTH_SHORT).show()
+                                        }
+                                } else {
+                                    Toast.makeText(this@EditarAdminPersActivity, "No existe este registro", Toast.LENGTH_SHORT).show()
+                                }
+                            }
                         }
-                        .addOnFailureListener {
-                            Toast.makeText(this@EditarAdminPersActivity, "Error al actualizar al personal", Toast.LENGTH_SHORT).show()
-                        }
+                //si NO se cambio el campo "registro"
                 } else {
-                    // Si el registro no existe
-                    Toast.makeText(this@EditarAdminPersActivity, "No existe este registro", Toast.LENGTH_SHORT).show()
+                    if (snapshot.exists()) {
+                        // Si el registro ya existe
+                        val personal = AdminPers(registro, acceso/* = snapshot.child(AppUtils.DatabaseKeys.ACCESO_DB_CONST).value.toString()*/, nombre, password = snapshot.child(AppUtils.DatabaseKeys.PASSWORD_DB_CONST).value.toString(), telefono)
+                        database.child(AppUtils.DatabaseKeys.USUARIOS_DB_CONST).child(registro).setValue(personal)
+                            .addOnSuccessListener {
+                                Toast.makeText(this@EditarAdminPersActivity, "Personal actualizado correctamente", Toast.LENGTH_SHORT).show()
+                            }
+                            .addOnFailureListener {
+                                Toast.makeText(this@EditarAdminPersActivity, "Error al actualizar al personal", Toast.LENGTH_SHORT).show()
+                            }
+                    } else {
+                        // Si el registro no existe
+                        Toast.makeText(this@EditarAdminPersActivity, "No existe este registro", Toast.LENGTH_SHORT).show()
+                    }
                 }
             }
 
@@ -122,6 +167,17 @@ class EditarAdminPersActivity : AppCompatActivity() {
                 Toast.makeText(this@EditarAdminPersActivity, "Error al verificar el registro", Toast.LENGTH_SHORT).show()
             }
         })
+    }
+
+    private fun eliminarPersonal(registro: String) {
+        database.child(AppUtils.DatabaseKeys.USUARIOS_DB_CONST).child(registro)
+            .removeValue()
+            .addOnSuccessListener {
+                Toast.makeText(this, "Personal eliminado correctamente", Toast.LENGTH_SHORT).show()
+            }
+            .addOnFailureListener { error ->
+                Toast.makeText(this, "Error al eliminar: ${error.message}", Toast.LENGTH_SHORT).show()
+            }
     }
 
     private fun regresar() {

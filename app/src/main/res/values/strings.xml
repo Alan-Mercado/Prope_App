@@ -77,6 +77,7 @@
     <!--activity_editar_alum-->
     <string name="titulo_activity_editar_alum">Edita la información del estudiante</string>
     <string name="btnactualizar_activity_editar_alum">Actualizar</string>
+    <string name="btneliminar_activity_editar_alum">ELIMINAR</string>
 
     <!--activity_buscar_admin_pers-->
     <string name="titulo_activity_buscar_admin_pers">Ingresa el nombre del personal</string>
@@ -94,6 +95,7 @@
     <!--activity_editar_admin_pers-->
     <string name="titulo_activity_editar_admin_pers">Edita la información del personal</string>
     <string name="btnactualizar_activity_editar_admin_pers">Actualizar</string>
+    <string name="btneliminar_activity_editar_admin_pers">ELIMINAR</string>
 
     <!--activity_-->
     <string name="_activity_"></string>

@@ -155,6 +155,24 @@
                 app:layout_constraintTop_toBottomOf="@id/divider4"
                 tools:text="3344556677" />
 
+
+            <!--BOTONES-->
+            <!--Eliminar-->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnEliminarAdminPers"
+                style="bold | @style/Texto_1_Estilo"
+                android:layout_width="140dp"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:layout_marginVertical="40dp"
+                android:backgroundTint="@color/red"
+                android:text="@string/btneliminar_activity_editar_alum"
+                android:textColor="@color/white"
+                app:cornerRadius="8dp"
+                app:layout_constraintBottom_toTopOf="@id/btnActualizarAdminPers"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
             <!--Actualizar-->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnActualizarAdminPers"

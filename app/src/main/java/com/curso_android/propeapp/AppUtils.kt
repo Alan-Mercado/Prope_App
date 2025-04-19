@@ -19,6 +19,7 @@ object AppUtils {
     object DatabaseKeys {
         const val USUARIOS_DB_CONST = "Usuarios"
 
+        const val REGISTRO_DB_CONST = "registro"
         const val ACCESO_DB_CONST = "acceso"
         const val NOMBRE_DB_CONST = "nombre"
         const val PASSWORD_DB_CONST = "password"

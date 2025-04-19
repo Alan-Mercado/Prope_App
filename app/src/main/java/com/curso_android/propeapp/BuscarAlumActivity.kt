@@ -19,7 +19,7 @@ class BuscarAlumActivity : AppCompatActivity() {
     private lateinit var database: DatabaseReference
 
     private lateinit var destino: String
-
+    private lateinit var nivel_acceso: String
 
     private lateinit var alumnoAdapter: AlumnoAdapter
     private var alumnoList = mutableListOf<Estudiante>()
@@ -42,6 +42,7 @@ class BuscarAlumActivity : AppCompatActivity() {
         database = AppUtils.database
 
         destino = intent.getStringExtra(AppUtils.StringKeys.BOTON_CONST) ?: AppUtils.StringKeys.ERROR_CONST
+        nivel_acceso = intent.getStringExtra(AppUtils.StringKeys.NIVEL_ACCESO_CONST) ?: AppUtils.StringKeys.ERROR_CONST
 
         initUI()
     }
@@ -130,7 +131,7 @@ class BuscarAlumActivity : AppCompatActivity() {
     }
 
     private fun navegarInfoEditAlum(registro:String, donde_ir:String) {
-        //navegar a Buscar Estudiante
+        //navegar a Mostrar Info Estudiante
         if (donde_ir == AppUtils.StringKeys.BUSCAR_CONST) {
             val intent = Intent(this, InfoAlumActivity::class.java)
             intent.putExtra(AppUtils.StringKeys.ESTUDIANTE_CONST, registro)
@@ -140,6 +141,7 @@ class BuscarAlumActivity : AppCompatActivity() {
         } else if (donde_ir == AppUtils.StringKeys.EDITAR_ESTUDIANTE_CONST){
             val intent = Intent(this, EditarAlumActivity::class.java)
             intent.putExtra(AppUtils.StringKeys.ESTUDIANTE_CONST, registro)
+            intent.putExtra(AppUtils.StringKeys.NIVEL_ACCESO_CONST, nivel_acceso)
             startActivity(intent)
 
         //navegar a Editar Personal

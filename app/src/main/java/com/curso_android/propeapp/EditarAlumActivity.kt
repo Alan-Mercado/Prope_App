@@ -1,5 +1,6 @@
 package com.curso_android.propeapp
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Toast
@@ -7,6 +8,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.isVisible
 import com.curso_android.propeapp.databinding.ActivityEditarAlumBinding
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -20,6 +22,7 @@ class EditarAlumActivity : AppCompatActivity() {
     private lateinit var binding: ActivityEditarAlumBinding
 
     private lateinit var user: String
+    private lateinit var nivel_acceso: String
 
     private lateinit var opcionesEstatus: List<String>
     private lateinit var opcionesCredencial: List<String>
@@ -44,6 +47,7 @@ class EditarAlumActivity : AppCompatActivity() {
         }
 
         user = intent.getStringExtra(AppUtils.StringKeys.ESTUDIANTE_CONST) ?: AppUtils.StringKeys.ERROR_CONST
+        nivel_acceso = intent.getStringExtra(AppUtils.StringKeys.NIVEL_ACCESO_CONST) ?: AppUtils.StringKeys.ERROR_CONST
 
         opcionesEstatus = listOf("Pagado", "No pagado", "Prorroga")
         opcionesCredencial = listOf("Pendiente", "Entregada")
@@ -114,6 +118,25 @@ class EditarAlumActivity : AppCompatActivity() {
                 if (pos3 >= 0) {
                     binding.spCredencial.setSelection(pos3)
                 }
+
+                //BOTON PARA ELIMINAR EL REGISTRO ACTUAL
+                if (nivel_acceso == AppUtils.StringKeys.ADMIN_CONST){
+                    binding.btnEliminarAlum.setOnClickListener {
+                        AlertDialog.Builder(it.context)
+                            .setTitle("¿Estás seguro?")
+                            .setMessage("¿Deseas eliminar este estudiante PERMANENTEMENTE?")
+                            .setPositiveButton("Continuar") { dialog, _ ->
+                                eliminarEstudiante(user)
+                                dialog.dismiss()
+                            }
+                            .setNegativeButton("Regresar") { dialog, _ ->
+                                dialog.dismiss()
+                            }
+                            .show()
+                    }
+                } else {
+                    binding.btnEliminarAlum.isVisible = false
+                }
             } else {
                 Toast.makeText(this, "Usuario no encontrado", Toast.LENGTH_SHORT).show()
             }
@@ -146,26 +169,67 @@ class EditarAlumActivity : AppCompatActivity() {
         database.child(AppUtils.DatabaseKeys.USUARIOS_DB_CONST).child(user).addListenerForSingleValueEvent(object :
             ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                if (snapshot.exists()) {
-                    // Si el registro ya existe
-                    val alumno = Estudiante(registro, acceso = snapshot.child(AppUtils.DatabaseKeys.ACCESO_DB_CONST).value.toString(), nombre, password = snapshot.child(AppUtils.DatabaseKeys.PASSWORD_DB_CONST).value.toString(), estatus, grupo, tutor_1, tel_1, /*tutor_2, tel_2,*/ cred_entr)
-                    database.child(AppUtils.DatabaseKeys.USUARIOS_DB_CONST).child(registro).setValue(alumno)
-                        .addOnSuccessListener {
-                            Toast.makeText(this@EditarAlumActivity, "Estudiante actualizado correctamente", Toast.LENGTH_SHORT).show()
-                        }
-                        .addOnFailureListener {
-                            Toast.makeText(this@EditarAlumActivity, "Error al actualizar al estudiante", Toast.LENGTH_SHORT).show()
+                //si se cambio el campo "registro"
+                if (registro != user) {
+                    database.child(AppUtils.DatabaseKeys.USUARIOS_DB_CONST).child(registro)
+                        .get().addOnSuccessListener { newSnapshot ->
+                            //si el registro ya esta siendo utilizado
+                            if (newSnapshot.exists()) {
+                                Toast.makeText(this@EditarAlumActivity, "Ya existe un estudiante con ese registro. Elimínalo si deseas continuar", Toast.LENGTH_SHORT).show()
+                            //si el registro esta libre
+                            } else {
+                                if (snapshot.exists()) {
+                                    val alumno = Estudiante(registro, acceso = snapshot.child(AppUtils.DatabaseKeys.ACCESO_DB_CONST).value.toString(), nombre, password = snapshot.child(AppUtils.DatabaseKeys.PASSWORD_DB_CONST).value.toString(), estatus, grupo, tutor_1, tel_1, /*tutor_2, tel_2,*/ cred_entr)
+                                    database.child(AppUtils.DatabaseKeys.USUARIOS_DB_CONST).child(registro).setValue(alumno)
+                                        .addOnSuccessListener {
+                                            val registro_viejo = snapshot.child(AppUtils.DatabaseKeys.REGISTRO_DB_CONST).getValue(String::class.java) ?: AppUtils.StringKeys.ERROR_CONST
+                                            eliminarEstudiante(registro_viejo)//se elimina al viejo usuario (con el registro viejo) de la base de datos
+
+                                            Toast.makeText(this@EditarAlumActivity, "Estudiante actualizado correctamente", Toast.LENGTH_SHORT).show()
+                                        }
+                                        .addOnFailureListener {
+                                            Toast.makeText(this@EditarAlumActivity, "Error al actualizar al estudiante", Toast.LENGTH_SHORT).show()
+                                        }
+                                } else {
+                                    Toast.makeText(this@EditarAlumActivity, "No existe este registro", Toast.LENGTH_SHORT).show()
+                                }
+                            }
                         }
                 } else {
-                    // Si el registro no existe
-                    Toast.makeText(this@EditarAlumActivity, "No existe este registro", Toast.LENGTH_SHORT).show()
+                    if (snapshot.exists()) {
+                        // Si el registro ya existe
+                        val alumno = Estudiante(registro, acceso = snapshot.child(AppUtils.DatabaseKeys.ACCESO_DB_CONST).value.toString(), nombre, password = snapshot.child(AppUtils.DatabaseKeys.PASSWORD_DB_CONST).value.toString(), estatus, grupo, tutor_1, tel_1, /*tutor_2, tel_2,*/ cred_entr)
+                        database.child(AppUtils.DatabaseKeys.USUARIOS_DB_CONST).child(registro).setValue(alumno)
+                            .addOnSuccessListener {
+                                Toast.makeText(this@EditarAlumActivity, "Estudiante actualizado correctamente", Toast.LENGTH_SHORT).show()
+                            }
+                            .addOnFailureListener {
+                                Toast.makeText(this@EditarAlumActivity, "Error al actualizar al estudiante", Toast.LENGTH_SHORT).show()
+                            }
+                    } else {
+                        // Si el registro no existe
+                        Toast.makeText(this@EditarAlumActivity, "No existe este registro", Toast.LENGTH_SHORT).show()
+                    }
                 }
+
+
             }
 
             override fun onCancelled(error: DatabaseError) {
                 Toast.makeText(this@EditarAlumActivity, "Error al verificar el registro", Toast.LENGTH_SHORT).show()
             }
         })
+    }
+
+    private fun eliminarEstudiante(registro: String) {
+        database.child(AppUtils.DatabaseKeys.USUARIOS_DB_CONST).child(registro)
+            .removeValue()
+            .addOnSuccessListener {
+                Toast.makeText(this, "Estudiante eliminado correctamente", Toast.LENGTH_SHORT).show()
+            }
+            .addOnFailureListener { error ->
+                Toast.makeText(this, "Error al eliminar: ${error.message}", Toast.LENGTH_SHORT).show()
+            }
     }
 
     private fun regresar() {

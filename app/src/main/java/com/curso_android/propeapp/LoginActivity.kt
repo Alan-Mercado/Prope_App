@@ -2,7 +2,6 @@ package com.curso_android.propeapp
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -59,7 +58,7 @@ class LoginActivity : AppCompatActivity() {
     private fun initUI() {
         //ingresar
         binding.btnIngresar.setOnClickListener {
-            navegarAdminUsuario(
+            navegarVistaUsuario(
                 binding.etRegistro.text.toString(),
                 binding.etContrasenia.text.toString()
             )
@@ -72,7 +71,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     //Funcion para comprobar usuario y redirigir a su respectiva vista
-    private fun navegarAdminUsuario(user: String, pass: String) {
+    private fun navegarVistaUsuario(user: String, pass: String) {
         val hashedPassword = AppUtils.hashSHA256(pass)//contraseña escrita en la app y con un hash
 //Log.d("contrasen", hashedPassword)//MENSAJE DE PRUEBAS DE PROGRAMADOR
 

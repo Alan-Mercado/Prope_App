@@ -74,6 +74,7 @@ class AdminPersActivity : AppCompatActivity() {
     private fun navegarEditarEstudiante() {
         val intent = Intent(this, BuscarAlumActivity::class.java)
         intent.putExtra(AppUtils.StringKeys.BOTON_CONST, AppUtils.StringKeys.EDITAR_ESTUDIANTE_CONST)
+        intent.putExtra(AppUtils.StringKeys.NIVEL_ACCESO_CONST, nivel_acceso)
         startActivity(intent)
     }
 
