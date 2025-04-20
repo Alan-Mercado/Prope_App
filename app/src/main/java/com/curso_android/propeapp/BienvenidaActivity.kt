@@ -2,13 +2,11 @@ package com.curso_android.propeapp
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toolbar
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.curso_android.propeapp.databinding.ActivityBienvenidaBinding
-import com.google.android.material.button.MaterialButton
 
 class BienvenidaActivity : AppCompatActivity() {
 
@@ -50,6 +48,6 @@ class BienvenidaActivity : AppCompatActivity() {
     }
 
     private fun navegarEscanearQR() {
-        startActivity(Intent(this, EscanearQRActivity::class.java))
+        startActivity(Intent(this, EscanearQRPrototipoActivity::class.java))
     }
 }

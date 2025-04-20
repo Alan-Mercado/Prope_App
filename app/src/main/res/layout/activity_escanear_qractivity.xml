@@ -1,59 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true">
+    tools:context=".EscanearQRActivity">
 
-    <FrameLayout
-        android:id="@+id/main"
+    <!--TOOLBAR-->
+    <include
+        android:id="@+id/toolbarExterna"
+        layout="@layout/toolbar" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".EscanearQRActivity">
+        android:orientation="vertical"
+        android:paddingTop="?attr/actionBarSize">
 
-        <!--TOOLBAR-->
-        <include
-            android:id="@+id/toolbarExterna"
-            layout="@layout/toolbar" />
-
-        <!--CONTENIDO-->
-        <LinearLayout
+        <androidx.camera.view.PreviewView
+            android:id="@+id/previewView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:padding="72dp">
+            android:layout_height="match_parent" />
 
-            <TextView
-                style="@style/Titulo_3_Estilo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="56dp"
-                android:text="@string/instruccion_activity_escanear_qractivity" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cvQR"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:layout_width="250dp"
-                    android:layout_height="250dp"
-                    android:src="@drawable/qr" />
-
-            </androidx.cardview.widget.CardView>
-
-
-            <!--ImageView
-                android:layout_width="250dp"
-                android:layout_height="250dp"
-                android:src="@drawable/qr" /-->
-
-        </LinearLayout>
-
-    </FrameLayout>
-
-</ScrollView>
-
-
+</FrameLayout>

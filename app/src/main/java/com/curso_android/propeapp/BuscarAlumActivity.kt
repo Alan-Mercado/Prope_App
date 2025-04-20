@@ -126,7 +126,10 @@ class BuscarAlumActivity : AppCompatActivity() {
     }
 
     private fun navegarEscanearQR() {
+        //val intent = Intent(this, EscanearQRPrototipoActivity::class.java)
         val intent = Intent(this, EscanearQRActivity::class.java)
+        intent.putExtra(AppUtils.StringKeys.NIVEL_ACCESO_CONST, nivel_acceso)
+        intent.putExtra(AppUtils.StringKeys.BOTON_CONST, destino)
         startActivity(intent)
     }
 
@@ -143,13 +146,7 @@ class BuscarAlumActivity : AppCompatActivity() {
             intent.putExtra(AppUtils.StringKeys.ESTUDIANTE_CONST, registro)
             intent.putExtra(AppUtils.StringKeys.NIVEL_ACCESO_CONST, nivel_acceso)
             startActivity(intent)
-
-        //navegar a Editar Personal
-        }/* else if (donde_ir == AppUtils.StringKeys.EDITAR_PERSONAL_CONST) {
-            val intent = Intent(this, EditarAdminPersActivity::class.java)
-            intent.putExtra(AppUtils.StringKeys.ESTUDIANTE_CONST, registro)
-            startActivity(intent)
-        }*/
+        }
     }
 
     private fun regresar() {

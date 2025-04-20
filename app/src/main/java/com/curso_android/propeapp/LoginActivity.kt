@@ -12,8 +12,7 @@ import com.google.firebase.database.*
 
 class LoginActivity : AppCompatActivity() {
     /*********************PROXIMAS ACTIVIDADES A REALIZAR********************
-     * HACER ACTIVITY DE  EDITAR PERSONAL
-     * COSAS APUNTADAS EN EL DOC DE GOOGLE
+     * boton escanear qr
      *
      *
      *
@@ -101,7 +100,7 @@ class LoginActivity : AppCompatActivity() {
                             intent.putExtra(AppUtils.StringKeys.NIVEL_ACCESO_CONST, AppUtils.StringKeys.PERSONAL_CONST)
                             startActivity(intent)
 
-                        //si es usuario
+                        //si es estudiante
                         } else if (nivelAcceso == AppUtils.StringKeys.ESTUDIANTE_CONST) {
                             Toast.makeText(this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show()
                             val intent = Intent(this, EstudianteActivity::class.java)
