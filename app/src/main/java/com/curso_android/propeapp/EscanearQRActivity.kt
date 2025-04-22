@@ -23,14 +23,15 @@ import com.google.mlkit.vision.common.InputImage
 class EscanearQRActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityEscanearQractivityBinding
-    private lateinit var cameraProvider: ProcessCameraProvider
-    private var processingBarcode = false
+
+    private lateinit var proveedor_camara: ProcessCameraProvider
+    private var procesar_QR = false//variable que se inicializa como false desde el inicio
 
     private lateinit var destino: String
     private lateinit var nivel_acceso: String
 
     companion object {
-        private const val CAMERA_PERMISSION_REQUEST = 1001
+        private const val CAMERA_PERMISSION_REQUEST = 1001//constante para buscar el codigo de permiso en el dispositivo
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,9 +51,14 @@ class EscanearQRActivity : AppCompatActivity() {
         destino = intent.getStringExtra(AppUtils.StringKeys.BOTON_CONST) ?: AppUtils.StringKeys.ERROR_CONST
         nivel_acceso = intent.getStringExtra(AppUtils.StringKeys.NIVEL_ACCESO_CONST) ?: AppUtils.StringKeys.ERROR_CONST
 
+        initUI()
+    }
+
+    private fun initUI(){
+        //Revisamos si ya se concedio el permiso para utilizar la camara con anterioridad
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
             == PackageManager.PERMISSION_GRANTED) {
-            startCamera()
+            iniciarCamara()
         } else {
             ActivityCompat.requestPermissions(
                 this, arrayOf(Manifest.permission.CAMERA), CAMERA_PERMISSION_REQUEST)
@@ -62,10 +68,25 @@ class EscanearQRActivity : AppCompatActivity() {
         binding.toolbarExterna.ivRegresar.setOnClickListener { regresar() }
     }
 
-    private fun startCamera() {
-        val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
-        cameraProviderFuture.addListener({
-            cameraProvider = cameraProviderFuture.get()
+    //Funcion para pedir permiso de utilizar la camara
+    override fun onRequestPermissionsResult(
+        requestCode: Int, permissions: Array<out String>, grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == CAMERA_PERMISSION_REQUEST &&
+            grantResults.isNotEmpty() &&
+            grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            iniciarCamara()
+        } else {
+            Toast.makeText(this, "Permiso de cámara denegado", Toast.LENGTH_SHORT).show()
+            finish()
+        }
+    }
+
+    private fun iniciarCamara() {
+        val camara_provider = ProcessCameraProvider.getInstance(this)
+        camara_provider.addListener({
+            proveedor_camara = camara_provider.get()
 
             val preview = Preview.Builder()
                 .build()
@@ -73,49 +94,50 @@ class EscanearQRActivity : AppCompatActivity() {
                     it.setSurfaceProvider(binding.previewView.surfaceProvider)
                 }
 
-            val analysis = ImageAnalysis.Builder()
+            val analisis = ImageAnalysis.Builder()
                 .setTargetResolution(Size(1280, 720))
                 .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
                 .build()
 
-            analysis.setAnalyzer(ContextCompat.getMainExecutor(this)) { imageProxy ->
-                processImageProxy(imageProxy)
+            analisis.setAnalyzer(ContextCompat.getMainExecutor(this)) { imageProxy ->
+                procesarImagen(imageProxy)
             }
 
-            val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
+            val selector_camara = CameraSelector.DEFAULT_BACK_CAMERA//inicializar camara trasera
 
-            cameraProvider.unbindAll()
-            cameraProvider.bindToLifecycle(this, cameraSelector, preview, analysis)
+            proveedor_camara.unbindAll()
+            proveedor_camara.bindToLifecycle(this, selector_camara, preview, analisis)
 
         }, ContextCompat.getMainExecutor(this))
     }
 
+    //Funcion que recupera el QR en la imagen
     @OptIn(ExperimentalGetImage::class)
-    private fun processImageProxy(imageProxy: ImageProxy) {
-        if (processingBarcode) {
-            imageProxy.close()
+    private fun procesarImagen(imagen_proxy: ImageProxy) {
+        if (procesar_QR) {
+            imagen_proxy.close()
             return
         }
 
-        processingBarcode = true
+        procesar_QR = true
 
-        val mediaImage = imageProxy.image
-        if (mediaImage != null) {
-            val image = InputImage.fromMediaImage(mediaImage, imageProxy.imageInfo.rotationDegrees)
-            val options = BarcodeScannerOptions.Builder()
+        val media_imagen = imagen_proxy.image
+        if (media_imagen != null) {
+            val imagen = InputImage.fromMediaImage(media_imagen, imagen_proxy.imageInfo.rotationDegrees)
+            val opciones = BarcodeScannerOptions.Builder()
                 .setBarcodeFormats(Barcode.FORMAT_QR_CODE)
                 .build()
 
-            val scanner = BarcodeScanning.getClient(options)
-            scanner.process(image)
-                .addOnSuccessListener { barcodes ->
-                    for (barcode in barcodes) {
-                        val rawValue = barcode.rawValue
-                        if (!rawValue.isNullOrEmpty()) {
-                            imageProxy.close()
+            val scanner = BarcodeScanning.getClient(opciones)
+            scanner.process(imagen)
+                .addOnSuccessListener { qrs ->
+                    for (qr in qrs) {
+                        val qr_recibido = qr.rawValue
+                        if (!qr_recibido.isNullOrEmpty()) {
+                            imagen_proxy.close()
                             scanner.close()
-                            cameraProvider.unbindAll()
-                            onQRCodeScanned(rawValue, destino)
+                            proveedor_camara.unbindAll()
+                            alEscanearQR(qr_recibido, destino)
                             return@addOnSuccessListener
                         }
                     }
@@ -124,26 +146,17 @@ class EscanearQRActivity : AppCompatActivity() {
                     Toast.makeText(this, "Error escaneando QR", Toast.LENGTH_SHORT).show()
                 }
                 .addOnCompleteListener {
-                    processingBarcode = false
-                    imageProxy.close()
+                    procesar_QR = false
+                    imagen_proxy.close()
                 }
         } else {
-            processingBarcode = false
-            imageProxy.close()
+            procesar_QR = false
+            imagen_proxy.close()
         }
     }
 
-    /*private fun onQRCodeScanned(valorQR: String) {
-        // Aquí asumimos que el QR contiene el número de registro directamente
-        val intent = Intent(this, BuscarAlumActivity::class.java).apply {
-            putExtra(AppUtils.StringKeys.ESTUDIANTE_CONST, valorQR)
-            putExtra(AppUtils.StringKeys.BOTON_CONST, AppUtils.StringKeys.BUSCAR_CONST)
-        }
-        startActivity(intent)
-        finish()
-    }*/
-
-    private fun onQRCodeScanned(valor_QR:String, donde_ir:String) {
+    //Funcion que envia a la info del estudiante al recibir el QR
+    private fun alEscanearQR(valor_QR:String, donde_ir:String) {
         //navegar a Mostrar Info Estudiante
         if (donde_ir == AppUtils.StringKeys.BUSCAR_CONST) {
             val intent = Intent(this, InfoAlumActivity::class.java)
@@ -156,20 +169,6 @@ class EscanearQRActivity : AppCompatActivity() {
             intent.putExtra(AppUtils.StringKeys.ESTUDIANTE_CONST, valor_QR)
             intent.putExtra(AppUtils.StringKeys.NIVEL_ACCESO_CONST, nivel_acceso)
             startActivity(intent)
-        }
-    }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int, permissions: Array<out String>, grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == CAMERA_PERMISSION_REQUEST &&
-            grantResults.isNotEmpty() &&
-            grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            startCamera()
-        } else {
-            Toast.makeText(this, "Permiso de cámara denegado", Toast.LENGTH_SHORT).show()
-            finish()
         }
     }
 
