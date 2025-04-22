@@ -47,7 +47,14 @@ class BienvenidaActivity : AppCompatActivity() {
         startActivity(Intent(this, LoginActivity::class.java))
     }
 
-    private fun navegarEscanearQR() {
+    /*private fun navegarEscanearQR() {
         startActivity(Intent(this, EscanearQRPrototipoActivity::class.java))
+    }*/
+    private fun navegarEscanearQR() {
+        //val intent = Intent(this, EscanearQRPrototipoActivity::class.java)
+        val intent = Intent(this, EscanearQRActivity::class.java)
+        intent.putExtra(AppUtils.StringKeys.NIVEL_ACCESO_CONST, AppUtils.StringKeys.PERSONAL_CONST)
+        intent.putExtra(AppUtils.StringKeys.BOTON_CONST, AppUtils.StringKeys.BUSCAR_CONST)
+        startActivity(intent)
     }
 }
