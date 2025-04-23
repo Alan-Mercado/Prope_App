@@ -1,5 +1,6 @@
 package com.curso_android.propeapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -40,6 +41,19 @@ class SeleccionarGrupoActivity : AppCompatActivity() {
     private fun initUI() {
         mostrarGrupos()
 
+        binding.cvGrupo1.setOnClickListener { navegarGrupo("G1") }
+        binding.cvGrupo2.setOnClickListener { navegarGrupo("G2") }
+        binding.cvGrupo3.setOnClickListener { navegarGrupo("G3") }
+        binding.cvGrupo4.setOnClickListener { navegarGrupo("G4") }
+        binding.cvGrupo5.setOnClickListener { navegarGrupo("G5") }
+        binding.cvGrupo6.setOnClickListener { navegarGrupo("G6") }
+        binding.cvGrupo7.setOnClickListener { navegarGrupo("G7") }
+        binding.cvGrupo8.setOnClickListener { navegarGrupo("G8") }
+        binding.cvGrupo9.setOnClickListener { navegarGrupo("G9") }
+        binding.cvGrupo10.setOnClickListener { navegarGrupo("G10") }
+        binding.cvGrupo11.setOnClickListener { navegarGrupo("G11") }
+        binding.cvGrupo12.setOnClickListener { navegarGrupo("G12") }
+
         //regresar
         binding.toolbarExterna.ivRegresar.setOnClickListener { regresar() }
     }
@@ -79,6 +93,12 @@ class SeleccionarGrupoActivity : AppCompatActivity() {
                 Toast.makeText(this@SeleccionarGrupoActivity, "Error al cargar los grupos disponibles", Toast.LENGTH_SHORT).show()
             }
         })
+    }
+
+    private fun navegarGrupo(grupo: String){
+        val intent = Intent(this, MostrarGrupoActivity::class.java)
+        intent.putExtra(AppUtils.StringKeys.GRUPO_CONST, grupo)
+        startActivity(intent)
     }
 
     private fun regresar() {

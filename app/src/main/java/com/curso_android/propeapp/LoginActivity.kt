@@ -12,7 +12,7 @@ import com.google.firebase.database.*
 
 class LoginActivity : AppCompatActivity() {
     /*********************PROXIMAS ACTIVIDADES A REALIZAR********************
-     * boton escanear qr
+     * cosas anotadas en el doc de google
      *
      *
      *

@@ -42,7 +42,9 @@ object AppUtils {
         const val EDITAR_ESTUDIANTE_CONST = "editar_estudiante"
         const val EDITAR_PERSONAL_CONST = "editar_personal"
         const val BUSCAR_CONST = "buscar"
-        const val ERROR_CONST = "ERROR"
+        const val GRUPO_CONST = "grupo"
+
         const val PASS_PREDETERMINADA_CONST = "Ceti1234"
+        const val ERROR_CONST = "ERROR"
     }
 }
