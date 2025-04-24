@@ -1,10 +1,12 @@
 package com.curso_android.propeapp
 
 import android.app.AlertDialog
+import android.os.Build
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -14,6 +16,11 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
+import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.Date
+import java.util.Locale
 
 class EditarAlumActivity : AppCompatActivity() {
 
@@ -168,6 +175,7 @@ class EditarAlumActivity : AppCompatActivity() {
         // Verificar si ya existe un registro con ese ID en la base de datos
         database.child(AppUtils.DatabaseKeys.USUARIOS_DB_CONST).child(user).addListenerForSingleValueEvent(object :
             ValueEventListener {
+            @RequiresApi(Build.VERSION_CODES.O)
             override fun onDataChange(snapshot: DataSnapshot) {
                 //si se cambio el campo "registro"
                 if (registro != user) {
@@ -179,7 +187,9 @@ class EditarAlumActivity : AppCompatActivity() {
                             //si el registro esta libre
                             } else {
                                 if (snapshot.exists()) {
-                                    val alumno = Estudiante(registro, acceso = snapshot.child(AppUtils.DatabaseKeys.ACCESO_DB_CONST).value.toString(), nombre, password = snapshot.child(AppUtils.DatabaseKeys.PASSWORD_DB_CONST).value.toString(), estatus, grupo, tutor_1, tel_1, /*tutor_2, tel_2,*/ cred_entr)
+                                    val asistenciasModificadas = obtenerFechaActualizacion(snapshot)
+
+                                    val alumno = Estudiante(registro, acceso = snapshot.child(AppUtils.DatabaseKeys.ACCESO_DB_CONST).value.toString(), nombre, password = snapshot.child(AppUtils.DatabaseKeys.PASSWORD_DB_CONST).value.toString(), estatus, grupo, tutor_1, tel_1, /*tutor_2, tel_2,*/ cred_entr, asistenciasModificadas)
                                     database.child(AppUtils.DatabaseKeys.USUARIOS_DB_CONST).child(registro).setValue(alumno)
                                         .addOnSuccessListener {
                                             val registro_viejo = snapshot.child(AppUtils.DatabaseKeys.REGISTRO_DB_CONST).getValue(String::class.java) ?: AppUtils.StringKeys.ERROR_CONST
@@ -198,7 +208,9 @@ class EditarAlumActivity : AppCompatActivity() {
                 } else {
                     if (snapshot.exists()) {
                         // Si el registro ya existe
-                        val alumno = Estudiante(registro, acceso = snapshot.child(AppUtils.DatabaseKeys.ACCESO_DB_CONST).value.toString(), nombre, password = snapshot.child(AppUtils.DatabaseKeys.PASSWORD_DB_CONST).value.toString(), estatus, grupo, tutor_1, tel_1, /*tutor_2, tel_2,*/ cred_entr)
+                        val asistenciasModificadas = obtenerFechaActualizacion(snapshot)
+
+                        val alumno = Estudiante(registro, acceso = snapshot.child(AppUtils.DatabaseKeys.ACCESO_DB_CONST).value.toString(), nombre, password = snapshot.child(AppUtils.DatabaseKeys.PASSWORD_DB_CONST).value.toString(), estatus, grupo, tutor_1, tel_1, /*tutor_2, tel_2,*/ cred_entr, asistenciasModificadas)
                         database.child(AppUtils.DatabaseKeys.USUARIOS_DB_CONST).child(registro).setValue(alumno)
                             .addOnSuccessListener {
                                 Toast.makeText(this@EditarAlumActivity, "Estudiante actualizado correctamente", Toast.LENGTH_SHORT).show()
@@ -230,6 +242,18 @@ class EditarAlumActivity : AppCompatActivity() {
             .addOnFailureListener { error ->
                 Toast.makeText(this, "Error al eliminar: ${error.message}", Toast.LENGTH_SHORT).show()
             }
+    }
+
+    private fun obtenerFechaActualizacion(snapshot: DataSnapshot): MutableMap<String, String> {
+        val asistenciasExistentes = snapshot.child("asistencias").value as? Map<String, String> ?: emptyMap()
+        val asistenciasActualizadas = asistenciasExistentes.toMutableMap()
+
+        val timestamp = SimpleDateFormat("dd-MM-yy_HH-mm-ss", Locale.getDefault()).format(Date())
+        val readable = timestamp.replace('_', ' ') + " ACTUALIZACION"
+
+        asistenciasActualizadas[timestamp] = readable
+
+        return asistenciasActualizadas
     }
 
     private fun regresar() {

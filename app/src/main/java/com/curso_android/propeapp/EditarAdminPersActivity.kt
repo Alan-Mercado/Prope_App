@@ -128,7 +128,7 @@ class EditarAdminPersActivity : AppCompatActivity() {
                             //si el registro esta libre
                             } else {
                                 if (snapshot.exists()) {
-                                    val personal = AdminPers(registro, acceso/* = snapshot.child(AppUtils.DatabaseKeys.ACCESO_DB_CONST).value.toString()*/, nombre, password = snapshot.child(AppUtils.DatabaseKeys.PASSWORD_DB_CONST).value.toString(), telefono)
+                                    val personal = AdminPers(registro, acceso, nombre, password = snapshot.child(AppUtils.DatabaseKeys.PASSWORD_DB_CONST).value.toString(), telefono)
                                     database.child(AppUtils.DatabaseKeys.USUARIOS_DB_CONST).child(registro).setValue(personal)
                                         .addOnSuccessListener {
                                             val registro_viejo = snapshot.child(AppUtils.DatabaseKeys.REGISTRO_DB_CONST).getValue(String::class.java) ?: AppUtils.StringKeys.ERROR_CONST

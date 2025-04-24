@@ -15,12 +15,18 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.curso_android.propeapp.databinding.ActivityEscanearQractivityBinding
+import com.google.firebase.database.DatabaseReference
 import com.google.mlkit.vision.barcode.BarcodeScannerOptions
 import com.google.mlkit.vision.barcode.BarcodeScanning
 import com.google.mlkit.vision.barcode.common.Barcode
 import com.google.mlkit.vision.common.InputImage
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class EscanearQRActivity : AppCompatActivity() {
+
+    private lateinit var database: DatabaseReference
 
     private lateinit var binding: ActivityEscanearQractivityBinding
 
@@ -41,6 +47,8 @@ class EscanearQRActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         window.statusBarColor = resources.getColor(R.color.dorado_color, theme)
+
+        database = AppUtils.database
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -157,6 +165,8 @@ class EscanearQRActivity : AppCompatActivity() {
 
     //Funcion que envia a la info del estudiante al recibir el QR
     private fun alEscanearQR(valor_QR:String, donde_ir:String) {
+        registrarAsistencia(valor_QR)
+
         //navegar a Mostrar Info Estudiante
         if (donde_ir == AppUtils.StringKeys.BUSCAR_CONST) {
             val intent = Intent(this, InfoAlumActivity::class.java)
@@ -171,6 +181,32 @@ class EscanearQRActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
+
+    fun registrarAsistencia(registro: String) {
+        val usuariosRef = database.child("Usuarios").child(registro)
+
+        // Obtener la fecha y hora actual
+        val now = Date()
+        val formatoClave = SimpleDateFormat("dd-MM-yy_HH-mm-ss", Locale.getDefault())
+        val formatoValor = SimpleDateFormat("dd-MM-yy HH:mm:ss", Locale.getDefault())
+
+        val clave = formatoClave.format(now)
+        val valor = formatoValor.format(now)
+
+        val asistenciaMap = mapOf<String, Any>(
+            //"/Usuarios/$registro/asistencias/$clave" to valor
+            "asistencias/$clave" to valor
+        )
+
+        usuariosRef.updateChildren(asistenciaMap).addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                Toast.makeText(this,"Asistencia registrada correctamente",Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this,"Error al registrar la asistencia",Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
 
     private fun regresar() {
         finish()

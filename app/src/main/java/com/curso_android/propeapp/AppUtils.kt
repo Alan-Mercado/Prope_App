@@ -35,7 +35,7 @@ object AppUtils {
 
     object StringKeys {
         const val ESTUDIANTE_CONST = "estudiante"
-        const val PERSONAL_CONST = "personal"
+        const val PERSONAL_CONST = "servicio social"
         const val ADMIN_CONST = "administrador"
         const val NIVEL_ACCESO_CONST = "nivel_acceso"
         const val BOTON_CONST = "boton_presionado"

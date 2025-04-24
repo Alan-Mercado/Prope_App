@@ -11,5 +11,7 @@ data class Estudiante(
     val tel_1: String = "",
     //val tutor_2: String ?= "No disponible",
     //val tel_2: String ?= "No disponible",
-    val cred_entr: String ?= "Pendiente"
+    val cred_entr: String ?= "Pendiente",
+
+    val asistencias: MutableMap<String, String> = mutableMapOf()
 )

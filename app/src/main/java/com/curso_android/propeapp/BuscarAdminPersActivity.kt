@@ -86,19 +86,13 @@ class BuscarAdminPersActivity : AppCompatActivity() {
         database.child(AppUtils.DatabaseKeys.USUARIOS_DB_CONST).addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
-                    Log.d("probamos", "si existe la snapshot")
                     for (userSnapshot in snapshot.children) {
-                        Log.d("probamos", "si entra al for-in")
                         val usuario = userSnapshot.getValue(AdminPers::class.java)
-                        //val esAdmin = userSnapshot.getValue(Alumno::class.java)
 
                         // Si el número de registro o el nombre coinciden con la búsqueda
                         if (usuario != null && usuario.acceso != AppUtils.StringKeys.ESTUDIANTE_CONST) {
-                        //if (usuario != null && (usuario.acceso == AppUtils.StringKeys.PERSONAL_CONST || usuario.acceso == AppUtils.StringKeys.ADMIN_CONST)) {
-                            Log.d("probamos", "si existe el usuario")
                             if (usuario.nombre.toLowerCase(Locale.getDefault()).contains(queryLower) ||
-                                userSnapshot.key?.contains(queryLower) == true/* && (usuario.acceso == AppUtils.StringKeys.PERSONAL_CONST || usuario.acceso == AppUtils.StringKeys.ADMIN_CONST)*/) {
-                                Log.d("probamos", "si añade el usuario")
+                                userSnapshot.key?.contains(queryLower) == true) {
                                 results.add(usuario)
                             }
                         }

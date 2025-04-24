@@ -1,14 +1,18 @@
 package com.curso_android.propeapp
 
+import android.os.Build
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.curso_android.propeapp.databinding.ActivityAgregarAlumBinding
 import com.google.firebase.database.*
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class AgregarAlumActivity : AppCompatActivity() {
 
@@ -20,6 +24,7 @@ class AgregarAlumActivity : AppCompatActivity() {
     private lateinit var opcionesCredencial: List<String>
     private lateinit var opcionesGrupo: List<String>
 
+    @RequiresApi(Build.VERSION_CODES.O)//esta linea es para indicarle al programa que requiere la libreria de tiempo para continuar e ingresar el registro en tiempo real
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -56,6 +61,7 @@ class AgregarAlumActivity : AppCompatActivity() {
         initUI()
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)//esta linea es para indicarle al programa que requiere la libreria de tiempo para continuar e ingresar el registro en tiempo real
     private fun initUI() {
         //agregar alum
         binding.btnAgregarAlum.setOnClickListener { agregarAlum() }
@@ -64,6 +70,7 @@ class AgregarAlumActivity : AppCompatActivity() {
         binding.toolbarExterna.ivRegresar.setOnClickListener { regresar() }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)//esta linea es para indicarle al programa que requiere la libreria de tiempo para continuar e ingresar el registro en tiempo real
     private fun agregarAlum() {
         val nombre = binding.etNombre.text.toString().trim()
         val registro = binding.etRegistro.text.toString().trim()
@@ -84,7 +91,9 @@ class AgregarAlumActivity : AppCompatActivity() {
             return
         }
 
-        val estudiante = Estudiante(registro, acceso = AppUtils.StringKeys.ESTUDIANTE_CONST, nombre, password = AppUtils.hashSHA256(AppUtils.StringKeys.PASS_PREDETERMINADA_CONST), estatus, grupo, contacto, tel_1, /*tutor_2, tel_2,*/ cred_entr)
+        val asistenciasIniciales = obtenerFechaCreacion()//obtenemos la fecha de creacion
+
+        val estudiante = Estudiante(registro, acceso = AppUtils.StringKeys.ESTUDIANTE_CONST, nombre, password = AppUtils.hashSHA256(AppUtils.StringKeys.PASS_PREDETERMINADA_CONST), estatus, grupo, contacto, tel_1, /*tutor_2, tel_2,*/ cred_entr, asistenciasIniciales)
         //val alumno = Alumno(admin = false, nombre, password = AppUtils.hashSHA256(AppUtils.StringKeys.PASS_PREDETERMINADA_CONST), estatus, grupo, tutor_1, tel_1, tutor_2, tel_2)
 
         /*if (registro != null) {
@@ -119,6 +128,23 @@ class AgregarAlumActivity : AppCompatActivity() {
                 Toast.makeText(this@AgregarAlumActivity, "Error al verificar el registro", Toast.LENGTH_SHORT).show()
             }
         })
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun obtenerFechaCreacion(): MutableMap<String, String> {
+        // Obtener fecha y hora actuales
+        val currentDateTime = LocalDateTime.now()
+        val formatterKey = DateTimeFormatter.ofPattern("dd-MM-yy_HH-mm-ss")
+        val formatterValue = DateTimeFormatter.ofPattern("dd-MM-yy HH:mm:ss")
+
+        val clave = formatterKey.format(currentDateTime)
+        val valor = formatterValue.format(currentDateTime)
+
+        val asistenciasIniciales = mutableMapOf<String, String>(
+            clave to "$valor CREACION"
+        )
+
+        return asistenciasIniciales
     }
 
     private fun limpiarCampos() {

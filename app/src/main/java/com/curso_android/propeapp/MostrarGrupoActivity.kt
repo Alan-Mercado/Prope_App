@@ -36,7 +36,7 @@ class MostrarGrupoActivity : AppCompatActivity() {
         }
 
         // Obtener el grupo desde el intent (ej: "G3")
-        val grupoBuscado = intent.getStringExtra("grupo") ?: return
+        val grupoBuscado = intent.getStringExtra(AppUtils.StringKeys.GRUPO_CONST) ?: return
 
         obtenerAlumnosPorGrupo(grupoBuscado)
 
