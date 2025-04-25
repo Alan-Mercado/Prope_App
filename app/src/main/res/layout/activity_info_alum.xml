@@ -323,6 +323,22 @@
                 app:dividerColor="@color/gris_color"
                 app:layout_constraintTop_toBottomOf="@id/tvCampoCredencial" />
 
+            <!--Asistencias-->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnAsistencias"
+                style="@style/Texto_1_Estilo"
+                android:layout_width="240dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginVertical="0dp"
+                android:backgroundTint="@color/dorado_color"
+                android:text="@string/btnasistencias_activity_info_alum"
+                android:textColor="@color/white"
+                app:cornerRadius="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </FrameLayout>

@@ -30,7 +30,8 @@ object AppUtils {
         const val TELEFONO_DB_CONST = "telefono"
         //const val TUTOR_2_DB_CONST = "tutor_2"
         //const val TEL_2_DB_CONST = "tel_2"
-        const val CREDENCIAL_ENTREGADA = "cred_entr"
+        const val CREDENCIAL_ENTREGADA_DB_CONST = "cred_entr"
+        const val ASISTENCIAS_DB_CONST = "asistencias"
     }
 
     object StringKeys {

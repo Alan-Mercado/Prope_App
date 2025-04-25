@@ -1,6 +1,7 @@
 package com.curso_android.propeapp
 
 import android.app.AlertDialog
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.widget.ArrayAdapter
@@ -17,8 +18,6 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import java.text.SimpleDateFormat
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 import java.util.Date
 import java.util.Locale
 
@@ -78,6 +77,8 @@ class EditarAlumActivity : AppCompatActivity() {
 
         binding.btnActualizarAlum.setOnClickListener{ actualizarAlum() }
 
+        binding.btnAsistencias.setOnClickListener { navegarAsistencias(user) }
+
         //regresar
         binding.toolbarExterna.ivRegresar.setOnClickListener { regresar() }
     }
@@ -101,7 +102,7 @@ class EditarAlumActivity : AppCompatActivity() {
                 val tel_1 = snapshot.child(AppUtils.DatabaseKeys.TEL_1_DB_CONST).getValue(String::class.java) ?: "No disponible"
                 //val tutor_2 = snapshot.child(AppUtils.DatabaseKeys.TUTOR_2_DB_CONST).getValue(String::class.java) ?: "No disponible"
                 //val tel_2 = snapshot.child(AppUtils.DatabaseKeys.TEL_2_DB_CONST).getValue(String::class.java) ?: "No disponible"
-                val cred_entr = snapshot.child(AppUtils.DatabaseKeys.CREDENCIAL_ENTREGADA).getValue(String::class.java) ?: "Pendiente"
+                val cred_entr = snapshot.child(AppUtils.DatabaseKeys.CREDENCIAL_ENTREGADA_DB_CONST).getValue(String::class.java) ?: "Pendiente"
 
                 //Asignamos valores recuparados a los textviews
                 binding.etNombre.setText(nombre)
@@ -189,6 +190,8 @@ class EditarAlumActivity : AppCompatActivity() {
                                 if (snapshot.exists()) {
                                     val asistenciasModificadas = obtenerFechaActualizacion(snapshot)
 
+                                    //nombre_estudiante = snapshot.child(AppUtils.DatabaseKeys.NOMBRE_DB_CONST).getValue(String::class.java) ?: "Desconocido"
+
                                     val alumno = Estudiante(registro, acceso = snapshot.child(AppUtils.DatabaseKeys.ACCESO_DB_CONST).value.toString(), nombre, password = snapshot.child(AppUtils.DatabaseKeys.PASSWORD_DB_CONST).value.toString(), estatus, grupo, tutor_1, tel_1, /*tutor_2, tel_2,*/ cred_entr, asistenciasModificadas)
                                     database.child(AppUtils.DatabaseKeys.USUARIOS_DB_CONST).child(registro).setValue(alumno)
                                         .addOnSuccessListener {
@@ -209,6 +212,8 @@ class EditarAlumActivity : AppCompatActivity() {
                     if (snapshot.exists()) {
                         // Si el registro ya existe
                         val asistenciasModificadas = obtenerFechaActualizacion(snapshot)
+
+                        //nombre_estudiante = snapshot.child(AppUtils.DatabaseKeys.NOMBRE_DB_CONST).getValue(String::class.java) ?: "Desconocido"
 
                         val alumno = Estudiante(registro, acceso = snapshot.child(AppUtils.DatabaseKeys.ACCESO_DB_CONST).value.toString(), nombre, password = snapshot.child(AppUtils.DatabaseKeys.PASSWORD_DB_CONST).value.toString(), estatus, grupo, tutor_1, tel_1, /*tutor_2, tel_2,*/ cred_entr, asistenciasModificadas)
                         database.child(AppUtils.DatabaseKeys.USUARIOS_DB_CONST).child(registro).setValue(alumno)
@@ -254,6 +259,12 @@ class EditarAlumActivity : AppCompatActivity() {
         asistenciasActualizadas[timestamp] = readable
 
         return asistenciasActualizadas
+    }
+
+    private fun navegarAsistencias(registro:String) {
+        val intent = Intent(this, MostrarAsistenciasActivity::class.java)
+        intent.putExtra(AppUtils.DatabaseKeys.REGISTRO_DB_CONST, registro)
+        startActivity(intent)
     }
 
     private fun regresar() {

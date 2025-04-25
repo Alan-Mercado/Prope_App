@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <FrameLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MostrarAsistenciasActivity">
+
+        <!--TOOLBAR-->
+        <include
+            android:id="@+id/toolbarExterna"
+            layout="@layout/toolbar" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="?attr/actionBarSize">
+
+            <!--Registro-->
+            <TextView
+                android:id="@+id/tvRegistro"
+                style="@style/Titulo_1_Estilo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:text="0000" />
+
+            <!--Nombre-->
+            <TextView
+                android:id="@+id/tvNombre"
+                style="@style/Titulo_3_Estilo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvRegistro"
+                android:text="Pepito pepe perez pereira" />
+
+            <!--Lista Asistencias-Modificaciones-->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvResultados"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="84dp"
+                android:foregroundGravity="right"
+                android:paddingHorizontal="32dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvNombre"
+                tools:listitem="@layout/list_item_asistencia" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </FrameLayout>
+
+</ScrollView>

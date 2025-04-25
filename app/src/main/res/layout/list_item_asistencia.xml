@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:elevation="4dp"
+    app:cardCornerRadius="8dp"
+    tools:context=".MostrarAsistenciasActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Valor -->
+        <TextView
+            android:id="@+id/tvAsistenciaValor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="23-04-25 22:09:23"
+            android:textSize="16sp"
+            android:layout_gravity="right"
+            android:textColor="@color/black"
+            android:layout_marginBottom="8dp"/>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

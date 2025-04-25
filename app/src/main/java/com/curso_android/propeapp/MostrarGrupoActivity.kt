@@ -59,6 +59,7 @@ class MostrarGrupoActivity : AppCompatActivity() {
                         }
                     }
 
+                    binding.tvTitulo.text = "Grupo " + grupo
                     // Actualiza el RecyclerView con los resultados encontrados
                     updateRecyclerView(estudianteList)
                 }

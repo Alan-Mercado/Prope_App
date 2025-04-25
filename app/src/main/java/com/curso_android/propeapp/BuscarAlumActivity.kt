@@ -120,13 +120,12 @@ class BuscarAlumActivity : AppCompatActivity() {
 
     private fun updateRecyclerView(results: List<Estudiante>) {
         //val adapter = AlumnoAdapter(results)
-        val adapter = AlumnoAdapter(results){navegarInfoEditAlum(it, destino)}
+        val adapter = AlumnoAdapter(results){navegarInfoEditAlum(it, destino/*, nombre*/)}
         binding.rvResultados.layoutManager = LinearLayoutManager(this)
         binding.rvResultados.adapter = adapter
     }
 
     private fun navegarEscanearQR() {
-        //val intent = Intent(this, EscanearQRPrototipoActivity::class.java)
         val intent = Intent(this, EscanearQRActivity::class.java)
         intent.putExtra(AppUtils.StringKeys.NIVEL_ACCESO_CONST, nivel_acceso)
         intent.putExtra(AppUtils.StringKeys.BOTON_CONST, destino)

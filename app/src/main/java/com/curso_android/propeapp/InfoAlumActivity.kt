@@ -1,5 +1,6 @@
 package com.curso_android.propeapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -42,6 +43,9 @@ class InfoAlumActivity : AppCompatActivity() {
     private fun initUI() {
         mostrarDatos()
 
+        //asistencias
+        binding.btnAsistencias.setOnClickListener { navegarAsistencias(user) }
+
         //regresar
         binding.toolbarExterna.ivRegresar.setOnClickListener { regresar() }
     }
@@ -68,7 +72,7 @@ class InfoAlumActivity : AppCompatActivity() {
                 val tel_1 = snapshot.child(AppUtils.DatabaseKeys.TEL_1_DB_CONST).getValue(String::class.java) ?: "No disponible"
                 //val tutor_2 = snapshot.child(AppUtils.DatabaseKeys.TUTOR_2_DB_CONST).getValue(String::class.java) ?: "No disponible"
                 //val tel_2 = snapshot.child(AppUtils.DatabaseKeys.TEL_2_DB_CONST).getValue(String::class.java) ?: "No disponible"
-                val cred_entr = snapshot.child(AppUtils.DatabaseKeys.CREDENCIAL_ENTREGADA).getValue(String::class.java) ?: "Pendiente"
+                val cred_entr = snapshot.child(AppUtils.DatabaseKeys.CREDENCIAL_ENTREGADA_DB_CONST).getValue(String::class.java) ?: "Pendiente"
 
                 //Asignamos valores recuparados a los textviews
                 binding.tvNombre.text = nombre
@@ -86,6 +90,12 @@ class InfoAlumActivity : AppCompatActivity() {
         }.addOnFailureListener{
             Toast.makeText(this, "Error al obtener datos", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun navegarAsistencias(registro:String) {
+        val intent = Intent(this, MostrarAsistenciasActivity::class.java)
+        intent.putExtra(AppUtils.DatabaseKeys.REGISTRO_DB_CONST, registro)
+        startActivity(intent)
     }
 
     private fun regresar() {
