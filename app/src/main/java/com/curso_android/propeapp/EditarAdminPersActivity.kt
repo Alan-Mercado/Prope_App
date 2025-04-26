@@ -54,6 +54,26 @@ class EditarAdminPersActivity : AppCompatActivity() {
 
         binding.btnActualizarAdminPers.setOnClickListener{ actualizarPersonal() }
 
+        binding.btnRestablecerContrasenia.setOnClickListener {
+            AlertDialog.Builder(it.context)
+                .setTitle("¿Estás seguro?")
+                .setMessage("¿Deseas RESTABLECER la contraseña de este usuario?")
+                .setPositiveButton("Continuar") { dialog, _ ->
+                    AppUtils.restablecerPassword(user) { exito ->
+                        if (exito){
+                            Toast.makeText(this, "Contraseña reestablecida correctamente a '" + AppUtils.StringKeys.PASS_PREDETERMINADA_CONST + "'", Toast.LENGTH_SHORT).show()
+                        } else {
+                            Toast.makeText(this, "Error al intentar restablecer contraseña", Toast.LENGTH_SHORT).show()
+                        }
+                        dialog.dismiss()
+                    }
+                }
+                .setNegativeButton("Regresar") { dialog, _ ->
+                    dialog.dismiss()
+                }
+                .show()
+        }
+
         //regresar
         binding.toolbarExterna.ivRegresar.setOnClickListener { regresar() }
     }

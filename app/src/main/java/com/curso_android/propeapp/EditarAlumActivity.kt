@@ -79,6 +79,26 @@ class EditarAlumActivity : AppCompatActivity() {
 
         binding.btnAsistencias.setOnClickListener { navegarAsistencias(user) }
 
+        binding.btnRestablecerContrasenia.setOnClickListener {
+            AlertDialog.Builder(it.context)
+                .setTitle("¿Estás seguro?")
+                .setMessage("¿Deseas RESTABLECER la contraseña de este usuario?")
+                .setPositiveButton("Continuar") { dialog, _ ->
+                    AppUtils.restablecerPassword(user) { exito ->
+                        if (exito){
+                            Toast.makeText(this, "Contraseña reestablecida correctamente a '" + AppUtils.StringKeys.PASS_PREDETERMINADA_CONST + "'", Toast.LENGTH_SHORT).show()
+                        } else {
+                            Toast.makeText(this, "Error al intentar restablecer contraseña", Toast.LENGTH_SHORT).show()
+                        }
+                        dialog.dismiss()
+                    }
+                }
+                .setNegativeButton("Regresar") { dialog, _ ->
+                    dialog.dismiss()
+                }
+                .show()
+        }
+
         //regresar
         binding.toolbarExterna.ivRegresar.setOnClickListener { regresar() }
     }
@@ -250,10 +270,10 @@ class EditarAlumActivity : AppCompatActivity() {
     }
 
     private fun obtenerFechaActualizacion(snapshot: DataSnapshot): MutableMap<String, String> {
-        val asistenciasExistentes = snapshot.child("asistencias").value as? Map<String, String> ?: emptyMap()
+        val asistenciasExistentes = snapshot.child(AppUtils.DatabaseKeys.ASISTENCIAS_DB_CONST).value as? Map<String, String> ?: emptyMap()
         val asistenciasActualizadas = asistenciasExistentes.toMutableMap()
 
-        val timestamp = SimpleDateFormat("dd-MM-yy_HH-mm-ss", Locale.getDefault()).format(Date())
+        val timestamp = SimpleDateFormat("dd-MM-yy_HH:mm:ss", Locale.getDefault()).format(Date())
         val readable = timestamp.replace('_', ' ') + " ACTUALIZACION"
 
         asistenciasActualizadas[timestamp] = readable

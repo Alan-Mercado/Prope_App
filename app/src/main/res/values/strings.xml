@@ -79,6 +79,7 @@
     <string name="titulo_activity_editar_alum">Edita la información del estudiante</string>
     <string name="btnactualizar_activity_editar_alum">Actualizar</string>
     <string name="btneliminar_activity_editar_alum">ELIMINAR</string>
+    <string name="btnrestablecercontrasenia_activity_editar_alum">Restablecer Contraseña</string>
 
     <!--activity_buscar_admin_pers-->
     <string name="titulo_activity_buscar_admin_pers">Ingresa el nombre del personal</string>

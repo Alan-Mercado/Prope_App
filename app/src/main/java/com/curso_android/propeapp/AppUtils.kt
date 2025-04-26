@@ -9,11 +9,39 @@ object AppUtils {
         FirebaseDatabase.getInstance().reference
     }
 
-    // Función para hashear con SHA-256
+    //Funcion para hashear con SHA-256
     fun hashSHA256(input: String): String {
         val bytes = MessageDigest.getInstance("SHA-256").digest(input.toByteArray())
         return bytes.joinToString("") { "%02x".format(it) }
     }
+
+    //Funcion para restablecer contraseña
+    fun restablecerPassword(registro: String, callback: (Boolean) -> Unit) {
+        val nuevaPasswordHash = hashSHA256(StringKeys.PASS_PREDETERMINADA_CONST)
+
+        //SE PUEDE QUITAR LA VARIABLE "usuario" Y PONER "snapshot"
+        val usuario = database.child(DatabaseKeys.USUARIOS_DB_CONST).child(registro)
+
+        usuario.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                //si se encuentra el registro
+                if (snapshot.exists()) {
+                    usuario.child(DatabaseKeys.PASSWORD_DB_CONST).setValue(nuevaPasswordHash)
+                        .addOnCompleteListener { task -> callback(task.isSuccessful) }//indicamos de manera asincrona que envie la
+
+                    //si no se encuentra el registro
+                } else {
+                    callback(false)
+                }
+            }
+
+            //si ocurre un error al conectar con la base de datos
+            override fun onCancelled(error: DatabaseError) {
+                callback(false)
+            }
+        })
+    }
+
 
     // Constantes de nombres de claves en la base de datos
     object DatabaseKeys {
@@ -28,6 +56,7 @@ object AppUtils {
         const val CONTACTO_DB_CONST = "contacto"
         const val TEL_1_DB_CONST = "tel_1"
         const val TELEFONO_DB_CONST = "telefono"
+
         //const val TUTOR_2_DB_CONST = "tutor_2"
         //const val TEL_2_DB_CONST = "tel_2"
         const val CREDENCIAL_ENTREGADA_DB_CONST = "cred_entr"

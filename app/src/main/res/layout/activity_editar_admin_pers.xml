@@ -169,6 +169,22 @@
                 android:text="@string/btneliminar_activity_editar_alum"
                 android:textColor="@color/white"
                 app:cornerRadius="8dp"
+                app:layout_constraintBottom_toTopOf="@id/btnRestablecerContrasenia"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <!--Restablecer Contraseña-->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnRestablecerContrasenia"
+                style="@style/Texto_1_Estilo"
+                android:layout_width="240dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginVertical="4dp"
+                android:backgroundTint="@color/tinto_color"
+                android:text="@string/btnrestablecercontrasenia_activity_editar_alum"
+                android:textColor="@color/white"
+                app:cornerRadius="8dp"
                 app:layout_constraintBottom_toTopOf="@id/btnActualizarAdminPers"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -180,7 +196,7 @@
                 android:layout_width="240dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
-                android:layout_marginVertical="0dp"
+                android:layout_marginVertical="4dp"
                 android:backgroundTint="@color/dorado_color"
                 android:text="@string/btnactualizar_activity_editar_admin_pers"
                 android:textColor="@color/white"

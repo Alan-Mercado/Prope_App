@@ -183,7 +183,7 @@ class EscanearQRActivity : AppCompatActivity() {
     }
 
     fun registrarAsistencia(registro: String) {
-        val usuariosRef = database.child("Usuarios").child(registro)
+        val usuariosRef = database.child(AppUtils.DatabaseKeys.USUARIOS_DB_CONST).child(registro)
 
         // Obtener la fecha y hora actual
         val now = Date()
@@ -194,8 +194,7 @@ class EscanearQRActivity : AppCompatActivity() {
         val valor = formatoValor.format(now)
 
         val asistenciaMap = mapOf<String, Any>(
-            //"/Usuarios/$registro/asistencias/$clave" to valor
-            "asistencias/$clave" to valor
+            AppUtils.DatabaseKeys.ASISTENCIAS_DB_CONST + "/$clave" to valor
         )
 
         usuariosRef.updateChildren(asistenciaMap).addOnCompleteListener { task ->
