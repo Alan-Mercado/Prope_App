@@ -20,7 +20,7 @@
             android:id="@+id/tvNombre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nombre del Personal"
+            android:text="@string/nombre_list_servicio_social"
             android:textSize="18sp"
             android:textColor="@color/black"
             android:layout_marginBottom="8dp"/>
@@ -30,7 +30,7 @@
             android:id="@+id/tvRegistro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Registro del Personal"
+            android:text="@string/registro_list_servicio_social"
             android:textSize="14sp"
             android:textColor="@color/black"/>
 
@@ -39,7 +39,7 @@
             android:id="@+id/tvAcceso"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Acceso del Personal"
+            android:text="@string/acceso_list_servicio_social"
             android:textSize="14sp"
             android:textColor="@color/black"/>
 

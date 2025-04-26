@@ -2,33 +2,34 @@ package com.curso_android.propeapp
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.curso_android.propeapp.databinding.ActivityBuscarAlumBinding
+import com.curso_android.propeapp.databinding.ActivityBuscarEstudBinding
 import com.google.firebase.database.*
 import java.util.Locale
 
-class BuscarAlumActivity : AppCompatActivity() {
+class BuscarEstudActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityBuscarAlumBinding
+    private lateinit var binding: ActivityBuscarEstudBinding
 
     private lateinit var database: DatabaseReference
 
     private lateinit var destino: String
     private lateinit var nivel_acceso: String
 
-    private lateinit var alumnoAdapter: AlumnoAdapter
-    private var alumnoList = mutableListOf<Estudiante>()
+    private lateinit var estudianteAdapter: EstudianteAdapter
+    private var estudianteList = mutableListOf<Estudiante>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-        binding = ActivityBuscarAlumBinding.inflate(layoutInflater)
+        binding = ActivityBuscarEstudBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         window.statusBarColor = resources.getColor(R.color.dorado_color, theme)
@@ -48,35 +49,33 @@ class BuscarAlumActivity : AppCompatActivity() {
     }
 
     private fun initUI() {
-        //botones
-        //binding.btnBuscar.setOnClickListener { navegarInfoAlum() }
+        //configuracion del recyclervew
+        estudianteAdapter = EstudianteAdapter(estudianteList){navegarInfoEditEstud(it, destino)}
 
-        // Configuración del RecyclerView
-        alumnoAdapter = AlumnoAdapter(alumnoList){navegarInfoEditAlum(it, destino)}
-        //alumnoAdapter = AlumnoAdapter{navegarInfoAlum(it)}
         binding.rvResultados.layoutManager = LinearLayoutManager(this)
-        binding.rvResultados.adapter = alumnoAdapter
+        binding.rvResultados.adapter = estudianteAdapter
 
-        // Configurar el SearchView
+        //configurar lista de resultados (searchview)
         binding.svBuscador.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 query?.let {
-                    buscarAlumnos(it)
+                    buscarEstudiantes(it)
                 }
                 return true
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 newText?.let {
-                    buscarAlumnos(it)
+                    buscarEstudiantes(it)
                 }
                 return true
             }
         })
 
+        //buscar estudiantes
         binding.btnBuscar.setOnClickListener {
             val query = binding.svBuscador.query.toString()
-            buscarAlumnos(query)
+            buscarEstudiantes(query)
         }
 
         //escanear QR
@@ -86,19 +85,17 @@ class BuscarAlumActivity : AppCompatActivity() {
         binding.toolbarExterna.ivRegresar.setOnClickListener { regresar() }
     }
 
-    private fun buscarAlumnos(query: String) {
-        val queryLower = query.toLowerCase(Locale.getDefault()) // Para hacer la búsqueda insensible a mayúsculas/minúsculas
+    private fun buscarEstudiantes(query: String) {
+        val queryLower = query.toLowerCase(Locale.getDefault())//modificamos la busqueda para hacerla siempre en minusculas
         val results = mutableListOf<Estudiante>()
 
-        // Buscar en Firebase
         database.child(AppUtils.DatabaseKeys.USUARIOS_DB_CONST).addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
                     for (userSnapshot in snapshot.children) {
                         val usuario = userSnapshot.getValue(Estudiante::class.java)
-                        //val esAdmin = userSnapshot.getValue(Alumno::class.java)
 
-                        // Si el número de registro o el nombre coinciden con la búsqueda
+                        //si el registro o el nombre coinciden con lp buscado
                         if (usuario != null && usuario.acceso == AppUtils.StringKeys.ESTUDIANTE_CONST) {
                             if (usuario.nombre.toLowerCase(Locale.getDefault()).contains(queryLower) ||
                                 userSnapshot.key?.contains(queryLower) == true) {
@@ -107,20 +104,18 @@ class BuscarAlumActivity : AppCompatActivity() {
                         }
                     }
 
-                    // Actualiza el RecyclerView con los resultados encontrados
-                    updateRecyclerView(results)
+                    updateRecyclerView(results)//actualizar el recyclerView con los resultados encontrados
                 }
             }
 
             override fun onCancelled(error: DatabaseError) {
-                // Manejar el error si ocurre
+                Toast.makeText(this@BuscarEstudActivity, "Error al conectar con la base de datos. ${error.message}", Toast.LENGTH_SHORT).show()
             }
         })
     }
 
     private fun updateRecyclerView(results: List<Estudiante>) {
-        //val adapter = AlumnoAdapter(results)
-        val adapter = AlumnoAdapter(results){navegarInfoEditAlum(it, destino/*, nombre*/)}
+        val adapter = EstudianteAdapter(results){navegarInfoEditEstud(it, destino/*, nombre*/)}
         binding.rvResultados.layoutManager = LinearLayoutManager(this)
         binding.rvResultados.adapter = adapter
     }
@@ -132,16 +127,16 @@ class BuscarAlumActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    private fun navegarInfoEditAlum(registro:String, donde_ir:String) {
+    private fun navegarInfoEditEstud(registro:String, donde_ir:String) {
         //navegar a Mostrar Info Estudiante
         if (donde_ir == AppUtils.StringKeys.BUSCAR_CONST) {
-            val intent = Intent(this, InfoAlumActivity::class.java)
+            val intent = Intent(this, InfoEstudActivity::class.java)
             intent.putExtra(AppUtils.StringKeys.ESTUDIANTE_CONST, registro)
             startActivity(intent)
 
         //navegar a Editar Estudiante
         } else if (donde_ir == AppUtils.StringKeys.EDITAR_ESTUDIANTE_CONST){
-            val intent = Intent(this, EditarAlumActivity::class.java)
+            val intent = Intent(this, EditarEstudActivity::class.java)
             intent.putExtra(AppUtils.StringKeys.ESTUDIANTE_CONST, registro)
             intent.putExtra(AppUtils.StringKeys.NIVEL_ACCESO_CONST, nivel_acceso)
             startActivity(intent)

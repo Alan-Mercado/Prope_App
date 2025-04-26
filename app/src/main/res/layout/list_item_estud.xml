@@ -7,7 +7,7 @@
     android:layout_margin="8dp"
     android:elevation="4dp"
     app:cardCornerRadius="8dp"
-    tools:context=".BuscarAlumActivity">
+    tools:context=".BuscarEstudActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,7 +20,7 @@
             android:id="@+id/tvNombre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nombre del Alumno"
+            android:text="@string/nombre_list_item_alumno"
             android:textSize="18sp"
             android:textColor="@color/black"
             android:layout_marginBottom="8dp"/>
@@ -30,7 +30,7 @@
             android:id="@+id/tvRegistro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Registro del Alumno"
+            android:text="@string/registro_list_item_alumno"
             android:textSize="14sp"
             android:textColor="@color/black"/>
 
@@ -39,7 +39,7 @@
             android:id="@+id/tvGrupo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Grupo del Alumno"
+            android:text="@string/grupo_list_item_alumno"
             android:textSize="14sp"
             android:textColor="@color/black"/>
 
@@ -48,7 +48,7 @@
             android:id="@+id/tvEstatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Estatus del Alumno"
+            android:text="@string/estatus_list_item_alumno"
             android:textSize="14sp"
             android:textColor="@color/black"/>
 

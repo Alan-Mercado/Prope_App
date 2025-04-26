@@ -92,9 +92,9 @@ class EscanearQRActivity : AppCompatActivity() {
     }
 
     private fun iniciarCamara() {
-        val camara_provider = ProcessCameraProvider.getInstance(this)
-        camara_provider.addListener({
-            proveedor_camara = camara_provider.get()
+        val camaraProvider = ProcessCameraProvider.getInstance(this)
+        camaraProvider.addListener({
+            proveedor_camara = camaraProvider.get()
 
             val preview = Preview.Builder()
                 .build()
@@ -111,27 +111,27 @@ class EscanearQRActivity : AppCompatActivity() {
                 procesarImagen(imageProxy)
             }
 
-            val selector_camara = CameraSelector.DEFAULT_BACK_CAMERA//inicializar camara trasera
+            val selectorCamara = CameraSelector.DEFAULT_BACK_CAMERA//inicializar camara trasera
 
             proveedor_camara.unbindAll()
-            proveedor_camara.bindToLifecycle(this, selector_camara, preview, analisis)
+            proveedor_camara.bindToLifecycle(this, selectorCamara, preview, analisis)
 
         }, ContextCompat.getMainExecutor(this))
     }
 
     //Funcion que recupera el QR en la imagen
     @OptIn(ExperimentalGetImage::class)
-    private fun procesarImagen(imagen_proxy: ImageProxy) {
+    private fun procesarImagen(imagenProxy: ImageProxy) {
         if (procesar_QR) {
-            imagen_proxy.close()
+            imagenProxy.close()
             return
         }
 
         procesar_QR = true
 
-        val media_imagen = imagen_proxy.image
-        if (media_imagen != null) {
-            val imagen = InputImage.fromMediaImage(media_imagen, imagen_proxy.imageInfo.rotationDegrees)
+        val mediaImagen = imagenProxy.image
+        if (mediaImagen != null) {
+            val imagen = InputImage.fromMediaImage(mediaImagen, imagenProxy.imageInfo.rotationDegrees)
             val opciones = BarcodeScannerOptions.Builder()
                 .setBarcodeFormats(Barcode.FORMAT_QR_CODE)
                 .build()
@@ -140,12 +140,12 @@ class EscanearQRActivity : AppCompatActivity() {
             scanner.process(imagen)
                 .addOnSuccessListener { qrs ->
                     for (qr in qrs) {
-                        val qr_recibido = qr.rawValue
-                        if (!qr_recibido.isNullOrEmpty()) {
-                            imagen_proxy.close()
+                        val qrRecibido = qr.rawValue
+                        if (!qrRecibido.isNullOrEmpty()) {
+                            imagenProxy.close()
                             scanner.close()
                             proveedor_camara.unbindAll()
-                            alEscanearQR(qr_recibido, destino)
+                            alEscanearQR(qrRecibido, destino)
                             return@addOnSuccessListener
                         }
                     }
@@ -155,37 +155,37 @@ class EscanearQRActivity : AppCompatActivity() {
                 }
                 .addOnCompleteListener {
                     procesar_QR = false
-                    imagen_proxy.close()
+                    imagenProxy.close()
                 }
         } else {
             procesar_QR = false
-            imagen_proxy.close()
+            imagenProxy.close()
         }
     }
 
     //Funcion que envia a la info del estudiante al recibir el QR
-    private fun alEscanearQR(valor_QR:String, donde_ir:String) {
-        registrarAsistencia(valor_QR)
+    private fun alEscanearQR(valorQR:String, donde_ir:String) {
+        registrarEscaneo(valorQR)//registramos la fecha y hora del escaneo
 
         //navegar a Mostrar Info Estudiante
         if (donde_ir == AppUtils.StringKeys.BUSCAR_CONST) {
-            val intent = Intent(this, InfoAlumActivity::class.java)
-            intent.putExtra(AppUtils.StringKeys.ESTUDIANTE_CONST, valor_QR)
+            val intent = Intent(this, InfoEstudActivity::class.java)
+            intent.putExtra(AppUtils.StringKeys.ESTUDIANTE_CONST, valorQR)
             startActivity(intent)
 
             //navegar a Editar Estudiante
         } else if (donde_ir == AppUtils.StringKeys.EDITAR_ESTUDIANTE_CONST){
-            val intent = Intent(this, EditarAlumActivity::class.java)
-            intent.putExtra(AppUtils.StringKeys.ESTUDIANTE_CONST, valor_QR)
+            val intent = Intent(this, EditarEstudActivity::class.java)
+            intent.putExtra(AppUtils.StringKeys.ESTUDIANTE_CONST, valorQR)
             intent.putExtra(AppUtils.StringKeys.NIVEL_ACCESO_CONST, nivel_acceso)
             startActivity(intent)
         }
     }
 
-    fun registrarAsistencia(registro: String) {
-        val usuariosRef = database.child(AppUtils.DatabaseKeys.USUARIOS_DB_CONST).child(registro)
+    fun registrarEscaneo(registro: String) {
+        val usuario = database.child(AppUtils.DatabaseKeys.USUARIOS_DB_CONST).child(registro)
 
-        // Obtener la fecha y hora actual
+        //Obtener la fecha y hora actual
         val now = Date()
         val formatoClave = SimpleDateFormat("dd-MM-yy_HH-mm-ss", Locale.getDefault())
         val formatoValor = SimpleDateFormat("dd-MM-yy HH:mm:ss", Locale.getDefault())
@@ -197,7 +197,7 @@ class EscanearQRActivity : AppCompatActivity() {
             AppUtils.DatabaseKeys.ASISTENCIAS_DB_CONST + "/$clave" to valor
         )
 
-        usuariosRef.updateChildren(asistenciaMap).addOnCompleteListener { task ->
+        usuario.updateChildren(asistenciaMap).addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 Toast.makeText(this,"Asistencia registrada correctamente",Toast.LENGTH_SHORT).show()
             } else {
@@ -205,7 +205,6 @@ class EscanearQRActivity : AppCompatActivity() {
             }
         }
     }
-
 
     private fun regresar() {
         finish()

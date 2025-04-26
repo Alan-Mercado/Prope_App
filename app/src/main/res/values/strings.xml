@@ -42,7 +42,7 @@
     <string name="instruccion_activity_mostrarqralum">Muestra este código QR para que otras personas puedan acceder a tu información</string>
 
     <!--activity_escanear_qractivity-->
-    <string name="instruccion_activity_escanear_qractivity">Escanea un código QR para visualizar la información del estudiante</string>
+    <string name="instruccion_activity_escanear_qractivity">Escanea el Código QR del estudiante</string>
 
     <!--activity_info_alum-->
     <string name="titulo_activity_info_alum">Tu información</string>
@@ -111,5 +111,21 @@
 
     <!--activity_-->
     <string name="_activity_"></string>
+
+
+
+    <!--list_item_alumno-->
+    <string name="nombre_list_item_alumno">Nombre del Estudiante</string>
+    <string name="registro_list_item_alumno">Registro del Estudiante</string>
+    <string name="grupo_list_item_alumno">Grupo del Estudiante</string>
+    <string name="estatus_list_item_alumno">Estatus del Estudiante</string>
+
+    <!--list_item_servicio_social-->
+    <string name="nombre_list_servicio_social">Nombre del chic@/guardia/prefecto/admin</string>
+    <string name="registro_list_servicio_social">Registro</string>
+    <string name="acceso_list_servicio_social">Nivel de acceso</string>
+
+    <!--list_item_-->
+    <string name="_list_item_"></string>
 
 </resources>

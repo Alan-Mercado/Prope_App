@@ -7,6 +7,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.curso_android.propeapp.databinding.ActivityEscanearQrPrototipoBinding
+//***************************************************************************************
+//***********CLASE SOLO USUADA COMO MUESTRA AL INICIO DEL DESARROLLO DE LA APP***********
+//***************************************************************************************
 
 class EscanearQRPrototipoActivity : AppCompatActivity() {
 
@@ -39,7 +42,7 @@ class EscanearQRPrototipoActivity : AppCompatActivity() {
     }
 
     private fun navegarQR() {
-        val intent = Intent(this, InfoAlumActivity::class.java)
+        val intent = Intent(this, InfoEstudActivity::class.java)
         startActivity(intent)
     }
 

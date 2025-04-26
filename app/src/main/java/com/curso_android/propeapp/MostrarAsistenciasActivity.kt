@@ -42,21 +42,22 @@ class MostrarAsistenciasActivity : AppCompatActivity() {
     }
 
     private fun initUI(){
-        cargarAsistencias(registro)
+        //mostrar escaneos y actualizaciones
+        cargarEscaneos(registro)
 
         //regresar
         binding.toolbarExterna.ivRegresar.setOnClickListener { regresar() }
     }
 
-    private fun cargarAsistencias(registro: String) {
+    private fun cargarEscaneos(registro: String) {
         if (registro != AppUtils.StringKeys.ERROR_CONST) {
             val estudiante = database.child(AppUtils.DatabaseKeys.USUARIOS_DB_CONST).child(registro)
 
-            // Obtener el nombre del estudiante
+            //obtener el nombre del estudiante
             estudiante.child(AppUtils.DatabaseKeys.NOMBRE_DB_CONST).addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     val nombre = snapshot.getValue(String::class.java) ?: "Desconocido"
-                    binding.tvNombre.text = nombre
+                    binding.tvNombre.text = nombre//mostramos el nombre en pantalla
                 }
 
                 override fun onCancelled(error: DatabaseError) {
@@ -72,15 +73,13 @@ class MostrarAsistenciasActivity : AppCompatActivity() {
                         val valor = asistencia.getValue(String::class.java) ?: continue
                         listaAsistencias.add(Asistencia(valor))
                     }
-                    updateRecyclerView(listaAsistencias)
+                    updateRecyclerView(listaAsistencias)//actualizamos lista
 
-                    binding.tvRegistro.text = registro
-                    //binding.tvNombre.text = nombre//ES AQUÍ DONDE QUIERO MOSTRAR EL NOMBRE
+                    binding.tvRegistro.text = registro//mostramos el registro en pantalla
                 }
 
                 override fun onCancelled(error: DatabaseError) {
-                    Toast.makeText(this@MostrarAsistenciasActivity,
-                        "Error al cargar: ${error.message}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@MostrarAsistenciasActivity, "Error al cargar: ${error.message}", Toast.LENGTH_SHORT).show()
                 }
             })
         } else {

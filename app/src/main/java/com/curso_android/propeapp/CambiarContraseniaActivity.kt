@@ -8,7 +8,6 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.lifecycle.ReportFragment.Companion.reportFragment
 import com.curso_android.propeapp.databinding.ActivityCambiarContraseniaBinding
 import com.google.firebase.database.*
 
@@ -43,6 +42,7 @@ class CambiarContraseniaActivity : AppCompatActivity() {
     }
 
     private fun initUI() {
+        //cambiar contraseña
         binding.btnCambiarContrasenia.setOnClickListener {
             AlertDialog.Builder(it.context)
                 .setTitle("¿Cambiar Contraseña?")
@@ -62,21 +62,23 @@ class CambiarContraseniaActivity : AppCompatActivity() {
     }
 
     private fun cambiarPassword(registro: String) {
-        val contraseniaActualInput = binding.etContraseniaActual.text.toString().trim()
-        val nuevaContraseniaInput = binding.etContraseniaNueva.text.toString().trim()
-        val confirmarNuevaContraseniaInput = binding.etContraseniaNuevaRepetir.text.toString().trim()
+        val contraseniaActual = binding.etContraseniaActual.text.toString().trim()
+        val nuevaContrasenia = binding.etContraseniaNueva.text.toString().trim()
+        val confirmarNuevaContrasenia = binding.etContraseniaNuevaRepetir.text.toString().trim()
 
-        if (contraseniaActualInput.isEmpty() || nuevaContraseniaInput.isEmpty() || confirmarNuevaContraseniaInput.isEmpty()) {
+        //comprobar campos llenos
+        if (contraseniaActual.isEmpty() || nuevaContrasenia.isEmpty() || confirmarNuevaContrasenia.isEmpty()) {
             Toast.makeText(this, "Por favor llena todos los campos.", Toast.LENGTH_SHORT).show()
             return
         }
 
-        if (nuevaContraseniaInput != confirmarNuevaContraseniaInput) {
+        //comprobar contraseña nueva coincida
+        if (nuevaContrasenia != confirmarNuevaContrasenia) {
             Toast.makeText(this, "La nueva contraseña no coincide con la confirmación.",Toast.LENGTH_SHORT).show()
             return
         }
 
-        // Acceder a la contraseña actual en la base de datos
+        //Recuperar la contraseña actual en la base de datos
         database.child(AppUtils.DatabaseKeys.USUARIOS_DB_CONST)
             .child(registro)
             .child(AppUtils.DatabaseKeys.PASSWORD_DB_CONST)
@@ -89,24 +91,23 @@ class CambiarContraseniaActivity : AppCompatActivity() {
                         return
                     }
 
-                    // Aquí deberías aplicar el mismo hash a la contraseña actual escrita
-                    val contraseniaActualInputHasheada = AppUtils.hashSHA256(contraseniaActualInput)
+                    val contraseniaActualHasheada = AppUtils.hashSHA256(contraseniaActual)//hasheamos contraseña
 
-                    if (contraseniaActualFirebase != contraseniaActualInputHasheada) {
+                    if (contraseniaActualFirebase != contraseniaActualHasheada) {
                         Toast.makeText(this@CambiarContraseniaActivity, "La contraseña actual es incorrecta.", Toast.LENGTH_SHORT).show()
                         return
                     }
 
-                    // Ahora actualizamos la contraseña
-                    val nuevaContraseniaHasheada = AppUtils.hashSHA256(nuevaContraseniaInput)
+                    val nuevaContraseniaHasheada = AppUtils.hashSHA256(nuevaContrasenia)
 
+                    //Actualizamos la contraseña en la base de datos
                     database.child(AppUtils.DatabaseKeys.USUARIOS_DB_CONST)
                         .child(registro)
                         .child(AppUtils.DatabaseKeys.PASSWORD_DB_CONST)
                         .setValue(nuevaContraseniaHasheada)
                         .addOnSuccessListener {
                             Toast.makeText(this@CambiarContraseniaActivity, "Contraseña actualizada exitosamente.", Toast.LENGTH_SHORT).show()
-                            navegarLogin()
+                            navegarLogin()//regresamos a Login
                         }
                         .addOnFailureListener {
                             Toast.makeText(this@CambiarContraseniaActivity, "Error al actualizar la contraseña.", Toast.LENGTH_SHORT).show()

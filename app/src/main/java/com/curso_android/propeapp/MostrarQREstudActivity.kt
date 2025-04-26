@@ -7,13 +7,13 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.curso_android.propeapp.databinding.ActivityMostrarQralumBinding
+import com.curso_android.propeapp.databinding.ActivityMostrarQrestudBinding
 import com.google.zxing.BarcodeFormat
 import com.journeyapps.barcodescanner.BarcodeEncoder
 
-class MostrarQRAlumActivity : AppCompatActivity() {
+class MostrarQREstudActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMostrarQralumBinding
+    private lateinit var binding: ActivityMostrarQrestudBinding
 
     private lateinit var registro: String
 
@@ -21,7 +21,7 @@ class MostrarQRAlumActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-        binding = ActivityMostrarQralumBinding.inflate(layoutInflater)
+        binding = ActivityMostrarQrestudBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         window.statusBarColor = resources.getColor(R.color.dorado_color, theme)
@@ -38,6 +38,7 @@ class MostrarQRAlumActivity : AppCompatActivity() {
     }
 
     private fun initUI() {
+        //generamos codigo QR
         generarQR()
 
         //regresar

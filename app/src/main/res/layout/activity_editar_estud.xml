@@ -10,14 +10,13 @@
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".InfoAlumActivity">
+        tools:context=".EditarEstudActivity">
 
         <!--TOOLBAR-->
         <include
             android:id="@+id/toolbarExterna"
             layout="@layout/toolbar" />
 
-        <!--CONTENIDO-->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -30,7 +29,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="48dp"
-                android:text="@string/titulo_activity_info_alum"
+                android:gravity="start"
+                android:text="@string/titulo_activity_editar_alum"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -39,7 +39,7 @@
                 android:id="@+id/divider1"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:layout_marginTop="48dp"
+                android:layout_marginTop="12dp"
                 app:dividerColor="@color/gris_color"
                 app:layout_constraintTop_toBottomOf="@id/tvTitulo" />
 
@@ -50,12 +50,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="10dp"
                 android:gravity="left"
-                android:text="@string/nombre_activity_info_alum"
+                android:text="@string/nombre_activity_agregar_alum"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/divider1" />
 
-            <TextView
-                android:id="@+id/tvNombre"
+            <EditText
+                android:id="@+id/etNombre"
                 style="@style/Texto_3_Estilo"
                 android:layout_width="200dp"
                 android:layout_height="48dp"
@@ -82,12 +82,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="12dp"
                 android:gravity="left"
-                android:text="@string/registro_activity_info_alum"
+                android:text="@string/registro_activity_agregar_alum"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/divider2" />
 
-            <TextView
-                android:id="@+id/tvRegistro"
+            <EditText
+                android:id="@+id/etRegistro"
                 style="@style/Texto_1_Estilo"
                 android:layout_width="200dp"
                 android:layout_height="48dp"
@@ -113,12 +113,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="12dp"
                 android:gravity="left"
-                android:text="@string/estatus_activity_info_alum"
+                android:text="@string/estatus_activity_agregar_alum"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/divider3" />
 
-            <TextView
-                android:id="@+id/tvEstatus"
+            <!--EditText
+                android:id="@+id/etEstatus"
                 style="@style/Texto_1_Estilo"
                 android:layout_width="200dp"
                 android:layout_height="48dp"
@@ -127,7 +127,13 @@
                 android:paddingHorizontal="8dp"
                 app:layout_constraintStart_toEndOf="@id/tvCampoEstatus"
                 app:layout_constraintTop_toBottomOf="@id/divider3"
-                tools:text="Pago completado" />
+                tools:text="Pago completado" /-->
+            <Spinner
+                android:id="@+id/spEstatus"
+                android:layout_width="200dp"
+                android:layout_height="48dp"
+                app:layout_constraintStart_toEndOf="@id/tvCampoEstatus"
+                app:layout_constraintTop_toBottomOf="@id/divider3" />
 
             <!--Grupo-->
             <com.google.android.material.divider.MaterialDivider
@@ -144,12 +150,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="12dp"
                 android:gravity="left"
-                android:text="@string/grupo_activity_info_alum"
+                android:text="@string/grupo_activity_agregar_alum"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/divider4" />
 
-            <TextView
-                android:id="@+id/tvGrupo"
+            <!--EditText
+                android:id="@+id/etGrupo"
                 style="@style/Texto_1_Estilo"
                 android:layout_width="200dp"
                 android:layout_height="48dp"
@@ -158,7 +164,14 @@
                 android:paddingHorizontal="8dp"
                 app:layout_constraintStart_toEndOf="@id/tvCampoGrupo"
                 app:layout_constraintTop_toBottomOf="@id/divider4"
-                tools:text="1" />
+                tools:text="A" /-->
+            <Spinner
+                android:id="@+id/spGrupo"
+                android:layout_width="200dp"
+                android:layout_height="48dp"
+                app:layout_constraintStart_toEndOf="@id/tvCampoEstatus"
+                app:layout_constraintTop_toBottomOf="@id/divider4" />
+
 
             <!--Tutor 1-->
             <com.google.android.material.divider.MaterialDivider
@@ -179,8 +192,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/divider5" />
 
-            <TextView
-                android:id="@+id/tvContacto"
+            <EditText
+                android:id="@+id/etContacto"
                 style="@style/Texto_1_Estilo"
                 android:layout_width="200dp"
                 android:layout_height="48dp"
@@ -206,12 +219,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="12dp"
                 android:gravity="left"
-                android:text="@string/telefono_activity_info_alum"
+                android:text="@string/telefono_activity_agregar_alum"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/divider6" />
 
-            <TextView
-                android:id="@+id/tvTelefono1"
+            <EditText
+                android:id="@+id/etTelefono1"
                 style="@style/Texto_1_Estilo"
                 android:layout_width="200dp"
                 android:layout_height="48dp"
@@ -237,12 +250,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="12dp"
                 android:gravity="left"
-                android:text="@string/tutor2_activity_info_alum"
+                android:text="@string/tutor2_activity_agregar_alum"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/divider7" />
 
-            <TextView
-                android:id="@+id/tvTutor2"
+            <EditText
+                android:id="@+id/etTutor2"
                 style="@style/Texto_1_Estilo"
                 android:layout_width="200dp"
                 android:layout_height="48dp"
@@ -268,12 +281,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="12dp"
                 android:gravity="left"
-                android:text="@string/telefono_activity_info_alum"
+                android:text="@string/telefono_activity_agregar_alum"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/divider8" />
 
-            <TextView
-                android:id="@+id/tvTelefono2"
+            <EditText
+                android:id="@+id/etTelefono2"
                 style="@style/Texto_1_Estilo"
                 android:layout_width="200dp"
                 android:layout_height="48dp"
@@ -284,7 +297,6 @@
                 app:layout_constraintTop_toBottomOf="@id/divider8"
                 tools:text="3311223344" /-->
 
-            <!--Credencial Entregada-->
             <com.google.android.material.divider.MaterialDivider
                 android:id="@+id/divider9"
                 android:layout_width="match_parent"
@@ -304,24 +316,57 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/divider9" />
 
-            <TextView
-                android:id="@+id/tvCredencial"
+            <!--EditText
+                android:id="@+id/etCredencial"
                 style="@style/Texto_1_Estilo"
                 android:layout_width="200dp"
                 android:layout_height="48dp"
                 android:gravity="start|center_vertical"
                 android:maxLines="2"
                 android:paddingHorizontal="8dp"
-                app:layout_constraintBottom_toTopOf="@id/divider10"
+                app:layout_constraintStart_toEndOf="@id/tvCampoTelefono2"
+                app:layout_constraintTop_toBottomOf="@id/divider9"
+                tools:text="Pendiente" /-->
+            <Spinner
+                android:id="@+id/spCredencial"
+                android:layout_width="200dp"
+                android:layout_height="48dp"
                 app:layout_constraintStart_toEndOf="@id/tvCampoTelefono1"
-                tools:text="Pendiente" />
+                app:layout_constraintTop_toBottomOf="@id/divider9" />
 
-            <com.google.android.material.divider.MaterialDivider
-                android:id="@+id/divider10"
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                app:dividerColor="@color/gris_color"
+            <!--BOTONES-->
+            <!--Eliminar-->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnEliminarAlum"
+                style="bold | @style/Texto_1_Estilo"
+                android:layout_width="140dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginVertical="40dp"
+                android:backgroundTint="@color/red"
+                android:text="@string/btneliminar_activity_editar_alum"
+                android:textColor="@color/white"
+                app:cornerRadius="8dp"
+                app:layout_constraintBottom_toTopOf="@id/btnRestablecerContrasenia"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvCampoCredencial" />
+
+            <!--Restablecer Contraseña-->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnRestablecerContrasenia"
+                style="@style/Texto_1_Estilo"
+                android:layout_width="240dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginVertical="4dp"
+                android:backgroundTint="@color/tinto_color"
+                android:text="@string/btnrestablecercontrasenia_activity_editar_alum"
+                android:textColor="@color/white"
+                app:cornerRadius="8dp"
+                app:layout_constraintBottom_toTopOf="@id/btnAsistencias"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
             <!--Asistencias-->
             <com.google.android.material.button.MaterialButton
@@ -330,9 +375,25 @@
                 android:layout_width="240dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
-                android:layout_marginVertical="0dp"
-                android:backgroundTint="@color/dorado_color"
+                android:layout_marginVertical="4dp"
+                android:backgroundTint="@color/tinto_color"
                 android:text="@string/btnasistencias_activity_info_alum"
+                android:textColor="@color/white"
+                app:cornerRadius="8dp"
+                app:layout_constraintBottom_toTopOf="@id/btnActualizarAlum"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <!--Actualizar-->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnActualizarAlum"
+                style="@style/Texto_1_Estilo"
+                android:layout_width="240dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginVertical="4dp"
+                android:backgroundTint="@color/dorado_color"
+                android:text="@string/btnactualizar_activity_editar_alum"
                 android:textColor="@color/white"
                 app:cornerRadius="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"

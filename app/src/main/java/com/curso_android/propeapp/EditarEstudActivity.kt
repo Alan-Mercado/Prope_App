@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
-import com.curso_android.propeapp.databinding.ActivityEditarAlumBinding
+import com.curso_android.propeapp.databinding.ActivityEditarEstudBinding
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -21,11 +21,11 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
-class EditarAlumActivity : AppCompatActivity() {
+class EditarEstudActivity : AppCompatActivity() {
 
     private lateinit var database: DatabaseReference
 
-    private lateinit var binding: ActivityEditarAlumBinding
+    private lateinit var binding: ActivityEditarEstudBinding
 
     private lateinit var user: String
     private lateinit var nivel_acceso: String
@@ -39,10 +39,10 @@ class EditarAlumActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-        binding = ActivityEditarAlumBinding.inflate(layoutInflater)
+        binding = ActivityEditarEstudBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        database = AppUtils.database//Inicializar referencia a BD
+        database = AppUtils.database
 
         window.statusBarColor = resources.getColor(R.color.dorado_color, theme)
 
@@ -75,7 +75,7 @@ class EditarAlumActivity : AppCompatActivity() {
     private fun initUI() {
         mostrarDatos()
 
-        binding.btnActualizarAlum.setOnClickListener{ actualizarAlum() }
+        binding.btnActualizarAlum.setOnClickListener{ actualizarEstud() }
 
         binding.btnAsistencias.setOnClickListener { navegarAsistencias(user) }
 
@@ -124,15 +124,13 @@ class EditarAlumActivity : AppCompatActivity() {
                 //val tel_2 = snapshot.child(AppUtils.DatabaseKeys.TEL_2_DB_CONST).getValue(String::class.java) ?: "No disponible"
                 val cred_entr = snapshot.child(AppUtils.DatabaseKeys.CREDENCIAL_ENTREGADA_DB_CONST).getValue(String::class.java) ?: "Pendiente"
 
-                //Asignamos valores recuparados a los textviews
+                //asignamos valores recuparados a los textviews
                 binding.etNombre.setText(nombre)
-                binding.etRegistro.setText(user)//cambiar a campo de la base de datos???????????????????
-                //binding.etEstatus.setText(estatus)
+                binding.etRegistro.setText(user)
                 val pos1 = opcionesEstatus.indexOf(estatus)
                 if (pos1 >= 0) {
                     binding.spEstatus.setSelection(pos1)
                 }
-                //binding.etGrupo.setText(grupo)
                 val pos2 = opcionesGrupo.indexOf(grupo)
                 if (pos2 >= 0) {
                     binding.spGrupo.setSelection(pos2)
@@ -141,13 +139,12 @@ class EditarAlumActivity : AppCompatActivity() {
                 binding.etTelefono1.setText(tel_1)
                 //binding.etTutor2.setText(tutor_2)
                 //binding.etTelefono2.setText(tel_2)
-                //binding.etCredencial.setText(cred_entr)
                 val pos3 = opcionesCredencial.indexOf(cred_entr)
                 if (pos3 >= 0) {
                     binding.spCredencial.setSelection(pos3)
                 }
 
-                //BOTON PARA ELIMINAR EL REGISTRO ACTUAL
+                //BOTON PARA ELIMINAR EL REGISTRO ACTUAL (solo admin)
                 if (nivel_acceso == AppUtils.StringKeys.ADMIN_CONST){
                     binding.btnEliminarAlum.setOnClickListener {
                         AlertDialog.Builder(it.context)
@@ -173,18 +170,15 @@ class EditarAlumActivity : AppCompatActivity() {
         }
     }
 
-    private fun actualizarAlum() {
+    private fun actualizarEstud() {
         val nombre = binding.etNombre.text.toString().trim()
         val registro = binding.etRegistro.text.toString().trim()
-        //val estatus = binding.etEstatus.text.toString().trim()
         val estatus = binding.spEstatus.selectedItem.toString()
-        //val grupo = binding.etGrupo.text.toString().trim()
         val grupo = binding.spGrupo.selectedItem.toString()
         val tutor_1 = binding.etContacto.text.toString().trim()
         val tel_1 = binding.etTelefono1.text.toString().trim()
         //val tutor_2 = binding.etTutor2.text.toString().trim().ifEmpty { "No disponible" }
         //val tel_2 = binding.etTelefono2.text.toString().trim().ifEmpty { "No disponible" }
-        //val cred_entr = binding.etCredencial.text.toString().trim().ifEmpty { "Pendiente" }
         val cred_entr = binding.spCredencial.selectedItem.toString()
 
         if (nombre.isEmpty() || registro.isEmpty() || estatus.isEmpty() || grupo.isEmpty()
@@ -193,7 +187,6 @@ class EditarAlumActivity : AppCompatActivity() {
             return
         }
 
-        // Verificar si ya existe un registro con ese ID en la base de datos
         database.child(AppUtils.DatabaseKeys.USUARIOS_DB_CONST).child(user).addListenerForSingleValueEvent(object :
             ValueEventListener {
             @RequiresApi(Build.VERSION_CODES.O)
@@ -204,48 +197,44 @@ class EditarAlumActivity : AppCompatActivity() {
                         .get().addOnSuccessListener { newSnapshot ->
                             //si el registro ya esta siendo utilizado
                             if (newSnapshot.exists()) {
-                                Toast.makeText(this@EditarAlumActivity, "Ya existe un estudiante con ese registro. Elimínalo si deseas continuar", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(this@EditarEstudActivity, "Ya existe un estudiante con ese registro. Elimínalo si deseas continuar", Toast.LENGTH_SHORT).show()
                             //si el registro esta libre
                             } else {
                                 if (snapshot.exists()) {
                                     val asistenciasModificadas = obtenerFechaActualizacion(snapshot)
 
-                                    //nombre_estudiante = snapshot.child(AppUtils.DatabaseKeys.NOMBRE_DB_CONST).getValue(String::class.java) ?: "Desconocido"
-
-                                    val alumno = Estudiante(registro, acceso = snapshot.child(AppUtils.DatabaseKeys.ACCESO_DB_CONST).value.toString(), nombre, password = snapshot.child(AppUtils.DatabaseKeys.PASSWORD_DB_CONST).value.toString(), estatus, grupo, tutor_1, tel_1, /*tutor_2, tel_2,*/ cred_entr, asistenciasModificadas)
-                                    database.child(AppUtils.DatabaseKeys.USUARIOS_DB_CONST).child(registro).setValue(alumno)
+                                    val estudiante = Estudiante(registro, acceso = snapshot.child(AppUtils.DatabaseKeys.ACCESO_DB_CONST).value.toString(), nombre, password = snapshot.child(AppUtils.DatabaseKeys.PASSWORD_DB_CONST).value.toString(), estatus, grupo, tutor_1, tel_1, /*tutor_2, tel_2,*/ cred_entr, asistenciasModificadas)
+                                    database.child(AppUtils.DatabaseKeys.USUARIOS_DB_CONST).child(registro).setValue(estudiante)
                                         .addOnSuccessListener {
                                             val registro_viejo = snapshot.child(AppUtils.DatabaseKeys.REGISTRO_DB_CONST).getValue(String::class.java) ?: AppUtils.StringKeys.ERROR_CONST
                                             eliminarEstudiante(registro_viejo)//se elimina al viejo usuario (con el registro viejo) de la base de datos
 
-                                            Toast.makeText(this@EditarAlumActivity, "Estudiante actualizado correctamente", Toast.LENGTH_SHORT).show()
+                                            Toast.makeText(this@EditarEstudActivity, "Estudiante actualizado correctamente", Toast.LENGTH_SHORT).show()
                                         }
                                         .addOnFailureListener {
-                                            Toast.makeText(this@EditarAlumActivity, "Error al actualizar al estudiante", Toast.LENGTH_SHORT).show()
+                                            Toast.makeText(this@EditarEstudActivity, "Error al actualizar al estudiante", Toast.LENGTH_SHORT).show()
                                         }
                                 } else {
-                                    Toast.makeText(this@EditarAlumActivity, "No existe este registro", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(this@EditarEstudActivity, "No existe este registro", Toast.LENGTH_SHORT).show()
                                 }
                             }
                         }
                 } else {
                     if (snapshot.exists()) {
-                        // Si el registro ya existe
+                        //si el registro ya existe
                         val asistenciasModificadas = obtenerFechaActualizacion(snapshot)
 
-                        //nombre_estudiante = snapshot.child(AppUtils.DatabaseKeys.NOMBRE_DB_CONST).getValue(String::class.java) ?: "Desconocido"
-
-                        val alumno = Estudiante(registro, acceso = snapshot.child(AppUtils.DatabaseKeys.ACCESO_DB_CONST).value.toString(), nombre, password = snapshot.child(AppUtils.DatabaseKeys.PASSWORD_DB_CONST).value.toString(), estatus, grupo, tutor_1, tel_1, /*tutor_2, tel_2,*/ cred_entr, asistenciasModificadas)
-                        database.child(AppUtils.DatabaseKeys.USUARIOS_DB_CONST).child(registro).setValue(alumno)
+                        val estudiante = Estudiante(registro, acceso = snapshot.child(AppUtils.DatabaseKeys.ACCESO_DB_CONST).value.toString(), nombre, password = snapshot.child(AppUtils.DatabaseKeys.PASSWORD_DB_CONST).value.toString(), estatus, grupo, tutor_1, tel_1, /*tutor_2, tel_2,*/ cred_entr, asistenciasModificadas)
+                        database.child(AppUtils.DatabaseKeys.USUARIOS_DB_CONST).child(registro).setValue(estudiante)
                             .addOnSuccessListener {
-                                Toast.makeText(this@EditarAlumActivity, "Estudiante actualizado correctamente", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(this@EditarEstudActivity, "Estudiante actualizado correctamente", Toast.LENGTH_SHORT).show()
                             }
                             .addOnFailureListener {
-                                Toast.makeText(this@EditarAlumActivity, "Error al actualizar al estudiante", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(this@EditarEstudActivity, "Error al actualizar al estudiante", Toast.LENGTH_SHORT).show()
                             }
                     } else {
-                        // Si el registro no existe
-                        Toast.makeText(this@EditarAlumActivity, "No existe este registro", Toast.LENGTH_SHORT).show()
+                        //si el registro no existe
+                        Toast.makeText(this@EditarEstudActivity, "No existe este registro", Toast.LENGTH_SHORT).show()
                     }
                 }
 
@@ -253,7 +242,7 @@ class EditarAlumActivity : AppCompatActivity() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(this@EditarAlumActivity, "Error al verificar el registro", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@EditarEstudActivity, "Error al verificar el registro", Toast.LENGTH_SHORT).show()
             }
         })
     }

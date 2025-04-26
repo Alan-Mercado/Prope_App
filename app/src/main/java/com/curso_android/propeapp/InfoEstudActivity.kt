@@ -7,14 +7,14 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.curso_android.propeapp.databinding.ActivityInfoAlumBinding
+import com.curso_android.propeapp.databinding.ActivityInfoEstudBinding
 import com.google.firebase.database.*
 
-class InfoAlumActivity : AppCompatActivity() {
+class InfoEstudActivity : AppCompatActivity() {
 
-    private lateinit var database: DatabaseReference//Referencia a Firebase
+    private lateinit var database: DatabaseReference
 
-    private lateinit var binding: ActivityInfoAlumBinding
+    private lateinit var binding: ActivityInfoEstudBinding
 
     private lateinit var user: String
 
@@ -22,10 +22,10 @@ class InfoAlumActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-        binding = ActivityInfoAlumBinding.inflate(layoutInflater)
+        binding = ActivityInfoEstudBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        database = AppUtils.database//Inicializar referencia a BD
+        database = AppUtils.database
 
         window.statusBarColor = resources.getColor(R.color.dorado_color, theme)
 
@@ -41,6 +41,7 @@ class InfoAlumActivity : AppCompatActivity() {
     }
 
     private fun initUI() {
+        //cargamos los datos del estudiante
         mostrarDatos()
 
         //asistencias
@@ -51,10 +52,7 @@ class InfoAlumActivity : AppCompatActivity() {
     }
 
     private fun mostrarDatos() {
-        //Log.d("usuario-3", user)
-
         if (user == AppUtils.StringKeys.ERROR_CONST) {
-//        if (user.isEmpty()) {
             Toast.makeText(this, "Error al recuperar usuario", Toast.LENGTH_SHORT).show()
             return
         }

@@ -13,5 +13,6 @@
     <color name="tinto_color">#FF611232</color>
     <color name="dorado_color">#FFA67C2E</color>
     <color name="gris_color">#979797</color>
+    <color name="negro_semitransparente_color">#80000000</color>
 
 </resources>

@@ -13,13 +13,6 @@ import com.google.firebase.database.*
 
 class LoginActivity : AppCompatActivity() {
     /*********************PROXIMAS ACTIVIDADES A REALIZAR********************
-     * cosas anotadas en el doc de google
-     *
-     *
-     *
-     *
-     *
-     *
      *
      *
      *
@@ -38,8 +31,7 @@ class LoginActivity : AppCompatActivity() {
 
         window.statusBarColor = resources.getColor(R.color.dorado_color, theme)
 
-        //database = FirebaseDatabase.getInstance().reference//Inicializar referencia a BD
-        database = AppUtils.database
+        database = AppUtils.database//Inicializar referencia a BD
 
         /*setSupportActionBar(binding.toolBar)
         supportActionBar?.apply {
@@ -80,7 +72,6 @@ class LoginActivity : AppCompatActivity() {
     //Funcion para comprobar usuario y redirigir a su respectiva vista
     private fun navegarVistaUsuario(user: String, pass: String) {
         val hashedPassword = AppUtils.hashSHA256(pass)//contraseña escrita en la app y con un hash
-//Log.d("contrasen", hashedPassword)//MENSAJE DE PRUEBAS DE PROGRAMADOR
 
         database.child(AppUtils.DatabaseKeys.USUARIOS_DB_CONST).child(user)
             .get().addOnSuccessListener { snapshot ->
@@ -99,10 +90,10 @@ class LoginActivity : AppCompatActivity() {
                             startActivity(intent)
 
                         //si es personal (guardia/chic@ servicio)
-                        } else if (nivelAcceso == AppUtils.StringKeys.PERSONAL_CONST) {
-                            Toast.makeText(this, "Inicio de sesión exitoso como personal", Toast.LENGTH_SHORT).show()
+                        } else if (nivelAcceso == AppUtils.StringKeys.SERVICIO_SOCIAL_CONST) {
+                            Toast.makeText(this, "Inicio de sesión exitoso como servicio social", Toast.LENGTH_SHORT).show()
                             val intent = Intent(this, AdminPersActivity::class.java)
-                            intent.putExtra(AppUtils.StringKeys.NIVEL_ACCESO_CONST, AppUtils.StringKeys.PERSONAL_CONST)
+                            intent.putExtra(AppUtils.StringKeys.NIVEL_ACCESO_CONST, AppUtils.StringKeys.SERVICIO_SOCIAL_CONST)
                             intent.putExtra(AppUtils.DatabaseKeys.REGISTRO_DB_CONST, user)
                             startActivity(intent)
 
@@ -111,7 +102,6 @@ class LoginActivity : AppCompatActivity() {
                             Toast.makeText(this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show()
                             val intent = Intent(this, EstudianteActivity::class.java)
                             intent.putExtra(AppUtils.StringKeys.ESTUDIANTE_CONST, user)
-                            //Log.d("usuario-1", user)
                             startActivity(intent)
                         }
                     } else {

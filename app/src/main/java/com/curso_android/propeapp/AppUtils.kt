@@ -19,7 +19,6 @@ object AppUtils {
     fun restablecerPassword(registro: String, callback: (Boolean) -> Unit) {
         val nuevaPasswordHash = hashSHA256(StringKeys.PASS_PREDETERMINADA_CONST)
 
-        //SE PUEDE QUITAR LA VARIABLE "usuario" Y PONER "snapshot"
         val usuario = database.child(DatabaseKeys.USUARIOS_DB_CONST).child(registro)
 
         usuario.addListenerForSingleValueEvent(object : ValueEventListener {
@@ -43,7 +42,7 @@ object AppUtils {
     }
 
 
-    // Constantes de nombres de claves en la base de datos
+    //Constantes de nombres de claves en la base de datos
     object DatabaseKeys {
         const val USUARIOS_DB_CONST = "Usuarios"
 
@@ -56,21 +55,21 @@ object AppUtils {
         const val CONTACTO_DB_CONST = "contacto"
         const val TEL_1_DB_CONST = "tel_1"
         const val TELEFONO_DB_CONST = "telefono"
-
         //const val TUTOR_2_DB_CONST = "tutor_2"
         //const val TEL_2_DB_CONST = "tel_2"
         const val CREDENCIAL_ENTREGADA_DB_CONST = "cred_entr"
         const val ASISTENCIAS_DB_CONST = "asistencias"
     }
 
+    //Constantes de strings claves en el funcionamiento de la app
     object StringKeys {
         const val ESTUDIANTE_CONST = "estudiante"
-        const val PERSONAL_CONST = "servicio social"
+        const val SERVICIO_SOCIAL_CONST = "servicio social"
         const val ADMIN_CONST = "administrador"
         const val NIVEL_ACCESO_CONST = "nivel_acceso"
         const val BOTON_CONST = "boton_presionado"
         const val EDITAR_ESTUDIANTE_CONST = "editar_estudiante"
-        const val EDITAR_PERSONAL_CONST = "editar_personal"
+        const val EDITAR_SERVICIO_SOCIAL_CONST = "editar_servicio_social"
         const val BUSCAR_CONST = "buscar"
         const val GRUPO_CONST = "grupo"
 

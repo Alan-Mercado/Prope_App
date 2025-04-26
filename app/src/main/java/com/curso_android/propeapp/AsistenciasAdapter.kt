@@ -21,7 +21,6 @@ class AsistenciasAdapter(private val listaAsistencias: List<Asistencia>) :
     override fun getItemCount(): Int = listaAsistencias.size
 
     class AsistenciaViewHolder(private val binding: ListItemAsistenciaBinding) : RecyclerView.ViewHolder(binding.root) {
-        //val textFecha: TextView = itemView.findViewById(R.id.textFecha)
         fun bind(asistencia: Asistencia) {
             binding.tvAsistenciaValor.text = asistencia.valor
         }

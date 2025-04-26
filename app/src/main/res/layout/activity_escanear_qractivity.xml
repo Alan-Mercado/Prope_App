@@ -18,6 +18,17 @@
         android:orientation="vertical"
         android:paddingTop="?attr/actionBarSize">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/instruccion_activity_escanear_qractivity"
+            style="@style/Titulo_2_Estilo"
+            android:paddingHorizontal="64dp"
+            android:paddingVertical="10dp"
+            android:textColor="@color/white"
+            android:background="@color/negro_semitransparente_color"
+            />
+
         <androidx.camera.view.PreviewView
             android:id="@+id/previewView"
             android:layout_width="match_parent"

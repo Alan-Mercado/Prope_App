@@ -42,20 +42,18 @@ class EstudianteActivity : AppCompatActivity() {
 
         binding.cvCambiarContrasenia.setOnClickListener { navegarCambiarContrasenia(user) }
 
-        //Log.d("usuario-2", user)
-
         //regresar
         binding.toolbarExterna.ivRegresar.setOnClickListener { regresar() }
     }
 
     private fun navegarInformacion() {
-        val intent = Intent(this, InfoAlumActivity::class.java)
+        val intent = Intent(this, InfoEstudActivity::class.java)
         intent.putExtra(AppUtils.StringKeys.ESTUDIANTE_CONST, user)
         startActivity(intent)
     }
 
     private fun navegarQR() {
-        val intent = Intent(this, MostrarQRAlumActivity::class.java)
+        val intent = Intent(this, MostrarQREstudActivity::class.java)
         intent.putExtra(AppUtils.StringKeys.ESTUDIANTE_CONST, user)
         startActivity(intent)
     }

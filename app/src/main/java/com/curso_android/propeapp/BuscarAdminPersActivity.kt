@@ -2,7 +2,7 @@ package com.curso_android.propeapp
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
@@ -21,8 +21,8 @@ class BuscarAdminPersActivity : AppCompatActivity() {
 
     private lateinit var destino: String
 
-    private lateinit var personalAdapter: AdminPersAdapter
-    private var personalList = mutableListOf<AdminPers>()
+    private lateinit var admin_persAdapter: AdminPersAdapter
+    private var admin_persList = mutableListOf<AdminPers>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,12 +47,12 @@ class BuscarAdminPersActivity : AppCompatActivity() {
     }
 
     private fun initUI() {
-        // Configuración del RecyclerView
-        personalAdapter = AdminPersAdapter(personalList){navegarEditAdminPers(it, destino)}//*******************VER SI ES NECESARIO LO DE "DESTINO"****************
+        //configurar recyclerview
+        admin_persAdapter = AdminPersAdapter(admin_persList){navegarEditAdminPers(it, destino)}
         binding.rvResultados.layoutManager = LinearLayoutManager(this)
-        binding.rvResultados.adapter = personalAdapter
+        binding.rvResultados.adapter = admin_persAdapter
 
-        // Configurar el SearchView
+        //configurar searchview (lista de usuarios)
         binding.svBuscador.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 query?.let {
@@ -79,17 +79,16 @@ class BuscarAdminPersActivity : AppCompatActivity() {
     }
 
     private fun buscarPersonal(query: String) {
-        val queryLower = query.toLowerCase(Locale.getDefault()) // Para hacer la búsqueda insensible a mayúsculas/minúsculas
+        val queryLower = query.toLowerCase(Locale.getDefault())//modificamos la busqueda para hacerla siempre en minusculas
         val results = mutableListOf<AdminPers>()
 
-        // Buscar en Firebase
         database.child(AppUtils.DatabaseKeys.USUARIOS_DB_CONST).addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
                     for (userSnapshot in snapshot.children) {
                         val usuario = userSnapshot.getValue(AdminPers::class.java)
 
-                        // Si el número de registro o el nombre coinciden con la búsqueda
+                        //si el registro o el nombre coinciden con lp buscado
                         if (usuario != null && usuario.acceso != AppUtils.StringKeys.ESTUDIANTE_CONST) {
                             if (usuario.nombre.toLowerCase(Locale.getDefault()).contains(queryLower) ||
                                 userSnapshot.key?.contains(queryLower) == true) {
@@ -98,13 +97,12 @@ class BuscarAdminPersActivity : AppCompatActivity() {
                         }
                     }
 
-                    // Actualiza el RecyclerView con los resultados encontrados
-                    updateRecyclerView(results)
+                    updateRecyclerView(results)//actualizar el recyclerView con los resultados encontrados
                 }
             }
 
             override fun onCancelled(error: DatabaseError) {
-                // Manejar el error si ocurre
+                Toast.makeText(this@BuscarAdminPersActivity, "Error al conectar con la base de datos. ${error.message}", Toast.LENGTH_SHORT).show()
             }
         })
     }
@@ -118,9 +116,9 @@ class BuscarAdminPersActivity : AppCompatActivity() {
 
     private fun navegarEditAdminPers(registro:String, donde_ir:String) {
         //navegar a Buscar Personal
-        if (donde_ir == AppUtils.StringKeys.EDITAR_PERSONAL_CONST) {
+        if (donde_ir == AppUtils.StringKeys.EDITAR_SERVICIO_SOCIAL_CONST) {
             val intent = Intent(this, EditarAdminPersActivity::class.java)
-            intent.putExtra(AppUtils.StringKeys.PERSONAL_CONST, registro)
+            intent.putExtra(AppUtils.StringKeys.SERVICIO_SOCIAL_CONST, registro)
             startActivity(intent)
         }
     }

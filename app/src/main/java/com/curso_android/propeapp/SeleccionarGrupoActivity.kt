@@ -10,7 +10,6 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.curso_android.propeapp.databinding.ActivitySeleccionarGrupoBinding
 import com.google.firebase.database.*
-import com.google.firebase.database.ValueEventListener
 
 class SeleccionarGrupoActivity : AppCompatActivity() {
 

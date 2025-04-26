@@ -12,8 +12,6 @@ class BienvenidaActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityBienvenidaBinding
 
-    //private lateinit var toolbar: Toolbar
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -22,12 +20,6 @@ class BienvenidaActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         window.statusBarColor = resources.getColor(R.color.dorado_color, theme)
-
-        //setSupportActionBar(binding.toolBar)
-        /*supportActionBar?.apply {
-            title = "Inicio de sesión"  // Título de la Toolbar
-            setDisplayHomeAsUpEnabled(true)  // Agrega botón de retroceso si es necesario
-        }*/
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.root/*main*/) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -49,7 +41,7 @@ class BienvenidaActivity : AppCompatActivity() {
 
     private fun navegarEscanearQR() {
         val intent = Intent(this, EscanearQRActivity::class.java)
-        intent.putExtra(AppUtils.StringKeys.NIVEL_ACCESO_CONST, AppUtils.StringKeys.PERSONAL_CONST)
+        intent.putExtra(AppUtils.StringKeys.NIVEL_ACCESO_CONST, AppUtils.StringKeys.SERVICIO_SOCIAL_CONST)//le concedemos el nivel de acceso de servicio_social
         intent.putExtra(AppUtils.StringKeys.BOTON_CONST, AppUtils.StringKeys.BUSCAR_CONST)
         startActivity(intent)
     }

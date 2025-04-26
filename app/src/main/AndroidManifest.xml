@@ -44,7 +44,7 @@
             android:name=".SeleccionarGrupoActivity"
             android:exported="false" />
         <activity
-            android:name=".MostrarQRAlumActivity"
+            android:name=".MostrarQREstudActivity"
             android:exported="false" />
         <activity
             android:name=".MostrarGrupoActivity"
@@ -53,19 +53,19 @@
             android:name=".LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".InfoAlumActivity"
+            android:name=".InfoEstudActivity"
             android:exported="false" />
         <activity
             android:name=".EscanearQRPrototipoActivity"
             android:exported="false" />
         <activity
-            android:name=".EditarAlumActivity"
+            android:name=".EditarEstudActivity"
             android:exported="false" />
         <activity
-            android:name=".BuscarAlumActivity"
+            android:name=".BuscarEstudActivity"
             android:exported="false" />
         <activity
-            android:name=".AgregarAlumActivity"
+            android:name=".AgregarEstudActivity"
             android:exported="false" />
         <activity
             android:name=".AdminPersActivity"

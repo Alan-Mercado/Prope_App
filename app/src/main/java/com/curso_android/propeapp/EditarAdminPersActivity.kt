@@ -28,7 +28,7 @@ class EditarAdminPersActivity : AppCompatActivity() {
         binding = ActivityEditarAdminPersBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        database = AppUtils.database//Inicializar referencia a BD
+        database = AppUtils.database
 
         window.statusBarColor = resources.getColor(R.color.dorado_color, theme)
 
@@ -38,9 +38,9 @@ class EditarAdminPersActivity : AppCompatActivity() {
             insets
         }
 
-        user = intent.getStringExtra(AppUtils.StringKeys.PERSONAL_CONST) ?: AppUtils.StringKeys.ERROR_CONST
+        user = intent.getStringExtra(AppUtils.StringKeys.SERVICIO_SOCIAL_CONST) ?: AppUtils.StringKeys.ERROR_CONST
 
-        opcionesAcceso = listOf(AppUtils.StringKeys.ADMIN_CONST, AppUtils.StringKeys.PERSONAL_CONST)
+        opcionesAcceso = listOf(AppUtils.StringKeys.ADMIN_CONST, AppUtils.StringKeys.SERVICIO_SOCIAL_CONST)
 
         val adapter1 = ArrayAdapter(this, android.R.layout.simple_spinner_item, opcionesAcceso)
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -50,10 +50,13 @@ class EditarAdminPersActivity : AppCompatActivity() {
     }
 
     private fun initUI() {
+        //mostramos datos del usuario
         mostrarDatos()
 
+        //actualizar datoas
         binding.btnActualizarAdminPers.setOnClickListener{ actualizarPersonal() }
 
+        //restablecer contraseña a contraseña por defecto
         binding.btnRestablecerContrasenia.setOnClickListener {
             AlertDialog.Builder(it.context)
                 .setTitle("¿Estás seguro?")
@@ -101,13 +104,13 @@ class EditarAdminPersActivity : AppCompatActivity() {
                 }
                 binding.etTelefono.setText(telefono)
 
-                //BOTON PARA ELIMINAR EL REGISTRO ACTUAL
+                //BOTON PARA ELIMINAR EL REGISTRO ACTUAL (solo admin)
                 binding.btnEliminarAdminPers.setOnClickListener {
                     AlertDialog.Builder(it.context)
                         .setTitle("¿Estás seguro?")
                         .setMessage("¿Deseas eliminar este usuario PERMANENTEMENTE?")
                         .setPositiveButton("Continuar") { dialog, _ ->
-                            eliminarPersonal(user)
+                            eliminarServicioSocial(user)
                             dialog.dismiss()
                         }
                         .setNegativeButton("Regresar") { dialog, _ ->
@@ -134,7 +137,6 @@ class EditarAdminPersActivity : AppCompatActivity() {
             return
         }
 
-        // Verificar si ya existe un registro con ese ID en la base de datos
         database.child(AppUtils.DatabaseKeys.USUARIOS_DB_CONST).child(user).addListenerForSingleValueEvent(object :
             ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -152,7 +154,7 @@ class EditarAdminPersActivity : AppCompatActivity() {
                                     database.child(AppUtils.DatabaseKeys.USUARIOS_DB_CONST).child(registro).setValue(personal)
                                         .addOnSuccessListener {
                                             val registro_viejo = snapshot.child(AppUtils.DatabaseKeys.REGISTRO_DB_CONST).getValue(String::class.java) ?: AppUtils.StringKeys.ERROR_CONST
-                                            eliminarPersonal(registro_viejo)//se elimina al viejo usuario (con el registro viejo) de la base de datos
+                                            eliminarServicioSocial(registro_viejo)//se elimina al viejo usuario (con el registro viejo) de la base de datos
 
                                             Toast.makeText(this@EditarAdminPersActivity, "Personal actualizado correctamente", Toast.LENGTH_SHORT).show()
                                         }
@@ -164,6 +166,7 @@ class EditarAdminPersActivity : AppCompatActivity() {
                                 }
                             }
                         }
+
                 //si NO se cambio el campo "registro"
                 } else {
                     if (snapshot.exists()) {
@@ -189,11 +192,11 @@ class EditarAdminPersActivity : AppCompatActivity() {
         })
     }
 
-    private fun eliminarPersonal(registro: String) {
+    private fun eliminarServicioSocial(registro: String) {
         database.child(AppUtils.DatabaseKeys.USUARIOS_DB_CONST).child(registro)
             .removeValue()
             .addOnSuccessListener {
-                Toast.makeText(this, "Personal eliminado correctamente", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Usuario de servicio social eliminado correctamente", Toast.LENGTH_SHORT).show()
             }
             .addOnFailureListener { error ->
                 Toast.makeText(this, "Error al eliminar: ${error.message}", Toast.LENGTH_SHORT).show()

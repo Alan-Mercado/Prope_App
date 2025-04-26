@@ -2,6 +2,7 @@ package com.curso_android.propeapp
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -9,7 +10,6 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.curso_android.propeapp.databinding.ActivityMostrarGrupoBinding
 import com.google.firebase.database.*
-import java.util.Locale
 
 private lateinit var database: DatabaseReference
 
@@ -35,52 +35,51 @@ class MostrarGrupoActivity : AppCompatActivity() {
             insets
         }
 
-        // Obtener el grupo desde el intent (ej: "G3")
+        //obtener el grupo desde el intent (ej: "G3")
         val grupoBuscado = intent.getStringExtra(AppUtils.StringKeys.GRUPO_CONST) ?: return
 
-        obtenerAlumnosPorGrupo(grupoBuscado)
+        obtenerEstudiantesPorGrupo(grupoBuscado)
 
         binding.toolbarExterna.ivRegresar.setOnClickListener { regresar() }
     }
 
-    private fun obtenerAlumnosPorGrupo(grupo: String) {
-        estudianteList.clear()//limpiamos la lista mostrada de alumnos antes de ingresar a otro grupo
+    private fun obtenerEstudiantesPorGrupo(grupo: String) {
+        estudianteList.clear()//limpiamos la lista mostrada antes de ingresar a otro grupo
         database.child(AppUtils.DatabaseKeys.USUARIOS_DB_CONST).addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
                     for (userSnapshot in snapshot.children) {
                         val usuario = userSnapshot.getValue(Estudiante::class.java)
 
-                        // Si el número de registro o el nombre coinciden con la búsqueda
+                        //si el numero de registro o el nombre coinciden con la busqueda
                         if (usuario != null && usuario.acceso == AppUtils.StringKeys.ESTUDIANTE_CONST) {
                             if (usuario.grupo.contains(grupo)) {
                                 estudianteList.add(usuario)
                             }
                         }
                     }
+                    binding.tvTitulo.text = "Grupo " + grupo//mostramos el grupo en pantalla
 
-                    binding.tvTitulo.text = "Grupo " + grupo
-                    // Actualiza el RecyclerView con los resultados encontrados
-                    updateRecyclerView(estudianteList)
+                    updateRecyclerView(estudianteList)//actualiza la lista
                 }
             }
 
             override fun onCancelled(error: DatabaseError) {
-                // Manejo de error
+                Toast.makeText(this@MostrarGrupoActivity, "Error al conectar con la base de datos. ${error.message}", Toast.LENGTH_SHORT).show()
             }
         })
     }
 
     private fun updateRecyclerView(results: List<Estudiante>) {
-        val adapter = AlumnoAdapter(results){navegarInfoEditAlum(it, AppUtils.StringKeys.BUSCAR_CONST)}
+        val adapter = EstudianteAdapter(results){navegarInfoEditEstud(it, AppUtils.StringKeys.BUSCAR_CONST)}
         binding.rvResultados.layoutManager = LinearLayoutManager(this)
         binding.rvResultados.adapter = adapter
     }
 
-    private fun navegarInfoEditAlum(registro:String, donde_ir:String) {
+    private fun navegarInfoEditEstud(registro:String, donde_ir:String) {
         //navegar a Mostrar Info Estudiante
         if (donde_ir == AppUtils.StringKeys.BUSCAR_CONST) {
-            val intent = Intent(this, InfoAlumActivity::class.java)
+            val intent = Intent(this, InfoEstudActivity::class.java)
             intent.putExtra(AppUtils.StringKeys.ESTUDIANTE_CONST, registro)
             startActivity(intent)
         }

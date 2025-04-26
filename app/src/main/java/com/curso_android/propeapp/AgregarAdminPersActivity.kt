@@ -12,7 +12,7 @@ import com.google.firebase.database.*
 
 class AgregarAdminPersActivity : AppCompatActivity() {
 
-    private lateinit var database: DatabaseReference//Referencia a Firebase
+    private lateinit var database: DatabaseReference
 
     private lateinit var binding: ActivityAgregarAdminPersBinding
 
@@ -27,7 +27,6 @@ class AgregarAdminPersActivity : AppCompatActivity() {
 
         window.statusBarColor = resources.getColor(R.color.dorado_color, theme)
 
-        //database = FirebaseDatabase.getInstance().reference//Inicializar referencia a BD
         database = AppUtils.database
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
@@ -36,7 +35,7 @@ class AgregarAdminPersActivity : AppCompatActivity() {
             insets
         }
 
-        opcionesAcceso = listOf(AppUtils.StringKeys.ADMIN_CONST, AppUtils.StringKeys.PERSONAL_CONST)
+        opcionesAcceso = listOf(AppUtils.StringKeys.ADMIN_CONST, AppUtils.StringKeys.SERVICIO_SOCIAL_CONST)
 
         val adapter1 = ArrayAdapter(this, android.R.layout.simple_spinner_item, opcionesAcceso)
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -66,14 +65,14 @@ class AgregarAdminPersActivity : AppCompatActivity() {
 
         val admin_pers = AdminPers(registro, acceso, nombre, password = AppUtils.hashSHA256(AppUtils.StringKeys.PASS_PREDETERMINADA_CONST), telefono)
 
-        // Verificar si ya existe un registro con ese ID en la base de datos
+        //Verificar si ya existe un registro
         database.child(AppUtils.DatabaseKeys.USUARIOS_DB_CONST).child(registro).addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
-                    // Si el registro ya existe
+                    //Si el registro ya existe
                     Toast.makeText(this@AgregarAdminPersActivity, "Ya existe este registro de personal", Toast.LENGTH_SHORT).show()
                 } else {
-                    // Si el registro no existe agregar el nuevo alumno
+                    //Si el registro no existe, agregar el nuevo alumno
                     database.child(AppUtils.DatabaseKeys.USUARIOS_DB_CONST).child(registro).setValue(admin_pers)
                         .addOnSuccessListener {
                             Toast.makeText(this@AgregarAdminPersActivity, "Personal agregado correctamente", Toast.LENGTH_SHORT).show()
