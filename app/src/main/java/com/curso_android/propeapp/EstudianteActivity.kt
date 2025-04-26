@@ -12,7 +12,7 @@ class EstudianteActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityEstudianteBinding
 
-    private lateinit var registro: String
+    private lateinit var user: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +29,7 @@ class EstudianteActivity : AppCompatActivity() {
             insets
         }
 
-        registro = intent.getStringExtra(AppUtils.StringKeys.ESTUDIANTE_CONST) ?: AppUtils.StringKeys.ERROR_CONST
+        user = intent.getStringExtra(AppUtils.StringKeys.ESTUDIANTE_CONST) ?: AppUtils.StringKeys.ERROR_CONST
 
         initUI()
     }
@@ -37,7 +37,10 @@ class EstudianteActivity : AppCompatActivity() {
     private fun initUI() {
         //botones
         binding.cvInformacion.setOnClickListener { navegarInformacion() }
+
         binding.cvQR.setOnClickListener { navegarQR() }
+
+        binding.cvCambiarContrasenia.setOnClickListener { navegarCambiarContrasenia(user) }
 
         //Log.d("usuario-2", user)
 
@@ -47,13 +50,19 @@ class EstudianteActivity : AppCompatActivity() {
 
     private fun navegarInformacion() {
         val intent = Intent(this, InfoAlumActivity::class.java)
-        intent.putExtra(AppUtils.StringKeys.ESTUDIANTE_CONST, registro)
+        intent.putExtra(AppUtils.StringKeys.ESTUDIANTE_CONST, user)
         startActivity(intent)
     }
 
     private fun navegarQR() {
         val intent = Intent(this, MostrarQRAlumActivity::class.java)
-        intent.putExtra(AppUtils.StringKeys.ESTUDIANTE_CONST, registro)
+        intent.putExtra(AppUtils.StringKeys.ESTUDIANTE_CONST, user)
+        startActivity(intent)
+    }
+
+    private fun navegarCambiarContrasenia(registro: String) {
+        val intent = Intent(this, CambiarContraseniaActivity::class.java)
+        intent.putExtra(AppUtils.DatabaseKeys.REGISTRO_DB_CONST, registro)
         startActivity(intent)
     }
 

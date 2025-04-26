@@ -1,5 +1,6 @@
 package com.curso_android.propeapp
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
@@ -55,6 +56,13 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun initUI() {
+        //mensaje recuperar contraseña
+        binding.tvOlvidasteContrasenia.setOnClickListener {
+            AlertDialog.Builder(it.context)
+                .setTitle("Restablecer Contraseña")
+                .setMessage("Para restablecer tu contraseña, acude con Coordinador(a) del curso y solicítalo.").show()
+        }
+
         //ingresar
         binding.btnIngresar.setOnClickListener {
             navegarVistaUsuario(
@@ -84,13 +92,10 @@ class LoginActivity : AppCompatActivity() {
                     if (userPassword == hashedPassword) {
                         //si es admin
                         if (nivelAcceso == AppUtils.StringKeys.ADMIN_CONST) {
-                            Toast.makeText(
-                                this,
-                                "Inicio de sesión exitoso como administrador",
-                                Toast.LENGTH_SHORT
-                            ).show()
+                            Toast.makeText(this, "Inicio de sesión exitoso como administrador",Toast.LENGTH_SHORT).show()
                             val intent = Intent(this, AdminPersActivity::class.java)
                             intent.putExtra(AppUtils.StringKeys.NIVEL_ACCESO_CONST, AppUtils.StringKeys.ADMIN_CONST)
+                            intent.putExtra(AppUtils.DatabaseKeys.REGISTRO_DB_CONST, user)
                             startActivity(intent)
 
                         //si es personal (guardia/chic@ servicio)
@@ -98,6 +103,7 @@ class LoginActivity : AppCompatActivity() {
                             Toast.makeText(this, "Inicio de sesión exitoso como personal", Toast.LENGTH_SHORT).show()
                             val intent = Intent(this, AdminPersActivity::class.java)
                             intent.putExtra(AppUtils.StringKeys.NIVEL_ACCESO_CONST, AppUtils.StringKeys.PERSONAL_CONST)
+                            intent.putExtra(AppUtils.DatabaseKeys.REGISTRO_DB_CONST, user)
                             startActivity(intent)
 
                         //si es estudiante

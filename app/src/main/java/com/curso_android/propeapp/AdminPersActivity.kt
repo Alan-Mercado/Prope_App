@@ -2,8 +2,11 @@ package com.curso_android.propeapp
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
@@ -13,6 +16,7 @@ class AdminPersActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAdminBinding
 
+    private lateinit var user: String
     private lateinit var nivel_acceso: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,6 +34,7 @@ class AdminPersActivity : AppCompatActivity() {
             insets
         }
 
+        user = intent.getStringExtra(AppUtils.DatabaseKeys.REGISTRO_DB_CONST) ?: AppUtils.StringKeys.ERROR_CONST
         nivel_acceso = intent.getStringExtra(AppUtils.StringKeys.NIVEL_ACCESO_CONST) ?: AppUtils.StringKeys.ERROR_CONST
 
         initUI()
@@ -50,6 +55,8 @@ class AdminPersActivity : AppCompatActivity() {
 
         binding.cvAgregarAdminPers.setOnClickListener { navegarAgregarPersonal() }
         binding.cvEditarAdminPers.setOnClickListener { navegarEditarPersonal() }
+
+        binding.cvCambiarContrasenia.setOnClickListener { navegarCambiarContrasenia(user) }
 
         //regresar
         binding.toolbarExterna.ivRegresar.setOnClickListener { regresar() }
@@ -83,9 +90,37 @@ class AdminPersActivity : AppCompatActivity() {
 
         //CAMBIAR NOMBRE DE "AdminActivity.kt" a "AdminPers.kt"???
         if (nivel_acceso == AppUtils.StringKeys.ADMIN_CONST){
+            binding.tvTitulo.text = "Menú ADMINISTRADOR"
+            binding.tvDescripcion.text = "Aquí puedes buscar un estudiante por su nombre, revisar la lista de grupos, agregar a un estudiante o personal nuevo o editar la información de los mismos, entre otras opciones"
             binding.cvAgregarAdminPers.isVisible = true
             binding.cvEditarAdminPers.isVisible = true
-        }
+        } /*else {
+            binding.cvCambiarContrasenia.visibility = View.VISIBLE
+
+            val constraintSet = ConstraintSet()
+            constraintSet.clone(binding.constraintLayout)
+
+            // Limpia las constraints anteriores de cvCambiarContrasenia
+            constraintSet.clear(R.id.cvCambiarContrasenia, ConstraintSet.TOP)
+            constraintSet.clear(R.id.cvCambiarContrasenia, ConstraintSet.START)
+            constraintSet.clear(R.id.cvCambiarContrasenia, ConstraintSet.END)
+
+            // Vuelve a poner las nuevas constraints
+            constraintSet.connect(
+                R.id.cvCambiarContrasenia,
+                ConstraintSet.TOP,
+                R.id.cvAgregarEstudiante,
+                ConstraintSet.BOTTOM
+            )
+            constraintSet.connect(
+                R.id.cvCambiarContrasenia,
+                ConstraintSet.START,
+                ConstraintSet.START,
+                0
+            )
+
+            constraintSet.applyTo(binding.constraintLayout)
+        }*/
     }
 
     private fun navegarAgregarPersonal() {
@@ -96,6 +131,12 @@ class AdminPersActivity : AppCompatActivity() {
     private fun navegarEditarPersonal() {
         val intent = Intent(this, BuscarAdminPersActivity::class.java)
         intent.putExtra(AppUtils.StringKeys.BOTON_CONST, AppUtils.StringKeys.EDITAR_PERSONAL_CONST)//PONER EXTRA DE REGISTRO DEL ADMIN/PERSONAL
+        startActivity(intent)
+    }
+
+    private fun navegarCambiarContrasenia(registro: String) {
+        val intent = Intent(this, CambiarContraseniaActivity::class.java)
+        intent.putExtra(AppUtils.DatabaseKeys.REGISTRO_DB_CONST, registro)
         startActivity(intent)
     }
 

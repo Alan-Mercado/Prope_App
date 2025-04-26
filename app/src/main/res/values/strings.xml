@@ -25,16 +25,18 @@
     <string name="descripcion_activity_usuario">Aquí puedes revisar tu información como estudiante del curso propedéutico de CETI Tonalá y mostrar tu código QR para que sea escaneado</string>
     <string name="informacion_activity_usuario">Información</string>
     <string name="qr_activity_usuario">QR</string>
+    <string name="cambiarcontrasenia_activity_usuario">Cambiar Contraseña</string>
 
     <!--activity_admin-->
-    <string name="titulo_activity_admin">Tu Información</string>
-    <string name="descripcion_activity_admin">Aquí puedes buscar un estudiante por su nombre, revisar la lista de grupos, agregar a un estudiante nuevo o editar la información de un estudiante</string>
+    <string name="titulo_activity_admin">Menú Servicio Social</string>
+    <string name="descripcion_activity_admin">Aquí puedes buscar un estudiante por su nombre, revisar la lista de grupos, agregar a un estudiante, entre otras opciones</string>
     <string name="buscarestudiante_activity_admin">Buscar Estudiante</string>
     <string name="grupos_activity_admin">Grupos</string>
     <string name="agregarestudiante_activity_admin">Agregar Estudiante</string>
     <string name="editarestudiante_activity_admin">Editar Estudiante</string>
     <string name="agregarpersonal_activity_admin">Agregar Personal</string>
     <string name="editarpersonal_activity_admin">Editar Personal</string>
+    <string name="cambiarcontrasenia_activity_admin">Cambiar Contraseña</string>
 
     <!--activity_mostrarqralum-->
     <string name="instruccion_activity_mostrarqralum">Muestra este código QR para que otras personas puedan acceder a tu información</string>
@@ -98,6 +100,14 @@
     <string name="titulo_activity_editar_admin_pers">Edita la información del personal</string>
     <string name="btnactualizar_activity_editar_admin_pers">Actualizar</string>
     <string name="btneliminar_activity_editar_admin_pers">ELIMINAR</string>
+
+    <!--activity_cambiar_contrasenia-->
+    <string name="titulo_activity_cambiar_contrasenia">Contraseña</string>
+    <string name="descripcion_activity_cambiar_contrasenia">Aqui puedes cambiar tu contraseña. Asegurate de no olvidarla ni compartirla con nadie.</string>
+    <string name="contraseniaactual_activity_cambiar_contrasenia">Contraseña actual</string>
+    <string name="contrasenianueva_activity_cambiar_contrasenia">Nueva contraseña</string>
+    <string name="contrasenianuevarepetir_activity_cambiar_contrasenia">Nueva contraseña (otra vez)</string>
+    <string name="btncambiarcontrasenia_activity_cambiar_contrasenia">Cambiar contraseña</string>
 
     <!--activity_-->
     <string name="_activity_"></string>
