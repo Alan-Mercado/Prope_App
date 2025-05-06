@@ -56,17 +56,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/divider1" />
 
-            <!--TextView
-                android:id="@+id/tvNombre"
-                style="@style/Texto_3_Estilo"
-                android:layout_width="200dp"
-                android:layout_height="48dp"
-                android:gravity="start|center_vertical"
-                android:maxLines="2"
-                android:paddingHorizontal="8dp"
-                app:layout_constraintStart_toEndOf="@id/tvCampoNombre"
-                app:layout_constraintTop_toBottomOf="@id/divider1"
-                tools:text="ana maria velazquez castro" /-->
             <EditText
                 android:id="@+id/etNombre"
                 style="@style/Texto_3_Estilo"
@@ -130,17 +119,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/divider3" />
 
-            <!--EditText
-                android:id="@+id/etEstatus"
-                style="@style/Texto_1_Estilo"
-                android:layout_width="200dp"
-                android:layout_height="48dp"
-                android:gravity="start|center_vertical"
-                android:maxLines="2"
-                android:paddingHorizontal="8dp"
-                app:layout_constraintStart_toEndOf="@id/tvCampoEstatus"
-                app:layout_constraintTop_toBottomOf="@id/divider3"
-                tools:text="Pago completado" /-->
             <Spinner
                 android:id="@+id/spEstatus"
                 android:layout_width="200dp"
@@ -167,17 +145,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/divider4" />
 
-            <!--EditText
-                android:id="@+id/etGrupo"
-                style="@style/Texto_1_Estilo"
-                android:layout_width="200dp"
-                android:layout_height="48dp"
-                android:gravity="start|center_vertical"
-                android:maxLines="2"
-                android:paddingHorizontal="8dp"
-                app:layout_constraintStart_toEndOf="@id/tvCampoGrupo"
-                app:layout_constraintTop_toBottomOf="@id/divider4"
-                tools:text="A" /-->
             <Spinner
                 android:id="@+id/spGrupo"
                 android:layout_width="200dp"
@@ -328,17 +295,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/divider9" />
 
-            <!--EditText
-                android:id="@+id/etCredencial"
-                style="@style/Texto_1_Estilo"
-                android:layout_width="200dp"
-                android:layout_height="48dp"
-                android:gravity="start|center_vertical"
-                android:maxLines="2"
-                android:paddingHorizontal="8dp"
-                app:layout_constraintStart_toEndOf="@id/tvCampoTelefono2"
-                app:layout_constraintTop_toBottomOf="@id/divider9"
-                tools:text="Pendiente" /-->
             <Spinner
                 android:id="@+id/spCredencial"
                 android:layout_width="200dp"

@@ -155,7 +155,6 @@
                 app:layout_constraintTop_toBottomOf="@id/divider4"
                 tools:text="3344556677" />
 
-
             <!--BOTONES-->
             <!--Eliminar-->
             <com.google.android.material.button.MaterialButton

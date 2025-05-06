@@ -4,7 +4,7 @@ import com.google.firebase.database.*
 import java.security.MessageDigest
 
 object AppUtils {
-    // Referencia a Firebase Database
+    //Referencia a Firebase Database
     val database: DatabaseReference by lazy {
         FirebaseDatabase.getInstance().reference
     }
@@ -26,9 +26,9 @@ object AppUtils {
                 //si se encuentra el registro
                 if (snapshot.exists()) {
                     usuario.child(DatabaseKeys.PASSWORD_DB_CONST).setValue(nuevaPasswordHash)
-                        .addOnCompleteListener { task -> callback(task.isSuccessful) }//indicamos de manera asincrona que envie la
+                        .addOnCompleteListener { task -> callback(task.isSuccessful) }//indicamos de manera asincrona que envie la callback
 
-                    //si no se encuentra el registro
+                //si no se encuentra el registro
                 } else {
                     callback(false)
                 }

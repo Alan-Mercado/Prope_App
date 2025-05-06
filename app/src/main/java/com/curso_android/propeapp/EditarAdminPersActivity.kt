@@ -97,7 +97,7 @@ class EditarAdminPersActivity : AppCompatActivity() {
 
                 //Asignamos valores recuparados a los textviews
                 binding.etNombre.setText(nombre)
-                binding.etRegistro.setText(user)//cambiar a campo de la base de datos???????????????????
+                binding.etRegistro.setText(user)
                 val pos1 = opcionesAcceso.indexOf(acceso)
                 if (pos1 >= 0) {
                     binding.spAcceso.setSelection(pos1)

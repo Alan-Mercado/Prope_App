@@ -41,7 +41,8 @@ class BienvenidaActivity : AppCompatActivity() {
 
     private fun navegarEscanearQR() {
         val intent = Intent(this, EscanearQRActivity::class.java)
-        intent.putExtra(AppUtils.StringKeys.NIVEL_ACCESO_CONST, AppUtils.StringKeys.SERVICIO_SOCIAL_CONST)//le concedemos el nivel de acceso de servicio_social
+        intent.putExtra(AppUtils.StringKeys.NIVEL_ACCESO_CONST,
+            AppUtils.StringKeys.SERVICIO_SOCIAL_CONST)//le concedemos el nivel de acceso de servicio_social
         intent.putExtra(AppUtils.StringKeys.BOTON_CONST, AppUtils.StringKeys.BUSCAR_CONST)
         startActivity(intent)
     }

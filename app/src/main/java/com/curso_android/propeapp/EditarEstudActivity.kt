@@ -73,6 +73,10 @@ class EditarEstudActivity : AppCompatActivity() {
     }
 
     private fun initUI() {
+        binding.btnRestablecerContrasenia.isVisible = false
+        binding.btnEliminarAlum.isVisible = false
+        mostrarBotonesAdmin()
+
         mostrarDatos()
 
         binding.btnActualizarAlum.setOnClickListener{ actualizarEstud() }
@@ -159,8 +163,6 @@ class EditarEstudActivity : AppCompatActivity() {
                             }
                             .show()
                     }
-                } else {
-                    binding.btnEliminarAlum.isVisible = false
                 }
             } else {
                 Toast.makeText(this, "Usuario no encontrado", Toast.LENGTH_SHORT).show()
@@ -268,6 +270,14 @@ class EditarEstudActivity : AppCompatActivity() {
         asistenciasActualizadas[timestamp] = readable
 
         return asistenciasActualizadas
+    }
+
+    private fun mostrarBotonesAdmin() {
+        //si es admin, que vea todas las opciones ocultas
+        if (nivel_acceso == AppUtils.StringKeys.ADMIN_CONST){
+            binding.btnRestablecerContrasenia.isVisible = true
+            binding.btnEliminarAlum.isVisible = true
+        }
     }
 
     private fun navegarAsistencias(registro:String) {

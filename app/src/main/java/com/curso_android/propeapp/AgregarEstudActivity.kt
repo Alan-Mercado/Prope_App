@@ -88,7 +88,9 @@ class AgregarEstudActivity : AppCompatActivity() {
 
         val asistenciasIniciales = obtenerFechaCreacion()//obtenemos la fecha de creacion
 
-        val estudiante = Estudiante(registro, acceso = AppUtils.StringKeys.ESTUDIANTE_CONST, nombre, password = AppUtils.hashSHA256(AppUtils.StringKeys.PASS_PREDETERMINADA_CONST), estatus, grupo, contacto, tel_1, /*tutor_2, tel_2,*/ cred_entr, asistenciasIniciales)
+        val estudiante = Estudiante(registro, acceso = AppUtils.StringKeys.ESTUDIANTE_CONST, nombre,
+            password = AppUtils.hashSHA256(AppUtils.StringKeys.PASS_PREDETERMINADA_CONST), estatus, grupo, contacto,
+            tel_1, /*tutor_2, tel_2,*/ cred_entr, asistenciasIniciales)
 
         //Verificar si ya existe un registro
         database.child(AppUtils.DatabaseKeys.USUARIOS_DB_CONST).child(registro).addListenerForSingleValueEvent(object : ValueEventListener {

@@ -5,7 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.curso_android.propeapp.databinding.ListItemEstudBinding
 
-class EstudianteAdapter(private var alumnos: List<Estudiante> = emptyList(), private val alSeleccionarAlum:(String) -> Unit) : RecyclerView.Adapter<EstudianteAdapter.AlumnoViewHolder>() {
+class EstudianteAdapter(private var alumnos: List<Estudiante> = emptyList(), private val alSeleccionarAlum:(String) -> Unit)
+    : RecyclerView.Adapter<EstudianteAdapter.AlumnoViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlumnoViewHolder {
         val binding = ListItemEstudBinding.inflate(LayoutInflater.from(parent.context), parent, false)
