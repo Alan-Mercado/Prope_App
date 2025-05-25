@@ -266,7 +266,6 @@ class EditarEstudActivity : AppCompatActivity() {
 
         val timestamp = SimpleDateFormat("dd-MM-yy_HH-mm-ss", Locale.getDefault()).format(Date())
         val readable = SimpleDateFormat("dd-MM-yy HH:mm:ss", Locale.getDefault()).format(Date()) + " ACTUALIZACION"
-
         asistenciasActualizadas[timestamp] = readable
 
         return asistenciasActualizadas
