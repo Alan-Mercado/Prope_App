@@ -81,7 +81,7 @@ class EditarEstudActivity : AppCompatActivity() {
 
         binding.btnActualizarAlum.setOnClickListener{ actualizarEstud() }
 
-        binding.btnAsistencias.setOnClickListener { navegarAsistencias(user) }
+        //binding.btnAsistencias.setOnClickListener { navegarAsistencias(user) }
 
         binding.btnRestablecerContrasenia.setOnClickListener {
             AlertDialog.Builder(it.context)
@@ -264,8 +264,8 @@ class EditarEstudActivity : AppCompatActivity() {
         val asistenciasExistentes = snapshot.child(AppUtils.DatabaseKeys.ASISTENCIAS_DB_CONST).value as? Map<String, String> ?: emptyMap()
         val asistenciasActualizadas = asistenciasExistentes.toMutableMap()
 
-        val timestamp = SimpleDateFormat("dd-MM-yy_HH:mm:ss", Locale.getDefault()).format(Date())
-        val readable = timestamp.replace('_', ' ') + " ACTUALIZACION"
+        val timestamp = SimpleDateFormat("dd-MM-yy_HH-mm-ss", Locale.getDefault()).format(Date())
+        val readable = SimpleDateFormat("dd-MM-yy HH:mm:ss", Locale.getDefault()).format(Date()) + " ACTUALIZACION"
 
         asistenciasActualizadas[timestamp] = readable
 
@@ -280,11 +280,11 @@ class EditarEstudActivity : AppCompatActivity() {
         }
     }
 
-    private fun navegarAsistencias(registro:String) {
+    /*private fun navegarAsistencias(registro:String) {
         val intent = Intent(this, MostrarAsistenciasActivity::class.java)
         intent.putExtra(AppUtils.DatabaseKeys.REGISTRO_DB_CONST, registro)
         startActivity(intent)
-    }
+    }*/
 
     private fun regresar() {
         finish()

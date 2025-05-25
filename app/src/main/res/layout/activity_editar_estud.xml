@@ -363,12 +363,12 @@
                 android:text="@string/btnrestablecercontrasenia_activity_editar_alum"
                 android:textColor="@color/white"
                 app:cornerRadius="8dp"
-                app:layout_constraintBottom_toTopOf="@id/btnAsistencias"
+                app:layout_constraintBottom_toTopOf="@id/btnActualizarAlum"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <!--Asistencias-->
-            <com.google.android.material.button.MaterialButton
+            <!--com.google.android.material.button.MaterialButton
                 android:id="@+id/btnAsistencias"
                 style="@style/Texto_1_Estilo"
                 android:layout_width="240dp"
@@ -381,7 +381,7 @@
                 app:cornerRadius="8dp"
                 app:layout_constraintBottom_toTopOf="@id/btnActualizarAlum"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent" /-->
 
             <!--Actualizar-->
             <com.google.android.material.button.MaterialButton

@@ -191,7 +191,7 @@ class EscanearQRActivity : AppCompatActivity() {
         val formatoValor = SimpleDateFormat("dd-MM-yy HH:mm:ss", Locale.getDefault())
 
         val clave = formatoClave.format(now)
-        val valor = formatoValor.format(now)
+        val valor = formatoValor.format(now) + " ESCANEO"
 
         val asistenciaMap = mapOf<String, Any>(
             AppUtils.DatabaseKeys.ASISTENCIAS_DB_CONST + "/$clave" to valor
@@ -199,7 +199,7 @@ class EscanearQRActivity : AppCompatActivity() {
 
         usuario.updateChildren(asistenciaMap).addOnCompleteListener { task ->
             if (task.isSuccessful) {
-                Toast.makeText(this,"Asistencia registrada correctamente",Toast.LENGTH_SHORT).show()
+                Toast.makeText(this,"Escaneo registrado correctamente",Toast.LENGTH_SHORT).show()
             } else {
                 Toast.makeText(this,"Error al registrar la asistencia",Toast.LENGTH_SHORT).show()
             }
